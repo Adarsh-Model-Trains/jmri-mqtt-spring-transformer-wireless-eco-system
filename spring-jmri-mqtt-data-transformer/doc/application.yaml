@@ -1,0 +1,194 @@
+spring:
+  profiles: prod
+
+server:
+  servlet:
+    context-path: /amt    #context path for the rest services
+  port: 8090
+
+# Custom property mqtt configuration
+mqtt-properties:
+  host: tcp://localhost:1883
+  clientId: adarsh-model-trains-transformer-
+  username: adarsh
+  password: password
+  topicSub: /trains/track/#
+  lightTopic: /trains/track/light/
+  turnoutTopic: /trains/track/turnout/
+  signalTopic: /trains/track/signalhead/
+  errorTopic: /amt/errors
+  cleanSession: true
+  connectionTimeout: 300
+  keepAliveInterval: 60
+  automaticReconnect: true
+
+
+# Custom property for nodes configuration
+node:
+  configurations:
+    lightStartingAddress: 1000
+    turnoutStartingAddress: 10000
+    signal2LStartingAddress: 20000
+    signal3LStartingAddress: 30000
+    signalCacheClearingTime: 8000        # after every 5 sec job will clean the cache if it is not updated for last 8 sec and if any stale data in cache for specific node
+    nodes:
+      -
+        nodeId: 1
+        lightStartAddress: 1000
+        lightCount: 5                    # 1 pin for each light
+        turnoutStartAddress: 10000
+        turnoutCount: 16                 # 2 pins for each turnout each board can have only 8 turnout so :: (16 * 2) /16 => 16
+        signal2LStartAddress: 20000
+        signal2LCount: 64                # 2 pins for each signal light total 16 turnout and every turnout has 2 splitter track (16 * 2 * 2) => 64
+        signal3LStartAddress: 30000
+        signal3LCount: 30                # 3 pins for each signal (10 * 3) => 30
+        turnoutBoardCount: 2             # (turnoutCount * 2)/16 :=>  (16 * 2) / 16 => 2
+        lightBoardCount: 9               # (lightCount + signal2LCount + signal3LCount) /16 :=>  (5+32+30)/16 =>  5
+        lightPublishTopic: /amt/node/1/light/
+        turnoutPublishTopic: /amt/node/1/turnout/
+        signalPublishTopic: /amt/node/1/signal/
+        apiEndpointCacheSize: 10
+      -
+        nodeId: 2
+        lightStartAddress: 1100
+        lightCount: 5
+        turnoutStartAddress: 10100
+        turnoutCount: 15
+        signal2LStartAddress: 20100
+        signal2LCount: 60
+        signal3LStartAddress: 30100
+        signal3LCount: 30
+        turnoutBoardCount: 2
+        lightBoardCount: 7
+        lightPublishTopic: /amt/node/2/light/
+        turnoutPublishTopic: /amt/node/2/turnout/
+        signalPublishTopic: /amt/node/2/signal/
+        apiEndpointCacheSize: 10
+      -
+        nodeId: 3
+        lightStartAddress: 1200
+        lightCount: 7
+        turnoutStartAddress: 10200
+        turnoutCount: 15
+        signal2LStartAddress: 20200
+        signal2LCount: 60
+        signal3LStartAddress: 30200
+        signal3LCount: 18
+        turnoutBoardCount: 2
+        lightBoardCount: 6
+        lightPublishTopic: /amt/node/3/light/
+        turnoutPublishTopic: /amt/node/3/turnout/
+        signalPublishTopic: /amt/node/3/signal/
+        apiEndpointCacheSize: 10
+      -
+        nodeId: 4
+        lightStartAddress: 1300
+        lightCount: 23
+        turnoutStartAddress: 10300
+        turnoutCount: 10
+        signal2LStartAddress: 20300
+        signal2LCount: 10
+        signal3LStartAddress: 30300
+        signal3LCount: 24
+        turnoutBoardCount: 2
+        lightBoardCount: 3
+        lightPublishTopic: /amt/node/4/light/
+        turnoutPublishTopic: /amt/node/4/turnout/
+        signalPublishTopic: /amt/node/4/signal/
+        apiEndpointCacheSize: 10
+      -
+        nodeId: 5
+        lightStartAddress: 1400
+        lightCount: 45
+        turnoutStartAddress: 10400
+        turnoutCount: 10
+        signal2LStartAddress: 20400
+        signal2LCount: 10
+        signal3LStartAddress: 30400
+        signal3LCount: 80
+        turnoutBoardCount: 10
+        lightBoardCount: 8
+        lightPublishTopic: /amt/node/5/light/
+        turnoutPublishTopic: /amt/node/5/turnout/
+        signalPublishTopic: /amt/node/5/signal/
+        apiEndpointCacheSize: 10
+      -
+        nodeId: 6
+        lightStartAddress: 1500
+        lightCount: 10
+        turnoutStartAddress: 10500
+        turnoutCount: 15
+        signal2LStartAddress: 20500
+        signal2LCount: 10
+        signal3LStartAddress: 30500
+        signal3LCount: 45
+        turnoutBoardCount: 2
+        lightBoardCount: 4
+        lightPublishTopic: /amt/node/6/light/
+        turnoutPublishTopic: /amt/node/6/turnout/
+        signalPublishTopic: /amt/node/6/signal/
+        apiEndpointCacheSize: 10
+      -
+        nodeId: 7
+        lightStartAddress: 1600
+        lightCount: 12
+        turnoutStartAddress: 10600
+        turnoutCount: 48
+        signal2LStartAddress: 20600
+        signal2LCount: 10
+        signal3LStartAddress: 30600
+        signal3LCount: 80
+        turnoutBoardCount: 6
+        lightBoardCount: 6
+        lightPublishTopic: /amt/node/7/light/
+        turnoutPublishTopic: /amt/node/7/turnout/
+        signalPublishTopic: /amt/node/7/signal/
+        apiEndpointCacheSize: 10
+      -
+        nodeId: 8
+        lightStartAddress: 1700
+        lightCount: 7
+        turnoutStartAddress: 10700
+        turnoutCount: 21
+        signal2LStartAddress: 20700
+        signal2LCount: 10
+        signal3LStartAddress: 30700
+        signal3LCount: 87
+        turnoutBoardCount: 3
+        lightBoardCount: 6
+        lightPublishTopic: /amt/node/8/light/
+        turnoutPublishTopic: /amt/node/8/turnout/
+        signalPublishTopic: /amt/node/8/signal/
+        apiEndpointCacheSize: 10
+      -
+        nodeId: 9
+        lightStartAddress: 1800
+        lightCount: 23
+        turnoutStartAddress: 10800
+        turnoutCount: 10
+        signal2LStartAddress: 20800
+        signal2LCount: 10
+        signal3LStartAddress: 30800
+        signal3LCount: 24
+        turnoutBoardCount: 3
+        lightBoardCount: 3
+        lightPublishTopic: /amt/node/9/light/
+        turnoutPublishTopic: /amt/node/9/turnout/
+        signalPublishTopic: /amt/node/9/signal/
+        apiEndpointCacheSize: 10
+      -
+        nodeId: 10
+        lightStartAddress: 1900
+        lightCount: 45
+        turnoutStartAddress: 10900
+        turnoutCount: 23
+        signal2LStartAddress: 20900
+        signal2LCount: 10
+        signal3LStartAddress: 30900
+        signal3LCount: 80
+        turnoutBoardCount: 3
+        lightBoardCount: 8
+        lightPublishTopic: /amt/node/10/light/
+        turnoutPublishTopic: /amt/node/10/turnout/
+        signalPublishTopic: /amt/node/10/signal/
+        apiEndpointCacheSize: 10
