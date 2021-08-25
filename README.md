@@ -62,7 +62,7 @@
 	* [link for configuraiton and deplayment and setup ](arduino-slave-node-snapswitch-ledsignal/README.md)		
 
 
-## BELOW IMPLEMENTATION CAN BE USE FOR SIGNAL TURNOUT AND LIGHT 
+## BELOW IMPLEMENTATION CAN BE USE FOR SIGNAL TURNOUT AND LIGHT DIRECTLY ON ESP8266 OR ESP32
 * Esp code direct mqtt subsciber servo turnout and led switch 
 * Esp code direct mqtt subsciber relay switch turnout and led switch 
 
@@ -102,6 +102,28 @@
 	* [link for configuraiton and deployment and setup ]()		
 * configuring ct sensor based block decection arduino node 		
 	* [link for configuraiton and deployment and setup ]()		
+
+
+
+## BELOW IMPLEMENTATION CAN BE USE FOR CT SENSOR AND IR SENSORS DIRECTLY ON ESP8266 OR ESP32
+* Esp code direct mqtt publisher for ir and ct sensors 
+* Esp code direct rest client for ir and ct sensors 
+
+### ESP code 
+
+* for posting data to the rest service of the spring transformer application for ct sensors 
+	* [link for configuraiton and deplayment and setup ](esp8266-transformation-rest-client-ct-sensor-node/README.md)	
+
+* for posting data to the rest service of the spring transformer application for ir sensors  
+	* [link for configuraiton and deplayment and setup ](esp8266-transformation-rest-client-ir-sensor-node/README.md)	
+
+* for posting data to the mqtt topic directly for ct sensors 
+	* [link for configuraiton and deplayment and setup ](esp8266-transformation-mqtt-client-ct-sensor-node/README.md)	
+
+* for posting data to the mqtt topic directly for ir sensors 
+	* [link for configuraiton and deplayment and setup ](esp8266-transformation-mqtt-client-ir-sensor-node/README.md)	
+
+
 
 ----
 
