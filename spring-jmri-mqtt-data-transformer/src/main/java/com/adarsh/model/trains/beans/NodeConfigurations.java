@@ -36,6 +36,9 @@ public class NodeConfigurations {
     @Data
     public static class Nodes {
         String nodeId;
+        Boolean enableNode;
+        Boolean enablePublishing;
+        Boolean enableRestApi;
         Integer lightStartAddress;
         Integer lightCount;
         Integer turnoutStartAddress;
@@ -46,9 +49,7 @@ public class NodeConfigurations {
         Integer signal3LCount;
         Integer turnoutBoardCount;
         Integer lightBoardCount;
-        String lightPublishTopic;
-        String turnoutPublishTopic;
-        String signalPublishTopic;
+        String nodeSubscriptionTopic;
         Integer apiEndpointCacheSize;
     }
 }

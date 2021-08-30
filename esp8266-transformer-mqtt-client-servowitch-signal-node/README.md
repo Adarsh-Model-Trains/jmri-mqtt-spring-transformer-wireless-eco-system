@@ -2,6 +2,8 @@
 
 ---
 
+![img](../image/dig9.png)
+
 > esp rest client will connect to pca9685 
 > via scl which is D1 on esp and sda which D2 on Esp 
 

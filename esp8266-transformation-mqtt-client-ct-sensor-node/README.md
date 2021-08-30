@@ -2,6 +2,8 @@
 
 ---
 
+![img](../image/dig11.png)
+
 > esp will conect to mqtt via wifi network 
 > wifi credentials will be configured in Config.h file 
 ```

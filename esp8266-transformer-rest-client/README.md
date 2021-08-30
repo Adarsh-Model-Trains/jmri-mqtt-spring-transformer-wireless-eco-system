@@ -2,6 +2,9 @@
 
 ---
 
+![img](../image/dig13.png)
+![img](../image/dig14.png)
+
 > esp will conect to spring transformation application via wifi network 
 > wifi credentials will be configured in Config.h file 
 ```

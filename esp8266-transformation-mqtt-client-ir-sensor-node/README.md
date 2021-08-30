@@ -2,6 +2,8 @@
 
 ---
 
+![img](../image/dig12.png)
+
 > arduino client will connect to the esp via seraila Rx/Tx pins 
 > gnd will be common in both the devices 
 

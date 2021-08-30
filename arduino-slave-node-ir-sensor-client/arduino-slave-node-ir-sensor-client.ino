@@ -12,6 +12,7 @@ bool flag = true;
 int address = 1;
 
 int blockNo = 0;
+int sensStatus[NO_OF_BLOCKS];
 IrBlockSensors blockSensors;
 
 void setup() {
@@ -20,7 +21,8 @@ void setup() {
   blockSensors.initBlockSensors(NO_OF_BLOCKS);
   for (int i = 0; i < NO_OF_BLOCKS; i++) {
     blockSensors.setBlockSensorPins(i + 1, sensorPin[i][0], sensorPin[i][1]);
-  }
+    sensStatus[i] = 0;
+  }  
 }
 
 void loop() {
@@ -36,9 +38,15 @@ void loop() {
   for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
     bool isBlockOccuipied = blockSensors.isSensorBlockOccupied(blockNo);
     if (isBlockOccuipied) {
-      sendData(String(JMRI_SENSOR_START_ADDRESS + blockNo) + ACTIVE);
+      if (sensStatus[blockNo - 1] != 1) {
+        sensStatus[blockNo - 1] = 1;
+        sendData(String(JMRI_SENSOR_START_ADDRESS + blockNo) + ACTIVE);
+      }
     } else {
-      sendData(String(JMRI_SENSOR_START_ADDRESS + blockNo) + INACTIVE);
+      if (sensStatus[blockNo - 1] != 0) {
+        sensStatus[blockNo - 1] = 0;
+        sendData(String(JMRI_SENSOR_START_ADDRESS + blockNo) + INACTIVE);
+      }
     }
   }
   delay(DELAY_TIME);

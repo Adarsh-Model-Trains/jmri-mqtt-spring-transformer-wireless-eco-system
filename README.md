@@ -1,4 +1,4 @@
-# JMRI MQTT SPRING TRANSFORMER ESP AND ARDUINO WIRELESS ECO SYSTEM 
+# JMRI MQTT WIRELESS ECO SYSTEM 
 
 > Jmri will push the data to the mqtt topic \
 > spring transformer application configured with nodes and its details like no of turnout, no of signals, no of light in the node \
@@ -35,6 +35,40 @@
 * reading data after transformaton see below section 
 
 ---
+
+# Implementation types 
+
+## SPRING TRANSFORMER DATA FLOW 
+![img](image/spring-mqtt-spring-transformers.png)
+
+## Data flow 
+### Downstream data 
+	jmri -> mqtt -> springtransformer -> mqtt -> esp -> arduino -> pca9685 -> ledsignal|servoturnout|relayswitch snapturnout 
+### Upstream data 
+	ct sensor | irsensor -> arduino -> esp -> mqtt -> jmri 
+![img](image/dig1.png)
+
+## Data flow 
+### Downstream data 
+	jmri -> mqtt -> springtransformer -> restapi -> esp -> arduino -> pca9685 -> ledsignal|servoturnout|relayswitch snapturnout 
+### Upstream data 
+	ct sensor | irsensor -> arduino -> esp -> restapi -> spring transformer -> mqtt -> jmri 
+![img](image/dig3.png)
+
+## Data flow 
+### Downstream data 
+	jmri -> mqtt -> springtransformer -> mqtt -> esp -> pca9685 -> ledsignal|servoturnout|relayswitch snapturnout 
+### Upstream data
+	ct sensor | irsensor ->  esp -> mqtt -> jmri 
+![img](image/dig2.png)
+
+## Data flow 
+### Downstream data 
+	jmri -> mqtt -> springtransformer -> restapi -> esp -> pca9685 -> ledsignal|servoturnout|relayswitch snapturnout 
+### Upstream data
+	ct sensor | irsensor -> esp -> restapi -> spring transformer -> mqtt -> jmri 
+![img](image/dig4.png)
+
 
 ## FOR LIGHT TURNOUT AND SIGNALS 
 

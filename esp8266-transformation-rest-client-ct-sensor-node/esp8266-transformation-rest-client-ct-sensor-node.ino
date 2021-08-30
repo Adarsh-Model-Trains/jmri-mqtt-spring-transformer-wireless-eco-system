@@ -8,6 +8,7 @@
 ESP8266WiFiMulti WiFiMulti;
 
 int blockNo = 0;
+int sensStatus[NO_OF_BLOCKS];
 CtSensor ctSensor;
 
 void setup() {
@@ -23,6 +24,7 @@ void setup() {
   ctSensor.initCtSensor(NO_OF_BLOCKS);
   for (int i = 0; i < NO_OF_BLOCKS; i++) {
     ctSensor.setSensorPin(i + 1, sensorPin[i]);
+    sensStatus[i] = 0;
   }
 }
 
@@ -34,9 +36,15 @@ void loop() {
     for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
       bool isBlockOccuipied = ctSensor.isSensorActive(blockNo);
       if (isBlockOccuipied) {
-        httpPostRequest(PAYLOAD_FROUNT + String(JMRI_SENSOR_START_ADDRESS + blockNo) + PAYLOAD_BACK_ACTIVE);
+        if (sensStatus[blockNo - 1] != 1) {
+          sensStatus[blockNo - 1] = 1;
+          httpPostRequest(PAYLOAD_FROUNT + String(JMRI_SENSOR_START_ADDRESS + blockNo) + PAYLOAD_BACK_ACTIVE);
+        }
       } else {
-        httpPostRequest(PAYLOAD_FROUNT + String(JMRI_SENSOR_START_ADDRESS + blockNo)  + PAYLOAD_BACK_INACTIVE);
+        if (sensStatus[blockNo - 1] != 0) {
+          sensStatus[blockNo - 1] = 0;
+          httpPostRequest(PAYLOAD_FROUNT + String(JMRI_SENSOR_START_ADDRESS + blockNo)  + PAYLOAD_BACK_INACTIVE);
+        }
       }
     }
     delay(DELAY_TIME);

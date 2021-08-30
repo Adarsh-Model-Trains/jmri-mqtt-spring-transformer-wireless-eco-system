@@ -22,9 +22,6 @@
 
 // change the node "number/name"  based on the node default is 1 in this
 #define mqtt_topic "/amt/node/1/#"
-#define mqtt_topic_light "/amt/node/1/light/"
-#define mqtt_topic_turnout "/amt/node/1/turnout/"
-#define mqtt_topic_signalhead "/amt/node/1/signal/"
 
 // change the node "number/name"  based on the node
 #define clientID "JMRI_SUBSCRIBER_NODE_ESP8266_1"

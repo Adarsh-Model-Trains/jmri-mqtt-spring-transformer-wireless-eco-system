@@ -14,6 +14,7 @@
 
 int address = 1;
 int blockNo = 0;
+int sensStatus[NO_OF_BLOCKS];
 CtSensor ctSensor;
 
 // Initialise the WiFi and MQTT Client objects
@@ -77,6 +78,7 @@ void setup() {
   ctSensor.initCtSensor(NO_OF_BLOCKS);
   for (int i = 0; i < NO_OF_BLOCKS; i++) {
     ctSensor.setSensorPin(i + 1, sensorPin[i]);
+    sensStatus[i] = 0;
   }
 }
 
@@ -91,10 +93,16 @@ void loop() {
 
   for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
     bool isBlockOccuipied = ctSensor.isSensorActive(blockNo);
-    if (isBlockOccuipied) {     
-      publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , ACTIVE);
-    } else {      
-      publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , INACTIVE);
+    if (isBlockOccuipied) {
+      if (sensStatus[blockNo - 1] != 1) {
+        sensStatus[blockNo - 1] = 1;
+        publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , ACTIVE);
+      }
+    } else {
+      if (sensStatus[blockNo - 1] != 0) {
+        sensStatus[blockNo - 1] = 0;
+        publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , INACTIVE);
+      }
     }
   }
   delay(DELAY_TIME);
