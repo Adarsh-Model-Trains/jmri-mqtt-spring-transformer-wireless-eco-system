@@ -5,6 +5,7 @@ import com.adarsh.model.trains.handler.MQTTMessageHandler;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +29,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 })
 public class MQTTConfiguration {
 
-    public static final String DEVICE_WILL_TOPIC = "/amt/errors";
+    @Autowired
+    MqttProperties properties;
 
     @Bean
     public MqttConnectOptions mqttConnectOptions(MqttProperties mqttProperties) {
@@ -40,10 +42,9 @@ public class MQTTConfiguration {
         options.setConnectionTimeout(mqttProperties.getConnectionTimeout());
         options.setKeepAliveInterval(mqttProperties.getKeepAliveInterval());
         options.setAutomaticReconnect(mqttProperties.getAutomaticReconnect());
-        options.setWill(DEVICE_WILL_TOPIC, "ServerOffline".getBytes(), 2, true);
+        options.setWill(properties.getErrorTopic(), "ServerOffline".getBytes(), 2, true);
         return options;
     }
-
     @Bean
     public MqttPahoClientFactory mqttClientFactory(MqttConnectOptions options) {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();

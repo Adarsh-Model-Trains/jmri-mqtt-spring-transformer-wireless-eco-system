@@ -27,7 +27,10 @@
 * curl -X GET http://localhost:8090/amt/node/1
 
 ### TO POST THE SENSOR INFO TO  MQTT  VIA END POINTS 
-> curl --header "Content-Type: application/json" --request POST --data '{"topic":"xyz","data":"xyz"}' http://localhost:8090/amt/node/[nodeId]
+> curl --header "Content-Type: application/json" \
+> --request POST --data '{"topic":"xyz","data":"xyz"}' \ 
+> http://localhost:8090/amt/node/[nodeId]
+
 * curl --header "Content-Type: application/json" \
   --request POST \
   --data '{"topic":"/trains/track/sensor/1","data":"INACTIVE"}' \
@@ -279,9 +282,6 @@ node:
 
 ### To subscribe the mqtt application error topic 
 * $ mosquitto_sub -h localhost -u adarsh -P password -v -t '/amt/errors/#'
-
-### To subscribe the spring transformer connection  error topic 
-* $ mosquitto_sub -h localhost -u adarsh -P password -v -t '/amt/transformer/#'
 
 ### To subscribe the mqtt topic where application will publish data after transformation  
 * $ mosquitto_sub -h localhost -u adarsh -P password -v -t '/amt/node/#'
