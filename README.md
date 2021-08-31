@@ -38,6 +38,9 @@
 
 # Implementation types 
 
+## rest and mqtt based implementations nodes 
+![img](image/nodes-mqtt-rest.png)
+
 ## SPRING TRANSFORMER DATA FLOW 
 ![img](image/spring-mqtt-spring-transformer.png)
 
