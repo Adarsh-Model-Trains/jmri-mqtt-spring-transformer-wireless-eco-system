@@ -14,15 +14,15 @@ server:
 
 # Custom property mqtt configuration
 mqtt-properties:
-  host: tcp://localhost:1883
-  clientId: adarsh-model-trains-transformer-
-  username: adarsh
-  password: password
-  topicSub: /trains/track/#
-  lightTopic: /trains/track/light/
-  turnoutTopic: /trains/track/turnout/
-  signalTopic: /trains/track/signalhead/
-  errorTopic: /amt/errors
+  host: tcp://localhost:1883                                       # mqtt host with port
+  clientId: adarsh-model-trains-transformer-                       # client id for mqtt
+  username: adarsh                                                 # username for the mqtt
+  password: password                                               # user password for the mqtt
+  topicSub: /trains/track/#                                        # jmri top level topic name with regex
+  lightTopic: /trains/track/light/                                 # jrmi light topic name
+  turnoutTopic: /trains/track/turnout/                             # jrmi turnout topic name
+  signalTopic: /trains/track/signalhead/                           # jrmi signalhead topic name
+  errorTopic: /amt/errors                                          # jrmi error message topic name
   cleanSession: true
   connectionTimeout: 300
   keepAliveInterval: 60
