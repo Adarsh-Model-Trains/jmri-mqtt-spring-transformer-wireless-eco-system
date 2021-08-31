@@ -68,6 +68,8 @@ void processCall(String msg) {
 
     doExecute(msg, L);
 
+  } else if (type == O) {
+    Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
   }
 }
 

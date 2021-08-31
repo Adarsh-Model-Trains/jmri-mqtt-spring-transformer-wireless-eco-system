@@ -11,6 +11,7 @@
 #define T 'T'
 #define L 'L'
 #define S 'S'
+#define O 'O'
 
 #define THROWN "TH"
 #define CLOSED "CL"

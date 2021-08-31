@@ -9,7 +9,7 @@
 
 ----
 
-![img](../image/spring-mqtt-spring-transformers.png)
+![img](../image/spring-mqtt-spring-transformer.png)
 
 ### To build this application 
 * $ mnvn clean package 
@@ -29,6 +29,7 @@
 * java -jar -Dspring.profiles.active=prod spring-jmri-mqtt-data-transformer.jar --spring.config.location=./
 
 ### TO ACCESS THE MQTT DATA VIA END POINTS 
+> NOTE: IF RESULT IS 0:0000:00:00:00 THAT MEAN NODE IS NOT ENABLED FOR APIS \
 > curl -X GET http://localhost:8090/amt/node/[nodeId]
 * curl -X GET http://localhost:8090/amt/node/1
 

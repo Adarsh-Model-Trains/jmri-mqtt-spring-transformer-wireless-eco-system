@@ -7,6 +7,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+/*
+ * @author Adarsh
+ * @author $LastChangedBy: adarsh $
+ * @version $Revision: 0001 $, $Date:: 15/6/20 10:12 AM#$
+ */
 @Data
 @Validated
 public class RequestBean implements Serializable {

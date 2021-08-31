@@ -29,6 +29,7 @@ public class MQTTService {
     final public static Map<String, List<String>> cache3Led = new HashMap<>();
     final public static Map<String, Long> cache2LedTime = new HashMap<>();
     final public static Map<String, Long> cache3LedTime = new HashMap<>();
+    final public static Map<String, Boolean> activeNodeCache = new HashMap<>();
     final public static String EMPTY = "";
     final public static Integer led2 = 2;
     final public static Integer led3 = 3;
@@ -47,6 +48,7 @@ public class MQTTService {
     final public static String LIGHT = "LIGHT";
     final public static String SIGNAL = "SIGNAL";
     final public static String TURNOUT = "TURNOUT";
+    final public static String DEFAULT_BLOCK_RESULT = "O:0000:00:00:00";
 
 
     @Autowired
@@ -65,7 +67,10 @@ public class MQTTService {
                     node.getNodeId(), node.getEnableNode(), node.getEnablePublishing(), node.getEnableRestApi(), node.getApiEndpointCacheSize());
             if (node.getEnableNode()) {
                 if (node.getEnableRestApi()) {
+                    activeNodeCache.put(node.getNodeId(), true);
                     store.put(node.getNodeId(), new CircularQueue<String>(node.getApiEndpointCacheSize()));
+                } else {
+                    activeNodeCache.put(node.getNodeId(), false);
                 }
                 if (node.getEnablePublishing()) {
                     cache2Led.put(node.getNodeId(), new ArrayList<String>(led2));
@@ -320,7 +325,11 @@ public class MQTTService {
     }
 
     public String getData(String nodeId) throws Exception {
-        return store.get(nodeId).dequeue();
+        if (activeNodeCache.get(nodeId)) {
+            return store.get(nodeId).dequeue();
+        } else {
+            return DEFAULT_BLOCK_RESULT;
+        }
     }
 
     public void flushCache(NodeConfigurations.Nodes node, Map<String, List<String>> cache) throws Exception {

@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/*
+ * @author Adarsh
+ * @author $LastChangedBy: adarsh $
+ * @version $Revision: 0001 $, $Date:: 15/6/20 10:12 AM#$
+ */
+
 @Slf4j
 @RestController
 public class JMRIMQTTNodesController {
@@ -29,6 +35,7 @@ public class JMRIMQTTNodesController {
         try {
             this.mqttService.publish(data.getTopic(), data.getData(), 1, false);
         } catch (Exception e) {
+            log.error("Exception e={}", e.getMessage());
             return PROCESSED_FAILED;
         }
         return PROCESSED_SUCCESS;
