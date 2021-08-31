@@ -41,6 +41,12 @@
 ## SPRING TRANSFORMER DATA FLOW 
 ![img](image/spring-mqtt-spring-transformer.png)
 
+## mqtt based implementations
+![img](image/mqtt.png)
+
+## rest based implementations
+![img](image/rest.png)
+
 ## Data flow 
 ### Downstream data 
 	jmri -> mqtt -> springtransformer -> mqtt -> esp -> arduino -> pca9685 -> ledsignal|servoturnout|relayswitch snapturnout 
