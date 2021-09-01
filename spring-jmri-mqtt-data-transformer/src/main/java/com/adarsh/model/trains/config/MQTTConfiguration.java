@@ -45,6 +45,7 @@ public class MQTTConfiguration {
         options.setWill(properties.getErrorTopic(), "ServerOffline".getBytes(), 2, true);
         return options;
     }
+
     @Bean
     public MqttPahoClientFactory mqttClientFactory(MqttConnectOptions options) {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();

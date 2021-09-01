@@ -23,12 +23,14 @@ public class NodeConfigurations {
     public List<Nodes> nodes;
     @NotNull(message = "lightStartingAddress is mandatory properties in configuration ")
     Integer lightStartingAddress = 0;
-    @NotNull(message = "turnoutStartingAddress is mandatory properties in configuration ")
-    Integer turnoutStartingAddress = 0;
     @NotNull(message = "signal2LStartingAddress is mandatory properties in configuration ")
     Integer signal2LStartingAddress = 0;
     @NotNull(message = "signal3LStartingAddress is mandatory properties in configuration ")
     Integer signal3LStartingAddress = 0;
+    @NotNull(message = "turnoutServoStartingAddress is mandatory properties in configuration ")
+    Integer turnoutServoStartingAddress = 0;
+    @NotNull(message = "turnoutSnapStartingAddress is mandatory properties in configuration ")
+    Integer turnoutSnapStartingAddress = 0;
     @NotNull(message = "signalCacheClearingTime is mandatory properties in configuration ")
     Integer signalCacheClearingTime = 0;
 
@@ -41,12 +43,14 @@ public class NodeConfigurations {
         Boolean enableRestApi;
         Integer lightStartAddress;
         Integer lightCount;
-        Integer turnoutStartAddress;
-        Integer turnoutCount;
         Integer signal2LStartAddress;
         Integer signal2LCount;
         Integer signal3LStartAddress;
         Integer signal3LCount;
+        Integer turnoutServoStartAddress;
+        Integer turnoutServoCount;
+        Integer turnoutSnapStartAddress;
+        Integer turnoutSnapCount;
         Integer turnoutBoardCount;
         Integer lightBoardCount;
         String nodeSubscriptionTopic;

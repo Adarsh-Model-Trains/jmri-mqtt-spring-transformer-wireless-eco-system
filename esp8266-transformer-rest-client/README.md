@@ -25,11 +25,12 @@ const char* SERVER_URL = "http://192.168.0.188:8090/amt/node/1";
 ### or install this lib for location [PubSubClient lib ](https://github.com/adarshkumarsingh83/jmri-cmri/raw/main/DOCUMENTS/JMRI-MOSQUITTO-MQTT/lib/pubsubclient.zip)
 
 ### jmri configuration 
-* all sensors will start from 1 to limit 
-* all the light are started with 1000 onwards to 9999 address on jmri
-* all the turnout are started with 10000 onwards to 19999 address on jmri
-* all the 2 led signal are started with 20000 onwards to 29999 
-* all the 3 led signal are started with 30000 onwards to address on jmri support
+* all sensors will start from 10000 to limit 
+* all the light are started with 10000 onwards to 9999 address address on jmri
+* all the 2 led signal are started with 20000 onwards to 29999 address on jmri
+* all the 3 led signal are started with 30000 onwards to 39999 address on jmri
+* all the servo turnout are started with 40000 onwards to 49999 address on jmri
+* all the snap turnout are started with 50000 onwards to 59999 address on jmri
 
 
 ## To Open Two arduino sperate ide on mac 

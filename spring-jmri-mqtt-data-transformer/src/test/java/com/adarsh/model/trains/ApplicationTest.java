@@ -25,7 +25,7 @@ public class ApplicationTest {
 
     public String nodeWiseDataGenerated(String type, NodeConfigurations.Nodes node, Integer jmriId, String state) {
         if (type.equals(TURNOUT)) {
-            jmriId = (jmriId - node.getTurnoutStartAddress());
+            jmriId = (jmriId - node.getTurnoutSnapStartAddress());
             jmriId = (jmriId * 2);
             if (state.equals(TH)) {
                 jmriId = jmriId - 1;
@@ -54,32 +54,32 @@ public class ApplicationTest {
         ApplicationTest applicationTest = new ApplicationTest();
         NodeConfigurations.Nodes node = new NodeConfigurations.Nodes();
         node.setTurnoutBoardCount(2);
-        node.setTurnoutCount((node.getTurnoutBoardCount() * 16) / 2);
+        node.setTurnoutSnapCount((node.getTurnoutBoardCount() * 16) / 2);
 
         node.setLightBoardCount(5);
         node.setSignal2LCount(5);
         node.setSignal3LCount(7);
         node.setLightCount((node.getLightBoardCount() * 16) - (node.getSignal3LCount() + node.getSignal2LCount()));
-        node.setLightStartAddress(1000);
-        node.setTurnoutStartAddress(10000);
+        node.setLightStartAddress(10000);
         node.setSignal2LStartAddress(20000);
         node.setSignal3LStartAddress(30000);
+        node.setTurnoutSnapStartAddress(40000);
 
         int pins = (node.getTurnoutBoardCount() + node.getLightBoardCount()) * 16;
-        int totalTurnoutsLimit = node.getTurnoutCount();
+        int totalTurnoutsLimit = node.getTurnoutSnapCount();
         int total2LSignalLimit = node.getSignal2LCount() + totalTurnoutsLimit;
         int total3LSignalLimit = total2LSignalLimit + node.getSignal3LCount();
         int totalLightLimit = total3LSignalLimit + node.getLightCount();
         for (int i = 1; i <= pins; i++) {
             if (i <= totalTurnoutsLimit) {
-                System.out.println("TURNOUT " + applicationTest.nodeWiseDataGenerated(TURNOUT, node, i + node.getTurnoutStartAddress(), TH));
-                System.out.println("TURNOUT " + applicationTest.nodeWiseDataGenerated(TURNOUT, node, i + node.getTurnoutStartAddress(), CL));
+                System.out.println("TURNOUT " + applicationTest.nodeWiseDataGenerated(TURNOUT, node, i + node.getTurnoutSnapStartAddress(), TH));
+                System.out.println("TURNOUT " + applicationTest.nodeWiseDataGenerated(TURNOUT, node, i + node.getTurnoutSnapStartAddress(), CL));
             } else if ((i <= total2LSignalLimit)) {
-                System.out.println("2L SIGNAL " + applicationTest.nodeWiseDataGenerated(SIGNAL, node, (i + node.getSignal2LStartAddress() - node.getTurnoutCount()), ON));
-                System.out.println("2L SIGNAL " + applicationTest.nodeWiseDataGenerated(SIGNAL, node, (i + node.getSignal2LStartAddress() - node.getTurnoutCount()), OFF));
+                System.out.println("2L SIGNAL " + applicationTest.nodeWiseDataGenerated(SIGNAL, node, (i + node.getSignal2LStartAddress() - node.getTurnoutSnapCount()), ON));
+                System.out.println("2L SIGNAL " + applicationTest.nodeWiseDataGenerated(SIGNAL, node, (i + node.getSignal2LStartAddress() - node.getTurnoutSnapCount()), OFF));
             } else if ((i <= total3LSignalLimit)) {
-                System.out.println("3L SIGNAL " + applicationTest.nodeWiseDataGenerated(SIGNAL, node, (i + node.getSignal3LStartAddress() - node.getTurnoutCount()), ON));
-                System.out.println("3L SIGNAL " + applicationTest.nodeWiseDataGenerated(SIGNAL, node, (i + node.getSignal3LStartAddress() - node.getTurnoutCount()), OFF));
+                System.out.println("3L SIGNAL " + applicationTest.nodeWiseDataGenerated(SIGNAL, node, (i + node.getSignal3LStartAddress() - node.getTurnoutSnapCount()), ON));
+                System.out.println("3L SIGNAL " + applicationTest.nodeWiseDataGenerated(SIGNAL, node, (i + node.getSignal3LStartAddress() - node.getTurnoutSnapCount()), OFF));
             } else if (i <= totalLightLimit) {
                 if (i == total3LSignalLimit + 1) {
                     i = (totalTurnoutsLimit * 2) + total3LSignalLimit + 1;

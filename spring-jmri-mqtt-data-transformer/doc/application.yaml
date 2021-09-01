@@ -5,7 +5,7 @@
 ##
 
 spring:
-  profiles: prod
+  profiles: default
 
 server:
   servlet:
@@ -31,11 +31,12 @@ mqtt-properties:
 # Custom property for nodes configuration
 node:
   configurations:
-    lightStartingAddress: 1000                    #starting address of the light in whole layout its mandatory value
-    turnoutStartingAddress: 10000                 #starting address of the turnout in whole layout its mandatory value
+    lightStartingAddress: 10000                   #starting address of the light in whole layout its mandatory value
     signal2LStartingAddress: 20000                #starting address of the 2 light signal in whole layout its mandatory value
     signal3LStartingAddress: 30000                #starting address of the 3 light signal in whole layout its mandatory value
-    signalCacheClearingTime: 8000                 # after every 5 sec job will clean the cache if its not updated for last 8 sec and if any stale data in cache for specific node
+    turnoutServoStartingAddress: 40000            #starting address of the turnout in whole layout its mandatory value
+    turnoutSnapStartingAddress: 50000             #starting address of the turnout in whole layout its mandatory value
+    signalCacheClearingTime: 8000                 # after every 5 sec job will clean the cache if it is not updated for last 8 sec and if any stale data in cache for specific node
     nodes:
       -
         nodeId: 1                                 # node id/name publish topic will be formed with this id only
@@ -43,16 +44,18 @@ node:
         enablePublishing: true                    # enable the node to publish process data to the mqtt topic
         enableRestApi: false                      # to enable the rest service for the node
         apiEndpointCacheSize: 10                  # cache for rest api to hold the data for service call
-        lightStartAddress: 1000
-        lightCount: 5                             # 1 pin for each light on the pca9685 board
-        turnoutStartAddress: 10000
-        turnoutCount: 16                          # 2 pins for each turnout on the pca9685 board (16 * 2) /16 => 16
+        lightStartAddress: 10000
+        lightCount: 2                             # 1 pin for each light on the pca9685 board
         signal2LStartAddress: 20000
-        signal2LCount: 64                         # 2 pins for each signal light on the pca9685 board  total 16 turnout and every turnout has 2 splitter track (16 * 2 * 2) => 64
+        signal2LCount: 16                         # 2 pins for each signal light on the pca9685 board  total 16 turnout and every turnout has 2 splitter track (16 * 2 * 2) => 64
         signal3LStartAddress: 30000
-        signal3LCount: 30                         # 3 pins for each signal on the pca9685 board  (10 * 3) => 30
+        signal3LCount: 5                          # 3 pins for each signal on the pca9685 board  (10 * 3) => 30
+        turnoutServoStartAddress: 40000
+        turnoutServoCount: 8                      # 1 pin for each servo turnout
+        turnoutSnapStartAddress: 50000
+        turnoutSnapCount: 8                       # 2 pins for each turnout on the pca9685 board (16 * 2) /16 => 16
         turnoutBoardCount: 2                      # (turnoutCount * 2)/16 :=>  (16 * 2) / 16 => 2
-        lightBoardCount: 9                        # (lightCount + signal2LCount + signal3LCount) /16 :=>  (5+32+30)/16 =>  5
+        lightBoardCount: 2                        # (lightCount + signal2LCount + signal3LCount) /16 :=>  (5+32+30)/16 =>  5
         nodeSubscriptionTopic: /amt/node/1/data/  # topic for every node for reading data from spring transformation application
 
       -
@@ -60,14 +63,16 @@ node:
         enableNode: true
         enablePublishing: true
         enableRestApi: false
-        lightStartAddress: 1100
+        lightStartAddress: 10100
         lightCount: 5
-        turnoutStartAddress: 10100
-        turnoutCount: 15
         signal2LStartAddress: 20100
         signal2LCount: 60
         signal3LStartAddress: 30100
         signal3LCount: 30
+        turnoutServoStartAddress: 40100
+        turnoutServoCount: 8
+        turnoutSnapStartAddress: 50100
+        turnoutSnapCount: 8
         turnoutBoardCount: 2
         lightBoardCount: 7
         nodeSubscriptionTopic: /amt/node/2/data/
@@ -77,15 +82,17 @@ node:
         enableNode: true
         enablePublishing: true
         enableRestApi: false
-        lightStartAddress: 1200
+        lightStartAddress: 10200
         lightCount: 7
-        turnoutStartAddress: 10200
-        turnoutCount: 15
         signal2LStartAddress: 20200
         signal2LCount: 60
         signal3LStartAddress: 30200
         signal3LCount: 18
-        turnoutBoardCount: 2
+        turnoutServoStartAddress: 40200
+        turnoutServoCount: 16
+        turnoutSnapStartAddress: 50200
+        turnoutSnapCount: 10
+        turnoutBoardCount: 3
         lightBoardCount: 6
         nodeSubscriptionTopic: /amt/node/3/data/
         apiEndpointCacheSize: 10
@@ -94,15 +101,17 @@ node:
         enableNode: true
         enablePublishing: true
         enableRestApi: false
-        lightStartAddress: 1300
+        lightStartAddress: 10300
         lightCount: 23
-        turnoutStartAddress: 10300
-        turnoutCount: 10
         signal2LStartAddress: 20300
         signal2LCount: 10
         signal3LStartAddress: 30300
         signal3LCount: 24
-        turnoutBoardCount: 2
+        turnoutServoStartAddress: 40300
+        turnoutServoCount: 20
+        turnoutSnapStartAddress: 50300
+        turnoutSnapCount: 10
+        turnoutBoardCount: 4
         lightBoardCount: 3
         nodeSubscriptionTopic: /amt/node/4/data/
         apiEndpointCacheSize: 10
@@ -111,15 +120,17 @@ node:
         enableNode: true
         enablePublishing: true
         enableRestApi: false
-        lightStartAddress: 1400
+        lightStartAddress: 10400
         lightCount: 45
-        turnoutStartAddress: 10400
-        turnoutCount: 10
         signal2LStartAddress: 20400
         signal2LCount: 10
         signal3LStartAddress: 30400
         signal3LCount: 80
-        turnoutBoardCount: 10
+        turnoutServoStartAddress: 40400
+        turnoutServoCount: 20
+        turnoutSnapStartAddress: 50400
+        turnoutSnapCount: 12
+        turnoutBoardCount: 4
         lightBoardCount: 8
         nodeSubscriptionTopic: /amt/node/5/data/
         apiEndpointCacheSize: 10
@@ -128,15 +139,17 @@ node:
         enableNode: true
         enablePublishing: true
         enableRestApi: false
-        lightStartAddress: 1500
+        lightStartAddress: 10500
         lightCount: 10
-        turnoutStartAddress: 10500
-        turnoutCount: 15
         signal2LStartAddress: 20500
         signal2LCount: 10
         signal3LStartAddress: 30500
         signal3LCount: 45
-        turnoutBoardCount: 2
+        turnoutServoStartAddress: 40500
+        turnoutServoCount: 20
+        turnoutSnapStartAddress: 50500
+        turnoutSnapCount: 18
+        turnoutBoardCount: 5
         lightBoardCount: 4
         nodeSubscriptionTopic: /amt/node/6/data/
         apiEndpointCacheSize: 10
@@ -145,15 +158,17 @@ node:
         enableNode: true
         enablePublishing: true
         enableRestApi: false
-        lightStartAddress: 1600
+        lightStartAddress: 10600
         lightCount: 12
-        turnoutStartAddress: 10600
-        turnoutCount: 48
         signal2LStartAddress: 20600
         signal2LCount: 10
         signal3LStartAddress: 30600
         signal3LCount: 80
-        turnoutBoardCount: 6
+        turnoutServoStartAddress: 40600
+        turnoutServoCount: 29
+        turnoutSnapStartAddress: 50600
+        turnoutSnapCount: 16
+        turnoutBoardCount: 4
         lightBoardCount: 6
         nodeSubscriptionTopic: /amt/node/7/data/
         apiEndpointCacheSize: 10
@@ -162,15 +177,17 @@ node:
         enableNode: true
         enablePublishing: true
         enableRestApi: false
-        lightStartAddress: 1700
+        lightStartAddress: 10700
         lightCount: 7
-        turnoutStartAddress: 10700
-        turnoutCount: 21
         signal2LStartAddress: 20700
         signal2LCount: 10
         signal3LStartAddress: 30700
         signal3LCount: 87
-        turnoutBoardCount: 3
+        turnoutServoStartAddress: 40700
+        turnoutServoCount: 32
+        turnoutSnapStartAddress: 507009
+        turnoutSnapCount: 16
+        turnoutBoardCount: 4
         lightBoardCount: 6
         nodeSubscriptionTopic: /amt/node/8/data/
         apiEndpointCacheSize: 10
@@ -179,15 +196,17 @@ node:
         enableNode: true
         enablePublishing: true
         enableRestApi: false
-        lightStartAddress: 1800
+        lightStartAddress: 10800
         lightCount: 23
-        turnoutStartAddress: 10800
-        turnoutCount: 10
         signal2LStartAddress: 20800
         signal2LCount: 10
         signal3LStartAddress: 30800
         signal3LCount: 24
-        turnoutBoardCount: 3
+        turnoutServoStartAddress: 40800
+        turnoutServoCount: 32
+        turnoutSnapStartAddress: 50800
+        turnoutSnapCount: 16
+        turnoutBoardCount: 4
         lightBoardCount: 3
         nodeSubscriptionTopic: /amt/node/9/data/
         apiEndpointCacheSize: 10
@@ -196,15 +215,17 @@ node:
         enableNode: true
         enablePublishing: true
         enableRestApi: false
-        lightStartAddress: 1900
+        lightStartAddress: 10900
         lightCount: 45
-        turnoutStartAddress: 10900
-        turnoutCount: 23
         signal2LStartAddress: 20900
         signal2LCount: 10
         signal3LStartAddress: 30900
         signal3LCount: 80
-        turnoutBoardCount: 3
+        turnoutServoStartAddress: 40800
+        turnoutServoCount: 32
+        turnoutSnapStartAddress: 50800
+        turnoutSnapCount: 16
+        turnoutBoardCount: 4
         lightBoardCount: 8
         nodeSubscriptionTopic: /amt/node/10/data/
         apiEndpointCacheSize: 10
