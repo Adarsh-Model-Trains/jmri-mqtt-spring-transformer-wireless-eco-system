@@ -322,6 +322,7 @@ node:
         apiEndpointCacheSize: 10
 ```
 
+
 ### TO GET CONFIGURATION FROM REST ENDPOINTS
 
 > this will give each and every detail about the nodes and its component like light signal and turnouts
@@ -331,12 +332,13 @@ node:
 * curl -X GET http://localhost:8090/amt/description/node
 * http://localhost:8090/amt/description/node
 ```
+
 [
   {
     "nodeId": "1",
     "enableNode": true,
     "enablePublishing": true,
-    "enableRestApi": false,
+    "enableRestApi": true,
     "lightStartAddress": 10000,
     "lightCount": 2,
     "signal2LStartAddress": 20000,
@@ -356,7 +358,7 @@ node:
     "totalSignal3LedPins": 15,
     "totalServoTurnoutPins": 8,
     "totalSnapTurnoutPins": 16,
-    "totalBoardRequired": " Total Servo TurnoutBoard Required is 1 Total Snap TurnoutBoard Required is 1 Total Light & Signal Boards Required is 4",
+    "totalBoardRequired": " Total Servo TurnoutBoard Required is 1, Total Snap TurnoutBoard Required is 1, Total Light & Signal Boards Required is 4",
     "jmriAddressTurnoutServo": {
       " Servo Number 1": " Jmri Address 40001, BoardNo:PinNo:Status => 00:00:TH - 00:00:CL",
       " Servo Number 2": " Jmri Address 40002, BoardNo:PinNo:Status => 00:01:TH - 00:01:CL",
@@ -382,39 +384,65 @@ node:
       " Light Number 2": "Jmri Address 10002, BoardNo:PinNo:Status => 02:01:ON - 02:01:OF"
     },
     "jmriAddressSignal2Led": {
-      "RED   2Led Signal Number 1": " Jmri Address 20001, BoardNo:PinNo:Status => 02:02:ON - 02:02:OF",
-      "GREEN 2Led Signal Number 1": " Jmri Address 20002, BoardNo:PinNo:Status => 02:03:ON - 02:03:OF",
-      "RED   2Led Signal Number 2": " Jmri Address 20003, BoardNo:PinNo:Status => 02:04:ON - 02:04:OF",
-      "GREEN 2Led Signal Number 2": " Jmri Address 20004, BoardNo:PinNo:Status => 02:05:ON - 02:05:OF",
-      "RED   2Led Signal Number 3": " Jmri Address 20005, BoardNo:PinNo:Status => 02:06:ON - 02:06:OF",
-      "GREEN 2Led Signal Number 3": " Jmri Address 20006, BoardNo:PinNo:Status => 02:07:ON - 02:07:OF",
-      "RED   2Led Signal Number 4": " Jmri Address 20007, BoardNo:PinNo:Status => 02:08:ON - 02:08:OF",
-      "GREEN 2Led Signal Number 4": " Jmri Address 20008, BoardNo:PinNo:Status => 02:09:ON - 02:09:OF",
-      "RED   2Led Signal Number 5": " Jmri Address 20009, BoardNo:PinNo:Status => 02:10:ON - 02:10:OF",
-      "GREEN 2Led Signal Number 5": " Jmri Address 20010, BoardNo:PinNo:Status => 02:11:ON - 02:11:OF",
-      "RED   2Led Signal Number 6": " Jmri Address 20011, BoardNo:PinNo:Status => 02:12:ON - 02:12:OF",
-      "GREEN 2Led Signal Number 6": " Jmri Address 20012, BoardNo:PinNo:Status => 02:13:ON - 02:13:OF",
-      "RED   2Led Signal Number 7": " Jmri Address 20013, BoardNo:PinNo:Status => 02:14:ON - 02:14:OF",
-      "GREEN 2Led Signal Number 7": " Jmri Address 20014, BoardNo:PinNo:Status => 02:15:ON - 02:15:OF",
-      "RED   2Led Signal Number 8": " Jmri Address 20015, BoardNo:PinNo:Status => 03:00:ON - 03:00:OF",
-      "GREEN 2Led Signal Number 8": " Jmri Address 20016, BoardNo:PinNo:Status => 03:01:ON - 03:01:OF"
+      "1": {
+        "RED   2Led Signal Number 1": " Jmri Address 20001, BoardNo:PinNo:Status => 02:02:ON - 02:02:OF",
+        "GREEN 2Led Signal Number 1": " Jmri Address 20002, BoardNo:PinNo:Status => 02:03:ON - 02:03:OF"
+      },
+      "2": {
+        "RED   2Led Signal Number 2": " Jmri Address 20003, BoardNo:PinNo:Status => 02:04:ON - 02:04:OF",
+        "GREEN 2Led Signal Number 2": " Jmri Address 20004, BoardNo:PinNo:Status => 02:05:ON - 02:05:OF"
+      },
+      "3": {
+        "RED   2Led Signal Number 3": " Jmri Address 20005, BoardNo:PinNo:Status => 02:06:ON - 02:06:OF",
+        "GREEN 2Led Signal Number 3": " Jmri Address 20006, BoardNo:PinNo:Status => 02:07:ON - 02:07:OF"
+      },
+      "4": {
+        "RED   2Led Signal Number 4": " Jmri Address 20007, BoardNo:PinNo:Status => 02:08:ON - 02:08:OF",
+        "GREEN 2Led Signal Number 4": " Jmri Address 20008, BoardNo:PinNo:Status => 02:09:ON - 02:09:OF"
+      },
+      "5": {
+        "RED   2Led Signal Number 5": " Jmri Address 20009, BoardNo:PinNo:Status => 02:10:ON - 02:10:OF",
+        "GREEN 2Led Signal Number 5": " Jmri Address 20010, BoardNo:PinNo:Status => 02:11:ON - 02:11:OF"
+      },
+      "6": {
+        "RED   2Led Signal Number 6": " Jmri Address 20011, BoardNo:PinNo:Status => 02:12:ON - 02:12:OF",
+        "GREEN 2Led Signal Number 6": " Jmri Address 20012, BoardNo:PinNo:Status => 02:13:ON - 02:13:OF"
+      },
+      "7": {
+        "RED   2Led Signal Number 7": " Jmri Address 20013, BoardNo:PinNo:Status => 02:14:ON - 02:14:OF",
+        "GREEN 2Led Signal Number 7": " Jmri Address 20014, BoardNo:PinNo:Status => 02:15:ON - 02:15:OF"
+      },
+      "8": {
+        "RED   2Led Signal Number 8": " Jmri Address 20015, BoardNo:PinNo:Status => 03:00:ON - 03:00:OF",
+        "GREEN 2Led Signal Number 8": " Jmri Address 20016, BoardNo:PinNo:Status => 03:01:ON - 03:01:OF"
+      }
     },
     "jmriAddressSignal3Led": {
-      "RED    3Led Signal Number 1": " Jmri Address 30001, BoardNo:PinNo:Status => 03:02:ON - 03:02:OF",
-      "GREEN  3Led Signal Number 1": " Jmri Address 30002, BoardNo:PinNo:Status => 03:03:ON - 03:03:OF",
-      "YELLOW 3Led Signal Number 1": " Jmri Address 30003, BoardNo:PinNo:Status => 03:04:ON - 03:04:OF",
-      "RED    3Led Signal Number 2": " Jmri Address 30004, BoardNo:PinNo:Status => 03:05:ON - 03:05:OF",
-      "GREEN  3Led Signal Number 2": " Jmri Address 30005, BoardNo:PinNo:Status => 03:06:ON - 03:06:OF",
-      "YELLOW 3Led Signal Number 2": " Jmri Address 30006, BoardNo:PinNo:Status => 03:07:ON - 03:07:OF",
-      "RED    3Led Signal Number 3": " Jmri Address 30007, BoardNo:PinNo:Status => 03:08:ON - 03:08:OF",
-      "GREEN  3Led Signal Number 3": " Jmri Address 30008, BoardNo:PinNo:Status => 03:09:ON - 03:09:OF",
-      "YELLOW 3Led Signal Number 3": " Jmri Address 30009, BoardNo:PinNo:Status => 03:10:ON - 03:10:OF",
-      "RED    3Led Signal Number 4": " Jmri Address 30010, BoardNo:PinNo:Status => 03:11:ON - 03:11:OF",
-      "GREEN  3Led Signal Number 4": " Jmri Address 30011, BoardNo:PinNo:Status => 03:12:ON - 03:12:OF",
-      "YELLOW 3Led Signal Number 4": " Jmri Address 30012, BoardNo:PinNo:Status => 03:13:ON - 03:13:OF",
-      "RED    3Led Signal Number 5": " Jmri Address 30013, BoardNo:PinNo:Status => 03:14:ON - 03:14:OF",
-      "GREEN  3Led Signal Number 5": " Jmri Address 30014, BoardNo:PinNo:Status => 03:15:ON - 03:15:OF",
-      "YELLOW 3Led Signal Number 5": " Jmri Address 30015, BoardNo:PinNo:Status => 04:00:ON - 04:00:OF"
+      "1": {
+        "RED    3Led Signal Number 1": " Jmri Address 30001, BoardNo:PinNo:Status => 03:02:ON - 03:02:OF",
+        "GREEN  3Led Signal Number 1": " Jmri Address 30002, BoardNo:PinNo:Status => 03:03:ON - 03:03:OF",
+        "YELLOW 3Led Signal Number 1": " Jmri Address 30003, BoardNo:PinNo:Status => 03:04:ON - 03:04:OF"
+      },
+      "2": {
+        "RED    3Led Signal Number 2": " Jmri Address 30004, BoardNo:PinNo:Status => 03:05:ON - 03:05:OF",
+        "GREEN  3Led Signal Number 2": " Jmri Address 30005, BoardNo:PinNo:Status => 03:06:ON - 03:06:OF",
+        "YELLOW 3Led Signal Number 2": " Jmri Address 30006, BoardNo:PinNo:Status => 03:07:ON - 03:07:OF"
+      },
+      "3": {
+        "RED    3Led Signal Number 3": " Jmri Address 30007, BoardNo:PinNo:Status => 03:08:ON - 03:08:OF",
+        "GREEN  3Led Signal Number 3": " Jmri Address 30008, BoardNo:PinNo:Status => 03:09:ON - 03:09:OF",
+        "YELLOW 3Led Signal Number 3": " Jmri Address 30009, BoardNo:PinNo:Status => 03:10:ON - 03:10:OF"
+      },
+      "4": {
+        "RED    3Led Signal Number 4": " Jmri Address 30010, BoardNo:PinNo:Status => 03:11:ON - 03:11:OF",
+        "GREEN  3Led Signal Number 4": " Jmri Address 30011, BoardNo:PinNo:Status => 03:12:ON - 03:12:OF",
+        "YELLOW 3Led Signal Number 4": " Jmri Address 30012, BoardNo:PinNo:Status => 03:13:ON - 03:13:OF"
+      },
+      "5": {
+        "RED    3Led Signal Number 5": " Jmri Address 30013, BoardNo:PinNo:Status => 03:14:ON - 03:14:OF",
+        "GREEN  3Led Signal Number 5": " Jmri Address 30014, BoardNo:PinNo:Status => 03:15:ON - 03:15:OF",
+        "YELLOW 3Led Signal Number 5": " Jmri Address 30015, BoardNo:PinNo:Status => 04:00:ON - 04:00:OF"
+      }
     }
   }
   ,{
@@ -426,19 +454,20 @@ node:
   
 ]
 ```
-### To fetch for a particular node 
+### To fetch for a particular node
 * curl -X GET http://localhost:8090/amt/description/node/[nodeId]
 * http://localhost:8090/amt/description/node/[nodeId]
 * http://localhost:8090/amt/description/node/1
 ```
 $ curl -X GET http://localhost:8090/amt/description/node/1
 
+
 [
   {
     "nodeId": "1",
     "enableNode": true,
     "enablePublishing": true,
-    "enableRestApi": false,
+    "enableRestApi": true,
     "lightStartAddress": 10000,
     "lightCount": 2,
     "signal2LStartAddress": 20000,
@@ -458,7 +487,7 @@ $ curl -X GET http://localhost:8090/amt/description/node/1
     "totalSignal3LedPins": 15,
     "totalServoTurnoutPins": 8,
     "totalSnapTurnoutPins": 16,
-    "totalBoardRequired": " Total Servo TurnoutBoard Required is 1 Total Snap TurnoutBoard Required is 1 Total Light & Signal Boards Required is 4",
+    "totalBoardRequired": " Total Servo TurnoutBoard Required is 1, Total Snap TurnoutBoard Required is 1, Total Light & Signal Boards Required is 4",
     "jmriAddressTurnoutServo": {
       " Servo Number 1": " Jmri Address 40001, BoardNo:PinNo:Status => 00:00:TH - 00:00:CL",
       " Servo Number 2": " Jmri Address 40002, BoardNo:PinNo:Status => 00:01:TH - 00:01:CL",
@@ -484,39 +513,65 @@ $ curl -X GET http://localhost:8090/amt/description/node/1
       " Light Number 2": "Jmri Address 10002, BoardNo:PinNo:Status => 02:01:ON - 02:01:OF"
     },
     "jmriAddressSignal2Led": {
-      "RED   2Led Signal Number 1": " Jmri Address 20001, BoardNo:PinNo:Status => 02:02:ON - 02:02:OF",
-      "GREEN 2Led Signal Number 1": " Jmri Address 20002, BoardNo:PinNo:Status => 02:03:ON - 02:03:OF",
-      "RED   2Led Signal Number 2": " Jmri Address 20003, BoardNo:PinNo:Status => 02:04:ON - 02:04:OF",
-      "GREEN 2Led Signal Number 2": " Jmri Address 20004, BoardNo:PinNo:Status => 02:05:ON - 02:05:OF",
-      "RED   2Led Signal Number 3": " Jmri Address 20005, BoardNo:PinNo:Status => 02:06:ON - 02:06:OF",
-      "GREEN 2Led Signal Number 3": " Jmri Address 20006, BoardNo:PinNo:Status => 02:07:ON - 02:07:OF",
-      "RED   2Led Signal Number 4": " Jmri Address 20007, BoardNo:PinNo:Status => 02:08:ON - 02:08:OF",
-      "GREEN 2Led Signal Number 4": " Jmri Address 20008, BoardNo:PinNo:Status => 02:09:ON - 02:09:OF",
-      "RED   2Led Signal Number 5": " Jmri Address 20009, BoardNo:PinNo:Status => 02:10:ON - 02:10:OF",
-      "GREEN 2Led Signal Number 5": " Jmri Address 20010, BoardNo:PinNo:Status => 02:11:ON - 02:11:OF",
-      "RED   2Led Signal Number 6": " Jmri Address 20011, BoardNo:PinNo:Status => 02:12:ON - 02:12:OF",
-      "GREEN 2Led Signal Number 6": " Jmri Address 20012, BoardNo:PinNo:Status => 02:13:ON - 02:13:OF",
-      "RED   2Led Signal Number 7": " Jmri Address 20013, BoardNo:PinNo:Status => 02:14:ON - 02:14:OF",
-      "GREEN 2Led Signal Number 7": " Jmri Address 20014, BoardNo:PinNo:Status => 02:15:ON - 02:15:OF",
-      "RED   2Led Signal Number 8": " Jmri Address 20015, BoardNo:PinNo:Status => 03:00:ON - 03:00:OF",
-      "GREEN 2Led Signal Number 8": " Jmri Address 20016, BoardNo:PinNo:Status => 03:01:ON - 03:01:OF"
+      "1": {
+        "RED   2Led Signal Number 1": " Jmri Address 20001, BoardNo:PinNo:Status => 02:02:ON - 02:02:OF",
+        "GREEN 2Led Signal Number 1": " Jmri Address 20002, BoardNo:PinNo:Status => 02:03:ON - 02:03:OF"
+      },
+      "2": {
+        "RED   2Led Signal Number 2": " Jmri Address 20003, BoardNo:PinNo:Status => 02:04:ON - 02:04:OF",
+        "GREEN 2Led Signal Number 2": " Jmri Address 20004, BoardNo:PinNo:Status => 02:05:ON - 02:05:OF"
+      },
+      "3": {
+        "RED   2Led Signal Number 3": " Jmri Address 20005, BoardNo:PinNo:Status => 02:06:ON - 02:06:OF",
+        "GREEN 2Led Signal Number 3": " Jmri Address 20006, BoardNo:PinNo:Status => 02:07:ON - 02:07:OF"
+      },
+      "4": {
+        "RED   2Led Signal Number 4": " Jmri Address 20007, BoardNo:PinNo:Status => 02:08:ON - 02:08:OF",
+        "GREEN 2Led Signal Number 4": " Jmri Address 20008, BoardNo:PinNo:Status => 02:09:ON - 02:09:OF"
+      },
+      "5": {
+        "RED   2Led Signal Number 5": " Jmri Address 20009, BoardNo:PinNo:Status => 02:10:ON - 02:10:OF",
+        "GREEN 2Led Signal Number 5": " Jmri Address 20010, BoardNo:PinNo:Status => 02:11:ON - 02:11:OF"
+      },
+      "6": {
+        "RED   2Led Signal Number 6": " Jmri Address 20011, BoardNo:PinNo:Status => 02:12:ON - 02:12:OF",
+        "GREEN 2Led Signal Number 6": " Jmri Address 20012, BoardNo:PinNo:Status => 02:13:ON - 02:13:OF"
+      },
+      "7": {
+        "RED   2Led Signal Number 7": " Jmri Address 20013, BoardNo:PinNo:Status => 02:14:ON - 02:14:OF",
+        "GREEN 2Led Signal Number 7": " Jmri Address 20014, BoardNo:PinNo:Status => 02:15:ON - 02:15:OF"
+      },
+      "8": {
+        "RED   2Led Signal Number 8": " Jmri Address 20015, BoardNo:PinNo:Status => 03:00:ON - 03:00:OF",
+        "GREEN 2Led Signal Number 8": " Jmri Address 20016, BoardNo:PinNo:Status => 03:01:ON - 03:01:OF"
+      }
     },
     "jmriAddressSignal3Led": {
-      "RED    3Led Signal Number 1": " Jmri Address 30001, BoardNo:PinNo:Status => 03:02:ON - 03:02:OF",
-      "GREEN  3Led Signal Number 1": " Jmri Address 30002, BoardNo:PinNo:Status => 03:03:ON - 03:03:OF",
-      "YELLOW 3Led Signal Number 1": " Jmri Address 30003, BoardNo:PinNo:Status => 03:04:ON - 03:04:OF",
-      "RED    3Led Signal Number 2": " Jmri Address 30004, BoardNo:PinNo:Status => 03:05:ON - 03:05:OF",
-      "GREEN  3Led Signal Number 2": " Jmri Address 30005, BoardNo:PinNo:Status => 03:06:ON - 03:06:OF",
-      "YELLOW 3Led Signal Number 2": " Jmri Address 30006, BoardNo:PinNo:Status => 03:07:ON - 03:07:OF",
-      "RED    3Led Signal Number 3": " Jmri Address 30007, BoardNo:PinNo:Status => 03:08:ON - 03:08:OF",
-      "GREEN  3Led Signal Number 3": " Jmri Address 30008, BoardNo:PinNo:Status => 03:09:ON - 03:09:OF",
-      "YELLOW 3Led Signal Number 3": " Jmri Address 30009, BoardNo:PinNo:Status => 03:10:ON - 03:10:OF",
-      "RED    3Led Signal Number 4": " Jmri Address 30010, BoardNo:PinNo:Status => 03:11:ON - 03:11:OF",
-      "GREEN  3Led Signal Number 4": " Jmri Address 30011, BoardNo:PinNo:Status => 03:12:ON - 03:12:OF",
-      "YELLOW 3Led Signal Number 4": " Jmri Address 30012, BoardNo:PinNo:Status => 03:13:ON - 03:13:OF",
-      "RED    3Led Signal Number 5": " Jmri Address 30013, BoardNo:PinNo:Status => 03:14:ON - 03:14:OF",
-      "GREEN  3Led Signal Number 5": " Jmri Address 30014, BoardNo:PinNo:Status => 03:15:ON - 03:15:OF",
-      "YELLOW 3Led Signal Number 5": " Jmri Address 30015, BoardNo:PinNo:Status => 04:00:ON - 04:00:OF"
+      "1": {
+        "RED    3Led Signal Number 1": " Jmri Address 30001, BoardNo:PinNo:Status => 03:02:ON - 03:02:OF",
+        "GREEN  3Led Signal Number 1": " Jmri Address 30002, BoardNo:PinNo:Status => 03:03:ON - 03:03:OF",
+        "YELLOW 3Led Signal Number 1": " Jmri Address 30003, BoardNo:PinNo:Status => 03:04:ON - 03:04:OF"
+      },
+      "2": {
+        "RED    3Led Signal Number 2": " Jmri Address 30004, BoardNo:PinNo:Status => 03:05:ON - 03:05:OF",
+        "GREEN  3Led Signal Number 2": " Jmri Address 30005, BoardNo:PinNo:Status => 03:06:ON - 03:06:OF",
+        "YELLOW 3Led Signal Number 2": " Jmri Address 30006, BoardNo:PinNo:Status => 03:07:ON - 03:07:OF"
+      },
+      "3": {
+        "RED    3Led Signal Number 3": " Jmri Address 30007, BoardNo:PinNo:Status => 03:08:ON - 03:08:OF",
+        "GREEN  3Led Signal Number 3": " Jmri Address 30008, BoardNo:PinNo:Status => 03:09:ON - 03:09:OF",
+        "YELLOW 3Led Signal Number 3": " Jmri Address 30009, BoardNo:PinNo:Status => 03:10:ON - 03:10:OF"
+      },
+      "4": {
+        "RED    3Led Signal Number 4": " Jmri Address 30010, BoardNo:PinNo:Status => 03:11:ON - 03:11:OF",
+        "GREEN  3Led Signal Number 4": " Jmri Address 30011, BoardNo:PinNo:Status => 03:12:ON - 03:12:OF",
+        "YELLOW 3Led Signal Number 4": " Jmri Address 30012, BoardNo:PinNo:Status => 03:13:ON - 03:13:OF"
+      },
+      "5": {
+        "RED    3Led Signal Number 5": " Jmri Address 30013, BoardNo:PinNo:Status => 03:14:ON - 03:14:OF",
+        "GREEN  3Led Signal Number 5": " Jmri Address 30014, BoardNo:PinNo:Status => 03:15:ON - 03:15:OF",
+        "YELLOW 3Led Signal Number 5": " Jmri Address 30015, BoardNo:PinNo:Status => 04:00:ON - 04:00:OF"
+      }
     }
   }
 ]
@@ -565,5 +620,3 @@ $ curl -X GET http://localhost:8090/amt/description/node/1
 /amt/node/1/signal/ S:30003:03:02:OF|30002:03:01:OF|30001:03:00:OF
 
 ```
-
-
