@@ -1,5 +1,6 @@
 package com.adarsh.model.trains.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -55,5 +56,13 @@ public class NodeConfigurations {
         Integer lightBoardCount;
         String nodeSubscriptionTopic;
         Integer apiEndpointCacheSize;
+        @JsonIgnore
+        Integer turnoutSnapPreviousPins = 0;
+        @JsonIgnore
+        Integer lightPreviousPins = 0;
+        @JsonIgnore
+        Integer signal2PreviousPins = 0;
+        @JsonIgnore
+        Integer signal3PreviousPins = 0;
     }
 }

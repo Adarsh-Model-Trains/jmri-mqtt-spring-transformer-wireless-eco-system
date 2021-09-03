@@ -27,8 +27,8 @@
 
 
 #define NO_OF_TURNOUT_BOARDS 2
-#define NO_OF_LIGHT_BOARDS 1
-#define NO_OF_TOTAL_BOARDS 11
+#define NO_OF_LIGHT_BOARDS 2
+#define NO_OF_TOTAL_BOARDS 4
 /*----------------------------------------------------------------------------------*/
 
 

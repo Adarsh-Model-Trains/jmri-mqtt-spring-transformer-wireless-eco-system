@@ -47,9 +47,9 @@ node:
         lightStartAddress: 10000
         lightCount: 2                             # 1 pin for each light on the pca9685 board
         signal2LStartAddress: 20000
-        signal2LCount: 16                         # 2 pins for each signal light on the pca9685 board  total 16 turnout and every turnout has 2 splitter track (16 * 2 * 2) => 64
+        signal2LCount: 8                         # 2 pins for each signal light on the pca9685 board
         signal3LStartAddress: 30000
-        signal3LCount: 5                          # 3 pins for each signal on the pca9685 board  (10 * 3) => 30
+        signal3LCount: 5                          # 3 pins for each signal on the pca9685 board  (5 * 3) => 15
         turnoutServoStartAddress: 40000
         turnoutServoCount: 8                      # 1 pin for each servo turnout
         turnoutSnapStartAddress: 50000
@@ -66,9 +66,9 @@ node:
         lightStartAddress: 10100
         lightCount: 5
         signal2LStartAddress: 20100
-        signal2LCount: 60
+        signal2LCount: 30
         signal3LStartAddress: 30100
-        signal3LCount: 30
+        signal3LCount: 15
         turnoutServoStartAddress: 40100
         turnoutServoCount: 8
         turnoutSnapStartAddress: 50100
@@ -85,9 +85,9 @@ node:
         lightStartAddress: 10200
         lightCount: 7
         signal2LStartAddress: 20200
-        signal2LCount: 60
+        signal2LCount: 30
         signal3LStartAddress: 30200
-        signal3LCount: 18
+        signal3LCount: 6
         turnoutServoStartAddress: 40200
         turnoutServoCount: 16
         turnoutSnapStartAddress: 50200
@@ -104,9 +104,9 @@ node:
         lightStartAddress: 10300
         lightCount: 23
         signal2LStartAddress: 20300
-        signal2LCount: 10
+        signal2LCount: 5
         signal3LStartAddress: 30300
-        signal3LCount: 24
+        signal3LCount: 8
         turnoutServoStartAddress: 40300
         turnoutServoCount: 20
         turnoutSnapStartAddress: 50300
@@ -123,9 +123,9 @@ node:
         lightStartAddress: 10400
         lightCount: 45
         signal2LStartAddress: 20400
-        signal2LCount: 10
+        signal2LCount: 5
         signal3LStartAddress: 30400
-        signal3LCount: 80
+        signal3LCount: 10
         turnoutServoStartAddress: 40400
         turnoutServoCount: 20
         turnoutSnapStartAddress: 50400
@@ -142,9 +142,9 @@ node:
         lightStartAddress: 10500
         lightCount: 10
         signal2LStartAddress: 20500
-        signal2LCount: 10
+        signal2LCount: 5
         signal3LStartAddress: 30500
-        signal3LCount: 45
+        signal3LCount: 15
         turnoutServoStartAddress: 40500
         turnoutServoCount: 20
         turnoutSnapStartAddress: 50500
@@ -161,9 +161,9 @@ node:
         lightStartAddress: 10600
         lightCount: 12
         signal2LStartAddress: 20600
-        signal2LCount: 10
+        signal2LCount: 5
         signal3LStartAddress: 30600
-        signal3LCount: 80
+        signal3LCount: 10
         turnoutServoStartAddress: 40600
         turnoutServoCount: 29
         turnoutSnapStartAddress: 50600
@@ -180,9 +180,9 @@ node:
         lightStartAddress: 10700
         lightCount: 7
         signal2LStartAddress: 20700
-        signal2LCount: 10
+        signal2LCount: 5
         signal3LStartAddress: 30700
-        signal3LCount: 87
+        signal3LCount: 16
         turnoutServoStartAddress: 40700
         turnoutServoCount: 32
         turnoutSnapStartAddress: 507009
@@ -199,9 +199,9 @@ node:
         lightStartAddress: 10800
         lightCount: 23
         signal2LStartAddress: 20800
-        signal2LCount: 10
+        signal2LCount: 5
         signal3LStartAddress: 30800
-        signal3LCount: 24
+        signal3LCount: 7
         turnoutServoStartAddress: 40800
         turnoutServoCount: 32
         turnoutSnapStartAddress: 50800
@@ -218,9 +218,9 @@ node:
         lightStartAddress: 10900
         lightCount: 45
         signal2LStartAddress: 20900
-        signal2LCount: 10
+        signal2LCount: 5
         signal3LStartAddress: 30900
-        signal3LCount: 80
+        signal3LCount: 13
         turnoutServoStartAddress: 40800
         turnoutServoCount: 32
         turnoutSnapStartAddress: 50800

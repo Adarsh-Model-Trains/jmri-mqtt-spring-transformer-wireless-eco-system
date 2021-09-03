@@ -50,7 +50,7 @@ public class ApplicationTest {
         return null;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main1(String[] args) throws Exception {
         ApplicationTest applicationTest = new ApplicationTest();
         NodeConfigurations.Nodes node = new NodeConfigurations.Nodes();
         node.setTurnoutBoardCount(2);
@@ -86,6 +86,29 @@ public class ApplicationTest {
                 }
                 System.out.println("LIGHT " + applicationTest.nodeWiseDataGenerated(LIGHT, node, ((i - ((totalTurnoutsLimit * 2) + total3LSignalLimit))) + node.getLightStartAddress(), ON));
                 System.out.println("LIGHT " + applicationTest.nodeWiseDataGenerated(LIGHT, node, ((i - ((totalTurnoutsLimit * 2) + total3LSignalLimit))) + node.getLightStartAddress(), OFF));
+            }
+        }
+    }
+
+    public static void boardAndPinCal() {
+        for (int i = 0; i < (16 * 64); i++) {
+            if (i > 0) {
+                int totalServoTurnoutPins = i;
+                System.out.print("total pins " + totalServoTurnoutPins);
+                totalServoTurnoutPins -= 1;
+                totalServoTurnoutPins = (totalServoTurnoutPins / 16) + 1;
+                System.out.print(" total boards " + totalServoTurnoutPins);
+                totalServoTurnoutPins = totalServoTurnoutPins * 16;
+                System.out.print(" total pins " + totalServoTurnoutPins);
+                System.out.println();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < (16 * 64); i++) {
+            if (i > 0) {
+
             }
         }
     }

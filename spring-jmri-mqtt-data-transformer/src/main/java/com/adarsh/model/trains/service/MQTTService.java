@@ -63,6 +63,7 @@ public class MQTTService {
     @PostConstruct
     public void init() {
         nodeConfigurations.getNodes().stream().forEach(node -> {
+            log.info("");
             log.info("Node Id = {}  Node Enabled = {} Publishing Enabled = {}  Rest ApiEnabled = {} Api Cache Size ={}",
                     node.getNodeId(), node.getEnableNode(), node.getEnablePublishing(), node.getEnableRestApi(), node.getApiEndpointCacheSize());
             if (node.getEnableNode()) {
@@ -79,8 +80,24 @@ public class MQTTService {
                     cache3LedTime.put(node.getNodeId(), 0L);
                 }
             }
+            // adding the precalculated value to avoid runtime calculations
+            // for snap turnout
+            int totalServoTurnoutPins = node.getTurnoutServoCount();
+            if (totalServoTurnoutPins > 0) {
+                totalServoTurnoutPins -= 1;
+                totalServoTurnoutPins = (totalServoTurnoutPins / 16) + 1;
+                totalServoTurnoutPins = totalServoTurnoutPins * 16;
+            }
+            node.setTurnoutSnapPreviousPins(totalServoTurnoutPins);
+            // for light
+            node.setLightPreviousPins(node.getTurnoutBoardCount() * 16);
+            // for 2 led signals
+            node.setSignal2PreviousPins(node.getTurnoutBoardCount() * 16 + node.getLightCount());
+            // for 3 led signals
+            node.setSignal3PreviousPins(node.getTurnoutBoardCount() * 16 + node.getLightCount() + (node.getSignal2LCount() * 2));
+            log.info("Total Pins For Servo Turnout = {}, Total Pins For Snap Turnout = {},  Total Pins For Light = {}, Total Pins For 2Led Signals = {}, Total Pins For 3Led Signals = {} "
+                    , node.getTurnoutServoCount(), (node.getTurnoutSnapCount() * 2), node.getLightCount(), (node.getSignal2LCount() * 2), (node.getSignal3LCount() * 3));
         });
-
     }
 
     public void transformData(String mqttTopic, String jmriState) throws Exception {
@@ -277,14 +294,14 @@ public class MQTTService {
                 if (jmriId >= e.getSignal3LStartAddress()) {
                     if (e.getSignal3LStartAddress() != null && e.getSignal3LStartAddress() != 0
                             && e.getSignal3LCount() != null && e.getSignal3LCount() != 0) {
-                        return jmriId >= e.getSignal3LStartAddress() && jmriId <= e.getSignal3LStartAddress() + e.getSignal3LCount() ? true : false;
+                        return jmriId >= e.getSignal3LStartAddress() && jmriId <= e.getSignal3LStartAddress() + (e.getSignal3LCount() * 3) ? true : false;
                     } else {
                         return false;
                     }
                 } else if (jmriId >= e.getSignal2LStartAddress() && jmriId < e.getSignal3LStartAddress()) {
                     if (e.getSignal2LStartAddress() != null && e.getSignal2LStartAddress() != 0
                             && e.getSignal2LCount() != null && e.getSignal2LCount() != 0) {
-                        return jmriId >= e.getSignal2LStartAddress() && jmriId <= e.getSignal2LStartAddress() + e.getSignal2LCount() ? true : false;
+                        return jmriId >= e.getSignal2LStartAddress() && jmriId <= e.getSignal2LStartAddress() + (e.getSignal2LCount() * 2) ? true : false;
                     } else {
                         return false;
                     }
@@ -296,7 +313,7 @@ public class MQTTService {
         }).findFirst().get();
     }
 
-    private String findBoardPin(NodeConfigurations.Nodes node, Integer pinNo, String state) {
+    public  String findBoardPin(NodeConfigurations.Nodes node, Integer pinNo, String state) {
         String data = "";
         int pin = pinNo - 1;
         int board = (pin / 16);
@@ -320,30 +337,24 @@ public class MQTTService {
             } else {
                 jmriId = (jmriId - node.getTurnoutSnapStartAddress());
                 jmriId = (jmriId * 2);
-                int totalServoTurnoutPins = node.getTurnoutServoCount();
-                totalServoTurnoutPins -= 1;
-                totalServoTurnoutPins = (totalServoTurnoutPins / 16) + 1;
-                totalServoTurnoutPins = totalServoTurnoutPins * 16;
-                jmriId = jmriId + totalServoTurnoutPins; // to do board * 16
+                jmriId = jmriId + node.getTurnoutSnapPreviousPins();
                 if (state.equals(TH)) {
                     jmriId = jmriId - 1;
                 }
                 //  find board and pin for the turnout based on configuration
                 return this.findBoardPin(node, jmriId, state);
             }
+        } else if (type.equals(LIGHT)) {
+            jmriId = (jmriId - node.getLightStartAddress()) + node.getLightPreviousPins();
+            //  find board and pin for the light based on configuration
+            return this.findBoardPin(node, jmriId, state);
         } else if (type.equals(SIGNAL)) {
-            if (jmriId >= node.getSignal3LStartAddress()) {
-                jmriId = (jmriId - node.getSignal3LStartAddress()) + (node.getTurnoutBoardCount() * 16);
+            if (jmriId >= node.getSignal2LStartAddress() && jmriId < node.getSignal3LStartAddress()) {
+                jmriId = (jmriId - node.getSignal2LStartAddress()) + node.getSignal2PreviousPins();
             } else {
-                jmriId = (jmriId - node.getSignal2LStartAddress()) + (node.getTurnoutBoardCount() * 16);
+                jmriId = (jmriId - node.getSignal3LStartAddress()) + node.getSignal3PreviousPins();
             }
             //  find board and pin for the signal based on configuration
-            return this.findBoardPin(node, jmriId, state);
-        } else if (type.equals(LIGHT)) {
-            jmriId = (jmriId - node.getLightStartAddress())
-                    + (node.getTurnoutBoardCount() * 16)
-                    + node.getSignal2LCount() + node.getSignal3LCount();
-            //  find board and pin for the light based on configuration
             return this.findBoardPin(node, jmriId, state);
         }
         return null;
