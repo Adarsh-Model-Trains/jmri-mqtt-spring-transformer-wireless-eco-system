@@ -14,17 +14,18 @@ int jmriId ;
 int boardId ;
 int pinId ;
 String serverResponse;
+const uint32_t connectTimeoutMs = 5000;
 
-
-ESP8266WiFiMulti WiFiMulti;
+ESP8266WiFiMulti wifiMulti;
 Pca9685BoardManager pcaBoardManager;
 
 void setup() {
   Serial.begin(BROAD_RATE);
+  WiFi.persistent(false);
   WiFi.mode(WIFI_STA);
-  WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
-  while ((WiFiMulti.run() == WL_CONNECTED)) {
-    delay(500);
+  wifiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
+  while (wifiMulti.run(connectTimeoutMs) == WL_CONNECTED) {
+    Serial.println(".");
   }
   Serial.println("");
   Serial.println("Connected to WiFi");
@@ -32,7 +33,7 @@ void setup() {
 }
 
 void loop() {
-  if ((WiFiMulti.run() == WL_CONNECTED)) {
+  if (wifiMulti.run(connectTimeoutMs) == WL_CONNECTED) {
     serverResponse = httpGETRequest(SERVER_URL);
     // todo with the server response
     if (serverResponse != "") {

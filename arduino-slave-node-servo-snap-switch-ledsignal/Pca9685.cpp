@@ -78,7 +78,22 @@ void Pca9685::setBoardAddress(int boardsAddress) {
 void Pca9685::turnoutThrow(int pinNo) {
   if (this->_type == T && this->_subType == M) {
     _pca9685PinList[pinNo]._isOpen = true;
-    //_pwm.writeMicroseconds(i, _pca9685PinList[pinNo]._openState );
+    
+   /*
+      if(!slowMove){
+      _pwm.writeMicroseconds(pinNo, _pca9685PinList[pinNo]._openState );
+      }
+    */
+    
+    /*
+      if(slowMove){
+        // slow effect for turnout
+        for(int i=_pca9685PinList[pinNo]._closeState;i>=_pca9685PinList[pinNo]._openState;i=i-1){
+           _pwm.writeMicroseconds(pinNo, i );
+        }
+      }
+    */
+    
     Serial.println(" TURNOUT THROW\n");
   } else if (this->_type == T && this->_subType == N) {
     _pca9685PinStateList[pinNo] = true;
@@ -93,7 +108,23 @@ void Pca9685::turnoutThrow(int pinNo) {
 void Pca9685::turnoutClose(int pinNo) {
   if (this->_type ==  T && this->_subType == M) {
     _pca9685PinList[pinNo]._isOpen = false;
-    //_pwm.writeMicroseconds(i, _pca9685PinList[pinNo]._closeState );
+    
+   /*
+      if(!slowMove){
+        _pwm.writeMicroseconds(pinNo, _pca9685PinList[pinNo]._closeState );
+      }
+    */
+
+    /*
+      if(slowMove){
+      // slow effect for turnout
+        for(int i=_pca9685PinList[pinNo]._openState;i<=_pca9685PinList[pinNo]._closeState;i=i+1){
+          _pwm.writeMicroseconds(pinNo, i );
+         }
+      }
+    */
+
+    
     Serial.println(" TURNOUT CLOSE\n");
   } else if (this->_type ==  T && this->_subType == N) {
     _pca9685PinStateList[pinNo] = true;

@@ -84,5 +84,7 @@ const int turnoutRange[][TOTAL_BOARD_PIN][RANGE_TYPE] = {
     {1000, 2000}
   }
 };
+const bool slowMove = true;
+
 
 #endif
