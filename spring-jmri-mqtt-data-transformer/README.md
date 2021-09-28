@@ -322,7 +322,6 @@ node:
         apiEndpointCacheSize: 10
 ```
 
-
 ### TO GET CONFIGURATION FROM REST ENDPOINTS
 
 > this will give each and every detail about the nodes and its component like light signal and turnouts
@@ -358,7 +357,7 @@ node:
     "totalSignal3LedPins": 15,
     "totalServoTurnoutPins": 8,
     "totalSnapTurnoutPins": 16,
-    "totalBoardRequired": " Total Servo TurnoutBoard Required is 1, Total Snap TurnoutBoard Required is 1, Total Light & Signal Boards Required is 4",
+    "totalBoardRequired": " Total Servo TurnoutBoard Required is 1 Total Snap TurnoutBoard Required is 1 Total Light & Signal Boards Required is 4",
     "jmriAddressTurnoutServo": {
       " Servo Number 1": " Jmri Address 40001, BoardNo:PinNo:Status => 00:00:TH - 00:00:CL",
       " Servo Number 2": " Jmri Address 40002, BoardNo:PinNo:Status => 00:01:TH - 00:01:CL",
@@ -454,7 +453,7 @@ node:
   
 ]
 ```
-### To fetch for a particular node
+### To fetch for a particular node 
 * curl -X GET http://localhost:8090/amt/description/node/[nodeId]
 * http://localhost:8090/amt/description/node/[nodeId]
 * http://localhost:8090/amt/description/node/1
@@ -487,7 +486,7 @@ $ curl -X GET http://localhost:8090/amt/description/node/1
     "totalSignal3LedPins": 15,
     "totalServoTurnoutPins": 8,
     "totalSnapTurnoutPins": 16,
-    "totalBoardRequired": " Total Servo TurnoutBoard Required is 1, Total Snap TurnoutBoard Required is 1, Total Light & Signal Boards Required is 4",
+    "totalBoardRequired": " Total Servo TurnoutBoard Required is 1 Total Snap TurnoutBoard Required is 1 Total Light & Signal Boards Required is 4",
     "jmriAddressTurnoutServo": {
       " Servo Number 1": " Jmri Address 40001, BoardNo:PinNo:Status => 00:00:TH - 00:00:CL",
       " Servo Number 2": " Jmri Address 40002, BoardNo:PinNo:Status => 00:01:TH - 00:01:CL",
@@ -620,3 +619,5 @@ $ curl -X GET http://localhost:8090/amt/description/node/1
 /amt/node/1/signal/ S:30003:03:02:OF|30002:03:01:OF|30001:03:00:OF
 
 ```
+
+

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import static com.adarsh.model.trains.service.MQTTService.*;
 
@@ -20,8 +21,8 @@ public class ConfigurationDetails extends NodeConfigurations.Nodes {
     LinkedHashMap<String, String> jmriAddressTurnoutServo;
     LinkedHashMap<String, String> jmriAddressTurnoutSnap;
     LinkedHashMap<String, String> jmriAddressLight;
-    LinkedHashMap<String, String> jmriAddressSignal2Led;
-    LinkedHashMap<String, String> jmriAddressSignal3Led;
+    LinkedHashMap<String, LinkedHashMap<String, String>> jmriAddressSignal2Led;
+    LinkedHashMap<String, LinkedHashMap<String, String>> jmriAddressSignal3Led;
 
     public ConfigurationDetails(NodeConfigurations.Nodes node, MQTTService mqttService) {
         super.setNodeId(node.getNodeId());
@@ -70,13 +71,13 @@ public class ConfigurationDetails extends NodeConfigurations.Nodes {
             snap -= 1;
             totalBoard += (snap / 16) + 1;
         }
-        totalBoardRequired += " Total Snap TurnoutBoard Required is " + totalBoard;
+        totalBoardRequired += ", Total Snap TurnoutBoard Required is " + totalBoard;
         int totalLights = node.getLightCount() + (node.getSignal2LCount() * 2) + (node.getSignal3LCount() * 3);
         if (totalLights > 0) {
             totalLights -= 1;
             totalBoard += (totalLights / 16) + 1;
         }
-        totalBoardRequired += " Total Light & Signal Boards Required is " + totalBoard;
+        totalBoardRequired += ", Total Light & Signal Boards Required is " + totalBoard;
     }
 
     @JsonIgnore
@@ -127,13 +128,15 @@ public class ConfigurationDetails extends NodeConfigurations.Nodes {
         int signal2LedNumber = 1;
         String data = "";
         for (int i = node.getSignal2LStartAddress() + 1; i <= node.getSignal2LStartAddress() + (node.getSignal2LCount() * 2); i += 2) {
+            LinkedHashMap<String, String> signal = new LinkedHashMap<>();
             data = mqttService.nodeWiseDataGenerated(SIGNAL, node, i, ON);
             data = data + " - " + mqttService.nodeWiseDataGenerated(SIGNAL, node, i, OFF);
-            jmriAddressSignal2Led.put("RED   2Led Signal Number " + signal2LedNumber, " Jmri Address " + i + ", BoardNo:PinNo:Status => " + data);
+            signal.put("RED   2Led Signal Number " + signal2LedNumber, " Jmri Address " + i + ", BoardNo:PinNo:Status => " + data);
             data = "";
             data = mqttService.nodeWiseDataGenerated(SIGNAL, node, i + 1, ON);
             data = data + " - " + mqttService.nodeWiseDataGenerated(SIGNAL, node, i + 1, OFF);
-            jmriAddressSignal2Led.put("GREEN 2Led Signal Number " + signal2LedNumber, " Jmri Address " + (i + 1) + ", BoardNo:PinNo:Status => " + data);
+            signal.put("GREEN 2Led Signal Number " + signal2LedNumber, " Jmri Address " + (i + 1) + ", BoardNo:PinNo:Status => " + data);
+            jmriAddressSignal2Led.put(signal2LedNumber + "", signal);
             signal2LedNumber++;
             data = "";
         }
@@ -145,17 +148,19 @@ public class ConfigurationDetails extends NodeConfigurations.Nodes {
         int signal3LedNumber = 1;
         String data = "";
         for (int i = node.getSignal3LStartAddress() + 1; i <= node.getSignal3LStartAddress() + (node.getSignal3LCount() * 3); i += 3) {
+            LinkedHashMap<String, String> signal = new LinkedHashMap<>();
             data = mqttService.nodeWiseDataGenerated(SIGNAL, node, i, ON);
             data = data + " - " + mqttService.nodeWiseDataGenerated(SIGNAL, node, i, OFF);
-            jmriAddressSignal3Led.put("RED    3Led Signal Number " + signal3LedNumber, " Jmri Address " + i + ", BoardNo:PinNo:Status => " + data);
+            signal.put("RED    3Led Signal Number " + signal3LedNumber, " Jmri Address " + i + ", BoardNo:PinNo:Status => " + data);
             data = "";
             data = mqttService.nodeWiseDataGenerated(SIGNAL, node, i + 1, ON);
             data = data + " - " + mqttService.nodeWiseDataGenerated(SIGNAL, node, i + 1, OFF);
-            jmriAddressSignal3Led.put("GREEN  3Led Signal Number " + signal3LedNumber, " Jmri Address " + (i + 1) + ", BoardNo:PinNo:Status => " + data);
+            signal.put("GREEN  3Led Signal Number " + signal3LedNumber, " Jmri Address " + (i + 1) + ", BoardNo:PinNo:Status => " + data);
             data = "";
             data = mqttService.nodeWiseDataGenerated(SIGNAL, node, i + 2, ON);
             data = data + " - " + mqttService.nodeWiseDataGenerated(SIGNAL, node, i + 2, OFF);
-            jmriAddressSignal3Led.put("YELLOW 3Led Signal Number " + signal3LedNumber, " Jmri Address " + (i + 2) + ", BoardNo:PinNo:Status => " + data);
+            signal.put("YELLOW 3Led Signal Number " + signal3LedNumber, " Jmri Address " + (i + 2) + ", BoardNo:PinNo:Status => " + data);
+            jmriAddressSignal3Led.put(signal3LedNumber + "", signal);
             signal3LedNumber++;
             data = "";
         }

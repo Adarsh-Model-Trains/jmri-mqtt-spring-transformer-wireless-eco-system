@@ -10,6 +10,7 @@ String serverResponse;
 
 void setup() {
   Serial.begin(115200);
+  WiFi.persistent(false);
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while ((WiFiMulti.run() == WL_CONNECTED)) {

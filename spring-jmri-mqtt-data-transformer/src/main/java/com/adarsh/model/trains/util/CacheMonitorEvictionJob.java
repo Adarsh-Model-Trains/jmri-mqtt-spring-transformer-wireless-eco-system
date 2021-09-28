@@ -47,5 +47,6 @@ public class CacheMonitorEvictionJob {
                 }
             }
         });
+        System.gc();
     }
 }

@@ -42,7 +42,7 @@ node:
         nodeId: 1                                 # node id/name publish topic will be formed with this id only
         enableNode: true                          # enable the node to process for jmri data
         enablePublishing: true                    # enable the node to publish process data to the mqtt topic
-        enableRestApi: false                      # to enable the rest service for the node
+        enableRestApi: true                       # to enable the rest service for the node
         apiEndpointCacheSize: 10                  # cache for rest api to hold the data for service call
         lightStartAddress: 10000
         lightCount: 2                             # 1 pin for each light on the pca9685 board
