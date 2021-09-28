@@ -1,5 +1,7 @@
 # JMRI MQTT WIRELESS ECO SYSTEM 
 
+![img](image/implementation.png)
+
 > Jmri will push the data to the mqtt topic \
 > spring transformer application configured with nodes and its details like no of turnout, no of signals, no of light in the node \
 > every nodes has PCA9685 boards configured in series for turnout light and signals \
