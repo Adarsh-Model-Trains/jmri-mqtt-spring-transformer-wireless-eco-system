@@ -22,7 +22,6 @@ public class CacheMonitorEvictionJob {
     @Autowired
     NodeConfigurations nodeConfigurations;
 
-
     @Autowired
     MQTTService mqttService;
 
