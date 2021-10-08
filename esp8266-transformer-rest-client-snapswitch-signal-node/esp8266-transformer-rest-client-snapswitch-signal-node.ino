@@ -34,7 +34,7 @@ void setup() {
 }
 
 void loop() {
-  if ((WiFiMulti.run() == WL_CONNECTED)) {
+  if ((WiFiMulti.run() != WL_CONNECTED)) {
     serverResponse = httpGETRequest(SERVER_URL);
     // todo with the server response
     if (serverResponse != "") {

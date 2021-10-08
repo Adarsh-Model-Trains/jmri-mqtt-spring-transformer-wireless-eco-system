@@ -22,7 +22,7 @@ void setup() {
   Serial.begin(BROAD_RATE);
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
-  while ((WiFiMulti.run() == WL_CONNECTED)) {
+  while ((WiFiMulti.run() != WL_CONNECTED)) {
     delay(DELAY_TIME + DELAY_TIME);
     Serial.print(".");
   }

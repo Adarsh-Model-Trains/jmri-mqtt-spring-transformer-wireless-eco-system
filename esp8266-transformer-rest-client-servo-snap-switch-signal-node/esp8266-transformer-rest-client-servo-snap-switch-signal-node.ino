@@ -24,7 +24,7 @@ void setup() {
   WiFi.persistent(false);
   WiFi.mode(WIFI_STA);
   wifiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
-  while (wifiMulti.run(connectTimeoutMs) == WL_CONNECTED) {
+  while (wifiMulti.run(connectTimeoutMs) != WL_CONNECTED) {
     Serial.println(".");
   }
   Serial.println("");
