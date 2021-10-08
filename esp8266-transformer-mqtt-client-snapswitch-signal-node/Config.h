@@ -14,6 +14,7 @@
 #define MSG_SIZE  14
 #define BROAD_RATE 115200
 #define DELAY_TIME 200
+#define WIFI_RECONNECT_DELAY_TIME 500
 #define PWM_FREQUENCY 1000
 /*----------------------------------------------------------------------------------*/
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING

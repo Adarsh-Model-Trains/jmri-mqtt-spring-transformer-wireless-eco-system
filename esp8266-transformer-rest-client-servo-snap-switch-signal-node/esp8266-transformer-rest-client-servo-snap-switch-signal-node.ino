@@ -25,10 +25,14 @@ void setup() {
   WiFi.mode(WIFI_STA);
   wifiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while (wifiMulti.run(connectTimeoutMs) != WL_CONNECTED) {
-    Serial.println(".");
+    delay(WIFI_RECONNECT_DELAY_TIME);
+    //Serial.print(".");
   }
-  Serial.println("");
-  Serial.println("Connected to WiFi");
+  // Debugging - Output the IP Address of the ESP8266
+  Serial.print("WiFi connected: ");
+  Serial.print(WiFi.SSID());
+  Serial.print(" ");
+  Serial.println(WiFi.localIP());
   pcaBoardManager.initPca9685Boards();
 }
 

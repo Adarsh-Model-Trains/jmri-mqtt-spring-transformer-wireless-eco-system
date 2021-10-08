@@ -10,4 +10,8 @@
 #define SERVER_URL "http://192.168.0.188:8090/amt/node/1"
 #define NODE_ID "1"
 
+#define BROAD_RATE 115200
+#define DELAY_TIME 5000
+#define WIFI_RECONNECT_DELAY_TIME 500
+
 #endif

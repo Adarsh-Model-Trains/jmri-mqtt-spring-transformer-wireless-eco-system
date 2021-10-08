@@ -16,10 +16,14 @@ void setup() {
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while ((WiFiMulti.run() != WL_CONNECTED)) {
-    delay(500);
+    delay(WIFI_RECONNECT_DELAY_TIME);
+    //Serial.print(".");
   }
-  Serial.println("");
-  Serial.println("Connected to WiFi");
+  // Debugging - Output the IP Address of the ESP8266
+  Serial.print("WiFi connected: ");
+  Serial.print(WiFi.SSID());
+  Serial.print(" ");
+  Serial.println(WiFi.localIP());
 
   ctSensor.initCtSensor(NO_OF_BLOCKS);
   for (int i = 0; i < NO_OF_BLOCKS; i++) {

@@ -62,13 +62,14 @@ void setup() {
 
   // Wait until the connection has been confirmed before continuing
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
+    delay(WIFI_RECONNECT_DELAY_TIME);
     //Serial.print(".");
   }
 
   // Debugging - Output the IP Address of the ESP8266
-  Serial.println("WiFi connected");
-  Serial.print("IP address: ");
+  Serial.print("WiFi connected: ");
+  Serial.print(WiFi.SSID());
+  Serial.print(" ");
   Serial.println(WiFi.localIP());
 
   // Connect to MQTT Broker

@@ -12,7 +12,7 @@
 // WiFi
 // Make sure to update this for your own WiFi network!
 #define ssid "adarsh_radha_2G" // ESP8266 do not support 5G wifi connection
-#define wifi_password "@Endless@1309"
+#define wifi_password "******"
 #define mqtt_username "adarsh"
 #define mqtt_password "password"
 
@@ -28,5 +28,6 @@
 
 #define BROAD_RATE 115200
 #define DELAY_TIME 1000
+#define WIFI_RECONNECT_DELAY_TIME 500
 
 #endif

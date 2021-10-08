@@ -12,14 +12,17 @@ String val;
 String message;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(BROAD_RATE);
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while ((WiFiMulti.run() != WL_CONNECTED)) {
-    delay(500);
+    delay(WIFI_RECONNECT_DELAY_TIME);
+     //Serial.print(".");
   }
-  Serial.println("");
-  Serial.println("Connected to WiFi");
+    Serial.print("WiFi connected: ");
+    Serial.print(WiFi.SSID());
+    Serial.print(" ");
+    Serial.println(WiFi.localIP());
 }
 
 
