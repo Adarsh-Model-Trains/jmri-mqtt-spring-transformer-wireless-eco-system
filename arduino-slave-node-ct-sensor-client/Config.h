@@ -17,6 +17,8 @@
 #define NO_OF_BLOCKS 2
 
 
+#define ENABLE_PULLUP true
+
 /*
  * CT SENSORS PIN CONFIGURATION 
   const int sensorPin[NO_OF_BLOCKS][PINS] = {

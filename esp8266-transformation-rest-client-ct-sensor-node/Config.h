@@ -24,6 +24,8 @@
 #define PAYLOAD_BACK_ACTIVE "\", \"data\": \"ACTIVE\"}"
 #define PAYLOAD_BACK_INACTIVE "\", \"data\": \"INACTIVE\"}"
 
+#define ENABLE_PULLUP true
+
 /*
  * CT SENSORS PIN CONFIGURATION 
   const int sensorPin[NO_OF_BLOCKS][PINS] = {

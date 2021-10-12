@@ -22,7 +22,11 @@ void CtSensor::setSensorPin(int sensorNo, int pinNo) {
   if (sensorNo > -1 && sensorNo <= _sensorsCount) {
     if (pinNo > -1) {
       _sensorsPins[sensorNo - 1] = pinNo;
-      pinMode(pinNo, INPUT);
+      if (ENABLE_PULLUP) {
+        pinMode(pinNo, INPUT_PULLUP);
+      } else {
+        pinMode(pinNo, INPUT);
+      }
     } else {
       Serial.println("Invalid Sensor Pin No");
     }

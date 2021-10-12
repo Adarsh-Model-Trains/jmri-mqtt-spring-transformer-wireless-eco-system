@@ -6,6 +6,8 @@
 #ifndef CtSensor_h
 #define CtSensor_h
 
+#include "Config.h"
+
 class CtSensor {
 
   private:
