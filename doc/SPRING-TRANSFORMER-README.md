@@ -46,6 +46,20 @@
   --data '{"topic":"/trains/track/sensor/1","data":"ACTIVE"}' \
   http://localhost:8090/amt/node/1
 
+### TO CONFIGURE THE PROFILE 
+```
+spring:
+  profiles: prod 
+``` 
+
+### TO CONFIGURE THE API CONTEXT PAHT AND PROT NUMBER 
+``` 
+server:
+  servlet:
+    context-path: /amt    #context path for the rest services
+  port: 8090
+```  
+
 ### TO CONFIGURE THE MQTT FOR THE APPLICATION
 
 ```
