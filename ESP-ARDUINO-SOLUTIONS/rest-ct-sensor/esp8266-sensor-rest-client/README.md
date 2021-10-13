@@ -13,6 +13,14 @@ const char* wifi_password = "*******";
 
 ```
 
+### other config
+```
+#define NODE_ID "1"
+#define BROAD_RATE 115200
+#define DELAY_TIME 1000
+#define WIFI_RECONNECT_DELAY_TIME 500
+```
+
 > spring transformation rest service url configured in Config.h file 
 * "http://localhost:8090/amt/node/<NODE_ID>";
 ```

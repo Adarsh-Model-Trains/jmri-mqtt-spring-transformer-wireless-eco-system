@@ -17,6 +17,12 @@
 #define NO_OF_TOTAL_BOARDS 6
 ```
 
+### other config 
+```
+#define BROAD_RATE 115200
+#define DELAY_TIME 200
+```
+
 ## To Open Two arduino sperate ide on mac 
 * $ open -n -a Arduino
 * -n = open new instance even when one is already running

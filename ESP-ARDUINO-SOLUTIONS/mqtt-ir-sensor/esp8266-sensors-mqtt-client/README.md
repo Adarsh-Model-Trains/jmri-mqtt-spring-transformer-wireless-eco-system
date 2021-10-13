@@ -27,7 +27,9 @@ const String JMRI_MQTT_SENSOR_TOPIC = "/trains/track/sensor/";
 > esp client id is configure in Config.h 
 ```
 const char* CLIENT_ID = "JMRI_NODE_ESP8266_PUBLISHING_1";
-
+#define BROAD_RATE 115200
+#define DELAY_TIME 5000
+#define WIFI_RECONNECT_DELAY_TIME 500
 ```
 
 ## Lib installtion 

@@ -17,6 +17,11 @@
 #define NO_OF_LIGHT_BOARDS 3
 #define NO_OF_TOTAL_BOARDS 5
 ```
+### other config 
+```
+#define BROAD_RATE 115200
+#define DELAY_TIME 200
+```
 
 ### Configuration of the open and close range for the servo moter 
 > use the callibration application "servo-turnout-calibration" for the finding the open and close range 

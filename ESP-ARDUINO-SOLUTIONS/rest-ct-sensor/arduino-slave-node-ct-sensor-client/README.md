@@ -15,7 +15,8 @@
 #define JMRI_SENSOR_START_ADDRESS 10000
 #define BROAD_RATE 115200
 #define DELAY_TIME 5000
-#define NO_OF_BLOCKS 3
+#define NO_OF_BLOCKS 
+#define ENABLE_PULLUP true
 ```
 
 ### CT Sensors configuration for arduino in Config.h 

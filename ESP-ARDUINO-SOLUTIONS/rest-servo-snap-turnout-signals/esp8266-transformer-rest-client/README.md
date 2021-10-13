@@ -19,6 +19,14 @@ const char* wifi_password = "*******";
 const char* SERVER_URL = "http://192.168.0.188:8090/amt/node/1";
 ```
 
+### other config 
+```
+#define NODE_ID "1"
+#define BROAD_RATE 115200
+#define DELAY_TIME 5000
+#define WIFI_RECONNECT_DELAY_TIME 500
+```
+
 ## Lib installtion 
 
 ### search for "PubSubClient" lib and install it before compiling 
