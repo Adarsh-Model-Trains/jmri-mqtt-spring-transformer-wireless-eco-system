@@ -1,7 +1,7 @@
 # JMRI MQTT WIRELESS ECO SYSTEM 
 
 
-## [YOUTUBE HELP LINK ](YOUTUBE-README.md)	
+## [YOUTUBE HELP LINK ](doc/YOUTUBE-README.md)	
 
 ![img](image/implementation.png)
 
@@ -34,8 +34,8 @@
 
 ### CONFIGURATIONS STEPS 
 * java 8 runtime installation 
-* Mqtt installation and start see [MQTT SETUP GUILDE LINK ](MQTT-SETUP-README.md)
-* jmri installation and configured with mqtt see [JMRI MQTT CONNECTION SETUP AND TESTING ](JMRI-MQTT-SETUP-README.md)
+* Mqtt installation and start see [MQTT SETUP GUILDE LINK ](doc/MQTT-SETUP-README.md)
+* jmri installation and configured with mqtt see [JMRI MQTT CONNECTION SETUP AND TESTING ](doc/JMRI-MQTT-SETUP-README.md)
 * spring data transformation application installation and execution details see [SPRING TRANSFORMATOIN APPLICATION ](spring-jmri-mqtt-data-transformer/README.md)
 * servo calibration application for getting open and close range [SERVO CALIBRATION APPLICATION](servo-turnout-calibration/README.md)
 * reading data after transformaton see below section 
@@ -176,13 +176,13 @@
 
 ----
 
-### [MQTT SETUP GUILDE LINK ](MQTT-SETUP-README.md)
+### [MQTT SETUP GUILDE LINK ](doc/MQTT-SETUP-README.md)
 
-### [JMRI MQTT CONNECTION SETUP AND TESTING LIGHT SIGNAL TURNOUT SENSORS ](JMRI-MQTT-SETUP-README.md)
+### [JMRI MQTT CONNECTION SETUP AND TESTING LIGHT SIGNAL TURNOUT SENSORS ](doc/JMRI-MQTT-SETUP-README.md)
 
-### [CONNECTION DETAILS FOR ESP AND ARDUINO ](ESP-ARDUINO-CONNECTON-README.md)
+### [CONNECTION DETAILS FOR ESP AND ARDUINO ](doc/ESP-ARDUINO-CONNECTON-README.md)
 
-### [CONNECTION DETAILS FOR PCA9685 BOARD AND ARDUINO ](PCA9685-README.md)
+### [CONNECTION DETAILS FOR PCA9685 BOARD AND ARDUINO ](doc/PCA9685-README.md)
 
 ### [SERVO CALIBRATION APPLICATION](servo-turnout-calibration/README.md)
 
