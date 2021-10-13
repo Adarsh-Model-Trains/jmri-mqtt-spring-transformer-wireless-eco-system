@@ -2,6 +2,9 @@
 
 ----
 
+## PLAYLIST 
+[![PLAYLIST](http://img.youtube.com/vi/aoIps5_H_so/0.jpg)](https://www.youtube.com/watch?v=aoIps5_H_so&list=PLWXrI0xd_00pDT40g0zaGU2cS_Nvi2Zuc "JMRI WIRELESS ECO SYSTEM INTRO")
+
 ## JMRI WIRELESS ECO SYSTEM INTRO 1
 [![JMRI WIRELESS ECO SYSTEM INTRO 1](http://img.youtube.com/vi/aoIps5_H_so/0.jpg)](https://www.youtube.com/watch?v=aoIps5_H_so "JMRI WIRELESS ECO SYSTEM INTRO")
 
