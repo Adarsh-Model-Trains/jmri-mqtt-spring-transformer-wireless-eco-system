@@ -1,0 +1,24 @@
+# YOUTUBE PLAYLIST FOR HELP 
+
+----
+
+
+[![JMRI WIRELESS ECO SYSTEM INTRO](http://img.youtube.com/vi/aoIps5_H_so/0.jpg)](https://www.youtube.com/watch?v=aoIps5_H_so "JMRI WIRELESS ECO SYSTEM INTRO")
+
+
+[![JMRI WIRELESS ECO SYSTEM INTRO](http://img.youtube.com/vi/ee2XXXB5__w/0.jpg)](https://www.youtube.com/watch?v=ee2XXXB5__w "JMRI WIRELESS ECO SYSTEM INTRO")
+
+
+[![MQTT MESSAGE BROKER SETUP](http://img.youtube.com/vi/eN9BI_FViZA/0.jpg)](https://www.youtube.com/watch?v=eN9BI_FViZA "MQTT MOSQUITO MESSAGE BROKER SETUP")
+
+
+[![MQTT MOSQUITO MESSAGE AUTHENTICATION BROKER SETUP](http://img.youtube.com/vi/uFoQLjLZz8k/0.jpg)](https://www.youtube.com/watch?v=uFoQLjLZz8k "MQTT MOSQUITO MESSAGE BROKER AUTHENTICATION SETUP")
+
+
+[![MQTT MOSQUITO MESSAGE BROKER PYTHON SCRIPT SETUP](http://img.youtube.com/vi/dp5CUHZWWDE/0.jpg)](https://www.youtube.com/watch?v=dp5CUHZWWDE "MQTT MOSQUITO MESSAGE BROKER PYTHON SCRIPT SETUP")
+
+
+[![MQTT MOSQUITO MESSAGE BROKER & JMRI SETUP](http://img.youtube.com/vi/7EvVaAfh_8A/0.jpg)](https://www.youtube.com/watch?v=7EvVaAfh_8A "MQTT MOSQUITO MESSAGE BROKER & JMRI SETUP")
+
+
+[![SPRING TRANSFORMATION APPLICATION](http://img.youtube.com/vi/KNe1Wl8QBbQ/0.jpg)](https://www.youtube.com/watch?v=KNe1Wl8QBbQ "JMRI TRANSFORMATION APPLICATION")
