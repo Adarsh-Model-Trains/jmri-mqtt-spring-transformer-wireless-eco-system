@@ -580,6 +580,18 @@ $ curl -X GET http://localhost:8090/amt/description/node/1
 ]
 ```
 
+## TO CONFIGURE THE LOG FOR THE APLICATION 
+* application.properties
+```
+### Use any of them => DEBUG,ERROR,FATAL,INFO,OFF,TRACE,WARN
+logging.level.root=INFO
+logging.level.com.adarsh.model.trains=INFO
+logging.level.org.springframework=INFO
+logging.level.org.springframework.boot=INFO
+logging.level.org.springframework.boot.autoconfigure.web=INFO
+logging.level.org.hibernate.validator=INFO
+```
+
 ### To subscribe the mqtt jmri topic with original jmri messages
 
 * $ mosquitto_sub -h localhost -u adarsh -P password -v -t '/trains/track/#'
