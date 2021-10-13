@@ -52,7 +52,7 @@ spring:
   profiles: prod 
 ``` 
 
-### TO CONFIGURE THE API CONTEXT PATH AND PROT NUMBER 
+### TO CONFIGURE THE API CONTEXT PATH AND PORT NUMBER 
 ``` 
 server:
   servlet:
