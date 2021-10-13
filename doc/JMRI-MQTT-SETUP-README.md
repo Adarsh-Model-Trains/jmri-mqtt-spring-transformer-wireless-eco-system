@@ -48,7 +48,7 @@ Settings
 ```
 ### WITHOUT USERNAME AND PASSWORD 
 
-![img](../../image/1.png)
+![img](../image/1.png)
 
 ![img](image/2.png)
 
