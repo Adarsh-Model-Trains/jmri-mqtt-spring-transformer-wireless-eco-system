@@ -155,6 +155,8 @@ subprocess.call('mosquitto_sub -h localhost -u adarsh -P password -v -t /trains/
 
 
 ## python script for start and stop the mosquitto
+### [click to download python script file](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/doc/python-script.zip)
+
 ### Start script with default configuration 
 * vi start-mos.py
 ```
