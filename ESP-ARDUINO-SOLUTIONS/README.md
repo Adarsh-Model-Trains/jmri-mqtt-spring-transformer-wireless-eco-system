@@ -2,9 +2,9 @@
 
 --- 
 
-## [MQTT CT SENSORS FOR BLOCK DETECTTION ](mqtt-ct-sensor/)
+## [MQTT CT SENSORS FOR BLOCK DETECTION ](mqtt-ct-sensor/)
 
-## [MQTT IR SENSORS FOR BLOCK DETECTTION](mqtt-ir-sensor/)
+## [MQTT IR SENSORS FOR BLOCK DETECTION](mqtt-ir-sensor/)
 
 ## [MQTT SERVO TURNOUT & SIGNALS ](mqtt-servoturnout-signals/)
 
@@ -12,9 +12,9 @@
 
 ## [MQTT SERVO & SNAP TURNOUT & SIGNALS ](mqtt-servo-snap-turnout-signals/)
 
-## [REST CT SENSORS FOR BLOCK DETECTTION](rest-ct-sensor/)
+## [REST CT SENSORS FOR BLOCK DETECTION](rest-ct-sensor/)
 
-## [REST IR SENSORS FOR BLOCK DETECTTION](rest-ir-sensor/)
+## [REST IR SENSORS FOR BLOCK DETECTION](rest-ir-sensor/)
 
 ## [REST SERVO TURNOUT & SIGNALS ](rest-servoturnout-signals/)
 
