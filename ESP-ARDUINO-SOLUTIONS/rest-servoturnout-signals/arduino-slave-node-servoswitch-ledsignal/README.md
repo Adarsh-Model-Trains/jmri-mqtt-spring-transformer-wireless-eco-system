@@ -2,8 +2,8 @@
 
 ---
 
-![img](../image/dig5.png)
-![img](../image/dig13.png)
+![img](../../../image/dig5.png)
+![img](../../../image/dig13.png)
 
 > arduino client will connect to the esp via seraila Rx/Tx pins 
 > gnd will be common in both the devices 
@@ -61,4 +61,4 @@ take the rx pin of the nodemcu/esp8266 and connect to the tx pin of the arduino
 ```
 
 
-![img](../image/con.JPG)
+![img](../../../image/con.JPG)

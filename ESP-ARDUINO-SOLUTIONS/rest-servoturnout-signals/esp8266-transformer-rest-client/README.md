@@ -2,8 +2,8 @@
 
 ---
 
-![img](../image/dig13.png)
-![img](../image/dig14.png)
+![img](../../../image/dig13.png)
+![img](../../../image/dig14.png)
 
 > esp will conect to spring transformation application via wifi network 
 > wifi credentials will be configured in Config.h file 
@@ -49,4 +49,4 @@ take the rx pin of the nodemcu/esp8266 and connect to the tx pin of the arduino
 ```
 
 
-![img](../image/con.JPG)
+![img](../../../image/con.JPG)

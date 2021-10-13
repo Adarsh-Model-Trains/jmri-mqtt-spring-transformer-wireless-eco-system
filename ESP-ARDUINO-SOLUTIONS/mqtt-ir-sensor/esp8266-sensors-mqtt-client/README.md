@@ -2,8 +2,8 @@
 
 ---
 
-![img](../image/dig7.png)
-![img](../image/dig8.png)
+![img](../../../image/dig7.png)
+![img](../../../image/dig8.png)
 
 
 > esp will conect to mqtt via wifi network 
@@ -55,4 +55,4 @@ take the rx pin of the nodemcu/esp8266 and connect to the tx pin of the arduino
 ```
 
 
-![img](../image/con.JPG)
+![img](../../../image/con.JPG)
