@@ -50,19 +50,19 @@ Settings
 
 ![img](../image/1.png)
 
-![img](image/2.png)
+![img](../image/2.png)
 
 
 ### WITH USERNAME AND PASSWORD 
 
-![img](image/16.png)
+![img](../image/16.png)
 
 
 ### CREATING TURNOUT LIGHTS AND SENSORS IN PANELPRO 
 
-![img](image/3.png)
+![img](../image/3.png)
 
-![img](image/4.png)
+![img](../image/4.png)
 
 ### create a turnout  
 ```
@@ -78,7 +78,7 @@ click on add button
  NOTE : do it for the number of turnout we want to create 
 
 ```
-![img](image/5.png)
+![img](../image/5.png)
 
 ### create a Light  
 ```
@@ -96,9 +96,9 @@ click on add button
 
 ```
 
-![img](image/6.png)
+![img](../image/6.png)
 
-![img](image/7.png)
+![img](../image/7.png)
 
 ### Testing Turnout with MQTT 
 ```
@@ -109,7 +109,7 @@ $ mosquitto_sub -h localhost -v -t '/trains/track/#'
 and click on the T1 and T2 turnout button throw and close and see the output of them in the console of mqtt client 
 
 ```
-![img](image/8.png)
+![img](../image/8.png)
 
 ### Testing Light with MQTT 
 ```
@@ -120,7 +120,7 @@ $ mosquitto_sub -h localhost -v -t '/trains/track/#'
 and click on the L3 and L4 light button on and off and see the output of them in the console of mqtt client 
 
 ```
-![img](image/9.png)
+![img](../image/9.png)
 
 
 ### Testing Signalhead with MQTT 
@@ -130,9 +130,9 @@ and click on the L3 and L4 light button on and off and see the output of them in
 
 ## Sensor Testing 
 
-![img](image/20.png)
+![img](../image/20.png)
 
-![img](image/21.png)
+![img](../image/21.png)
 
 ### Active to Inactive 
 ### Subscribing to the Sensor topic 
@@ -146,7 +146,7 @@ and click on the L3 and L4 light button on and off and see the output of them in
 * $ mosquitto_pub -h localhost -u adarsh -P password -t /trains/track/sensor/1 -r -m "INACTIVE"
 
 
-![img](image/19.png)
+![img](../image/19.png)
 
 
 ### InActive to Active
@@ -160,4 +160,4 @@ and click on the L3 and L4 light button on and off and see the output of them in
 ### Publishing to the Sensor topic 
 * $ mosquitto_pub -h localhost -u adarsh -P password -t /trains/track/sensor/1 -r -m "ACTIVE"
 
-![img](image/18.png)
+![img](../image/18.png)
