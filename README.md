@@ -85,97 +85,6 @@
 ![img](image/dig4.png)
 
 
-## FOR LIGHT TURNOUT AND SIGNALS 
-
-## BELOW COMBINATION OF IMPLEMENTATION CAN BE USE FOR SIGNAL TURNOUT AND LIGHT 
-* Esp code direct mqtt subsciber -> Arduino code servo turnout and led switch 
-* Esp code direct mqtt subsciber -> Arduino code relay switch turnout and led switch 
-* Esp code rest client subsciber -> Arduino code servo turnout and led switch 
-* Esp code rest client subsciber -> Arduino code relay switch turnout and led switch 
-
-
-### ESP code 
-
-* for reading data directly via mqtt topic using esp8266 
-	* [link for configuraiton and deplayment and setup ](esp8266-transformation-mqtt-client/README.md)		
-	
-* for reading data from the rest service of the spring transformer application 
-	* [link for configuraiton and deplayment and setup ](esp8266-transformer-rest-client/README.md)		
-
-
-### ARDUINO code
-* forwarding data to arduino with servo turnout configuration 
-	* [link for configuraiton and deplayment and setup ](arduino-slave-node-servoswitch-ledsignal/README.md)	
-	* [link for configuration and connnection for PCA9685 board &  arduino ](PCA9685-README.md)	
-* forwarding data to arduino with relay switich snap turnout configuraion 
-	* [link for configuraiton and deplayment and setup ](arduino-slave-node-snapswitch-ledsignal/README.md)		
-
-
-## BELOW IMPLEMENTATION CAN BE USE FOR SIGNAL TURNOUT AND LIGHT DIRECTLY ON ESP8266 OR ESP32
-* Esp code direct mqtt subsciber servo turnout and led switch 
-* Esp code direct mqtt subsciber relay switch turnout and led switch 
-
-### ESP code 
-
-* for reading data from the rest service of the spring transformer application and executing directly with snap turnout and light  
-	* [link for configuraiton and deplayment and setup ](esp8266-transformer-rest-client-snapswitch-signal-node/README.md)	
-
-* for reading data from the rest service of the spring transformer application and executing directly with servo turnout and light  
-	* [link for configuraiton and deplayment and setup ](esp8266-transformer-rest-client-servowitch-signal-node/README.md)	
-
-* for reading data from the mqtt topic of the spring transformer application and executing directly with snap turnout and light  
-	* [link for configuraiton and deplayment and setup ](esp8266-transformer-mqtt-client-snapswitch-signal-node/README.md)	
-
-* for reading data from the mqtt topic of the spring transformer application and executing directly with servo turnout and light  
-	* [link for configuraiton and deplayment and setup ](esp8266-transformer-mqtt-client-servowitch-signal-node/README.md)	
-
----
-
-## FOR SENSORS | BLOCK OCCUPANCY SENSORS 
-
-## BELOW COMBINATION OF IMPLEMENTATION CAN BE DONE FOR SENSORS 
-* Esp code direct mqtt publisher -> Arduino ir sensor
-* Esp code direct mqtt publisher -> Arduino ct sensor 
-* Esp code rest client publisher -> Arduino ir sensor
-* Esp code rest client publisher -> Arduino ct sensor 
-
-### ESP code 
-* configuraing the sensros for block occupancy 
-	* direclty publishing data to the MQTT topic 
-		* [link for configuraiton and deployment and setup ](esp8266-sensors-mqtt-client/README.md)		
-	* publishing data to the spring transforer application via rest endpoints 
-		* [link for configuraiton and deployment and setup ](esp8266-sensor-rest-client/README.md)		
-
-### ARDUINO code 		
-* configuring ir sensor based block decection arduino node 
-	* [link for configuraiton and deployment and setup ]()		
-* configuring ct sensor based block decection arduino node 		
-	* [link for configuraiton and deployment and setup ]()		
-
-
-
-## BELOW IMPLEMENTATION CAN BE USE FOR CT SENSOR AND IR SENSORS DIRECTLY ON ESP8266 OR ESP32
-* Esp code direct mqtt publisher for ir and ct sensors 
-* Esp code direct rest client for ir and ct sensors 
-
-### ESP code 
-
-* for posting data to the rest service of the spring transformer application for ct sensors 
-	* [link for configuraiton and deplayment and setup ](esp8266-transformation-rest-client-ct-sensor-node/README.md)	
-
-* for posting data to the rest service of the spring transformer application for ir sensors  
-	* [link for configuraiton and deplayment and setup ](esp8266-transformation-rest-client-ir-sensor-node/README.md)	
-
-* for posting data to the mqtt topic directly for ct sensors 
-	* [link for configuraiton and deplayment and setup ](esp8266-transformation-mqtt-client-ct-sensor-node/README.md)	
-
-* for posting data to the mqtt topic directly for ir sensors 
-	* [link for configuraiton and deplayment and setup ](esp8266-transformation-mqtt-client-ir-sensor-node/README.md)	
-
-
-
-----
-
 ### [MQTT SETUP GUILDE LINK ](doc/MQTT-SETUP-README.md)
 
 ### [JMRI MQTT CONNECTION SETUP AND TESTING LIGHT SIGNAL TURNOUT SENSORS ](doc/JMRI-MQTT-SETUP-README.md)
@@ -187,28 +96,12 @@
 ### [SERVO CALIBRATION APPLICATION](servo-turnout-calibration/README.md)
 
 
-## SPRING TRANSFORMER APPLICATION 
+## CODE IMPLEMENATIONS 
 
 ### [SPRING TRANSFORMATOIN APPLICATION SETUP AND EXECUTION ](spring-jmri-mqtt-data-transformer/README.md)
 
+## [FOR ESP8266 BASED MQTT,REST  BASED BLOCK DETECTION, SIGNALS, LIGHT AND TURNOUT CONTROLES ](ESP-SOLUTIONS/)
 
-## FOR SIGNAL LIGHT AND TURNOUT 
-
-### [ESP8266 MQTT SUBSCRIBER CONFIGURATION ](esp8266-transformation-mqtt-client/README.md)		
-
-### [ESP8266 REST CLIENT SUBSCRIBER CONFIGURATION ](esp8266-transformer-rest-client/README.md)	
-
-### [ARDUINO SERVO TURNOUT & SIGNALS NODE CONFIGURATION ](arduino-slave-node-servoswitch-ledsignal/README.md)
-
-### [ARDUINO RELAYSWITCH SNAP TURNOUT & SIGNALS NODE CONFIGURATION ](arduino-slave-node-snapswitch-ledsignal/README.md)	
+## [FOR ESP8266 & ARDUINO BASED MQTT,REST  BASED BLOCK DETECTION, SIGNALS, LIGHT AND TURNOUT CONTROLES ](ESP-ARDUINO-SOLUTIONS/)
 
 
-## FOR SENSORS | BLOCK OCCUPANCY SENSORS 
-
-### [ESP8266 MQTT PUBLISHER CONFIGURATION  ](esp8266-sensors-mqtt-client/README.md)	
-
-### [ESP8266 REST CLIENT PUBLISHER CONFIGURATION ](esp8266-sensor-rest-client/README.md)	
-
-### [ARDUINO IR SENSORS NODE CONFIGURATION  ](arduino-slave-node-ir-sensor-client/README.md)	
-
-### [ARDUINO CT SENSORS NODE CONFIGURATION ](arduino-slave-node-ct-sensor-client/README.md)	
