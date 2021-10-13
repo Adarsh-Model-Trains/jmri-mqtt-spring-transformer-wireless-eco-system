@@ -3,7 +3,7 @@
 ---
 
 
-![img](../image/dig20.png)
+![img](../../../image/dig20.png)
 
 
 > esp will conect to spring transformation application via wifi network 
