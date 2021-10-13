@@ -2,8 +2,8 @@
 
 ---
 
-![img](../image/dig7.png)
-![img](../image/dig8.png)
+![img](../../image/dig7.png)
+![img](../../image/dig8.png)
 
 
 > esp will conect to mqtt via wifi network 
