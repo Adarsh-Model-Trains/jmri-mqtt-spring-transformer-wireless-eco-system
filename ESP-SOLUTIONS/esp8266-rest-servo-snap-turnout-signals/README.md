@@ -2,7 +2,7 @@
 
 ---
 
-![img](../../../image/dig17.png)
+![img](../../image/dig17.png)
 
 > esp rest client will connect to pca9685 
 > via scl which is D1 on esp and sda which D2 on Esp 
@@ -60,8 +60,8 @@ via scl which is D1 on esp and sda which D2 on Esp
 
 ```
 
-![img](../../../image/esp8266-pca9685.jpg)
+![img](../../image/esp8266-pca9685.jpg)
 
-![img](../../../image/esp-pca9685.png)
+![img](../../image/esp-pca9685.png)
 
 
