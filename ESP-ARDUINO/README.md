@@ -2,24 +2,24 @@
 
 --- 
 
-## [MQTT CT SENSORS ](mqtt-ct-sensor/README.md)
+## [MQTT CT SENSORS ](mqtt-ct-sensor/)
 
-## [MQTT IR SENSORS ](mqtt-ir-sensor/README.md)
+## [MQTT IR SENSORS ](mqtt-ir-sensor/)
 
-## [MQTT SERVO TURNOUT & SIGNALS ](mqtt-servoturnout-signals/README.md)
+## [MQTT SERVO TURNOUT & SIGNALS ](mqtt-servoturnout-signals/)
 
-## [MQTT SNAP TURNOUT & SIGNALS ](mqtt-snapturnout-signals/README.md)
+## [MQTT SNAP TURNOUT & SIGNALS ](mqtt-snapturnout-signals/)
 
-## [MQTT SERVO & SNAP TURNOUT & SIGNALS ](mqtt-servo-snap-turnout-signals/README.md)
+## [MQTT SERVO & SNAP TURNOUT & SIGNALS ](mqtt-servo-snap-turnout-signals/)
 
-## [REST CT SENSORS ](rest-ct-sensor/README.md)
+## [REST CT SENSORS ](rest-ct-sensor/)
 
-## [REST IR SENSORS ](rest-ir-sensor/README.md)
+## [REST IR SENSORS ](rest-ir-sensor/)
 
-## [REST SERVO TURNOUT & SIGNALS ](rest-servoturnout-signals/README.md)
+## [REST SERVO TURNOUT & SIGNALS ](rest-servoturnout-signals/)
 
-## [REST SNAP TURNOUT & SIGNALS ](rest-snapturnout-signals/README.md)
+## [REST SNAP TURNOUT & SIGNALS ](rest-snapturnout-signals/)
 
-## [REST SERVO & SNAP TURNOUT & SIGNALS ](rest-servo-snap-turnout-signals/README.md)
+## [REST SERVO & SNAP TURNOUT & SIGNALS ](rest-servo-snap-turnout-signals/)
 
 
