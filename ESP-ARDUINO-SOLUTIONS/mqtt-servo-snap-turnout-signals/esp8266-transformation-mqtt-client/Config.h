@@ -9,6 +9,7 @@
 #define Config_h
 #include "Arduino.h"
 
+
 // WiFi
 // Make sure to update this for your own WiFi network!
 #define ssid "adarsh_radha_2G" // ESP8266 do not support 5G wifi connection

@@ -2,6 +2,18 @@
 #define Config_h
 #include "Arduino.h"
 
+/************************************************************************************************/
+#define ACTIVE "ACTIVE"
+#define INACTIVE "INACTIVE"
+#define ACT "AC"
+#define PAYLOAD_FROUNT "{\"topic\": \"/trains/track/sensor/"
+#define PAYLOAD_BACK_ACTIVE "\", \"data\": \"ACTIVE\"}"
+#define PAYLOAD_BACK_INACTIVE "\", \"data\": \"INACTIVE\"}"
+#define CONTENT_TYPE "Content-Type"
+#define CONTENT_TYPE_VAL "application/json"
+/************************************************************************************************/
+
+
 // ESP8266 do not support 5G wifi connection
 #define WIFI_SSID "adarsh_radha_2G"
 #define WIFI_PASSWROD "********"
@@ -10,18 +22,8 @@
 #define SERVER_URL "http://192.168.0.188:8090/amt/node/1"
 #define NODE_ID "1"
 
-#define CONTENT_TYPE "Content-Type"
-#define CONTENT_TYPE_VAL "application/json"
-
 #define BROAD_RATE 115200
 #define DELAY_TIME 1000
 #define WIFI_RECONNECT_DELAY_TIME 500
-#define ACTIVE "ACTIVE"
-#define INACTIVE "INACTIVE"
-#define ACT "AC"
-
-#define PAYLOAD_FROUNT "{\"topic\": \"/trains/track/sensor/"
-#define PAYLOAD_BACK_ACTIVE "\", \"data\": \"ACTIVE\"}"
-#define PAYLOAD_BACK_INACTIVE "\", \"data\": \"INACTIVE\"}"
 
 #endif

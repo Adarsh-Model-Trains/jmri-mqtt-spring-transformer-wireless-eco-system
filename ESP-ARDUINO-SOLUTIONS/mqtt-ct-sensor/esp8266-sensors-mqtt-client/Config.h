@@ -8,6 +8,12 @@
 #define Config_h
 #include "Arduino.h"
 
+/************************************************************************************************/
+#define ACTIVE "ACTIVE"
+#define INACTIVE "INACTIVE"
+#define ACT "AC"
+/************************************************************************************************/
+
 // WiFi
 // Make sure to update this for your own WiFi network!
 #define SS_ID "adarsh_radha_2G" // ESP8266 do not support 5G wifi connection
@@ -29,8 +35,6 @@
 #define BROAD_RATE 115200
 #define DELAY_TIME 5000
 #define WIFI_RECONNECT_DELAY_TIME 500
-#define ACTIVE "ACTIVE"
-#define INACTIVE "INACTIVE"
-#define ACT "AC"
+
 
 #endif
