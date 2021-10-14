@@ -11,14 +11,14 @@
 
 // WiFi
 // Make sure to update this for your own WiFi network!
-#define ssid "adarsh_radha_2G" // ESP8266 do not support 5G wifi connection
-#define wifi_password "******"
+#define ssid "adarsh-radha-att-2.4" // ESP8266 do not support 5G wifi connection
+#define wifi_password "*********"
 #define mqtt_username "adarsh"
 #define mqtt_password "password"
 
 // MQTT
 // find this ip using ipconfig or check in router
-#define mqtt_server "192.168.0.188"
+#define mqtt_server "192.168.1.65"
 
 // change the node "number/name"  based on the node default is 1 in this
 #define mqtt_topic "/amt/node/1/#"
