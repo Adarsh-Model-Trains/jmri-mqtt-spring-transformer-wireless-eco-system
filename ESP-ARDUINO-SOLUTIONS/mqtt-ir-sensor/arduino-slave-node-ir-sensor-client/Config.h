@@ -14,11 +14,11 @@
 #define ACTIVE ":AC\n"
 #define INACTIVE ":IN\n"
 #define PINS 2
+#define BROAD_RATE 115200
+#define DELAY_TIME 5000
 /************************************************************************************************/
 
 #define JMRI_SENSOR_START_ADDRESS 10000
-#define BROAD_RATE 115200
-#define DELAY_TIME 5000
 #define NO_OF_BLOCKS 3
 
 /*

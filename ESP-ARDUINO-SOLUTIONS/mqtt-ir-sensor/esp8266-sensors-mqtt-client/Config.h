@@ -12,7 +12,9 @@
 #define ACTIVE "ACTIVE"
 #define INACTIVE "INACTIVE"
 #define ACT "AC"
-// change the node "number/name"  based on the node default is 1 in this
+#define DELAY_TIME 5000
+#define WIFI_RECONNECT_DELAY_TIME 500
+#define BROAD_RATE 115200
 #define JMRI_MQTT_TOPIC  "/trains/track/#"
 #define JMRI_MQTT_SENSOR_TOPIC "/trains/track/sensor/"
 /************************************************************************************************/
@@ -29,9 +31,5 @@
 
 // change the node "number/name"  based on the node
 #define CLIENT_ID  "JMRI_NODE_ESP8266_PUBLISHING_1"
-
-#define BROAD_RATE 115200
-#define DELAY_TIME 5000
-#define WIFI_RECONNECT_DELAY_TIME 500
 
 #endif

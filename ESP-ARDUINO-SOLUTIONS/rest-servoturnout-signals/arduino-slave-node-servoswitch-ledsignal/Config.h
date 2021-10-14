@@ -15,20 +15,18 @@
 #define O 'O'
 #define THROWN "TH"
 #define CLOSED "CL"
-#define RANGE_TYPE 2
 #define ON "ON"
 #define OFF "OF"
 #define MSG_SIZE  14
 #define TOTAL_BOARD_PIN 16
+#define RANGE_TYPE 2
 #define PWM_LIGHT_FREQUENCY 1000
-#define PWM_TURNOUT_FREQUENCY 50 
-/************************************************************************************************/
-
-
-#define BROAD_RATE 115200
+#define PWM_TURNOUT_FREQUENCY 50
+#define BROAD_RATE 115200 
 #define DELAY_TIME 200
 #define DEFAULT_OPEN 1000
 #define DEFAULT_CLOSE 2000
+/************************************************************************************************/
 
 /*----------------------------------------------------------------------------------*/
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING

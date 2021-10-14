@@ -9,6 +9,11 @@
 #define Config_h
 #include "Arduino.h"
 
+/************************************************************************************************/
+#define BROAD_RATE 115200
+#define DELAY_TIME 1000
+#define WIFI_RECONNECT_DELAY_TIME 500
+/************************************************************************************************/
 
 // WiFi
 // Make sure to update this for your own WiFi network!
@@ -26,9 +31,5 @@
 
 // change the node "number/name"  based on the node
 #define clientID "JMRI_SUBSCRIBER_NODE_ESP8266_1"
-
-#define BROAD_RATE 115200
-#define DELAY_TIME 1000
-#define WIFI_RECONNECT_DELAY_TIME 500
 
 #endif
