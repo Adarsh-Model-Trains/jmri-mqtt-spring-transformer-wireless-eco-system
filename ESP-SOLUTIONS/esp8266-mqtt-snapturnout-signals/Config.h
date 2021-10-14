@@ -2,6 +2,7 @@
 #define Config_h
 #include "Arduino.h"
 
+/************************************************************************************************/
 #define T 'T'
 #define L 'L'
 #define S 'S'
@@ -16,16 +17,15 @@
 #define DELAY_TIME 200
 #define WIFI_RECONNECT_DELAY_TIME 500
 #define PWM_FREQUENCY 1000
-/*----------------------------------------------------------------------------------*/
+#define TOTAL_BOARD_PIN 16
+/************************************************************************************************/
+
+
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING
 // APPLICATION NODE DEFINATION THEN ONLY THIS WILL WORK
-
 #define NO_OF_TURNOUT_BOARDS 2
 #define NO_OF_LIGHT_BOARDS 1
 #define NO_OF_TOTAL_BOARDS 11
-/*----------------------------------------------------------------------------------*/
-#define TOTAL_BOARD_PIN 16
-
 
 // ESP8266 do not support 5G wifi connection
 #define WIFI_SSID  "adarsh_radha_2G"
