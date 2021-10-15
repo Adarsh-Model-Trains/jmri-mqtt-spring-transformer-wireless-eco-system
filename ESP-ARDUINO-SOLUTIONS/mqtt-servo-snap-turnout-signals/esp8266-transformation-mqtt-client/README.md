@@ -34,7 +34,10 @@ const char* clientID = "JMRI_SUBSCRIBER_NODE_ESP8266_1";
 ## Lib installtion 
 
 ### search for "PubSubClient" lib and install it before compiling 
-### or install this lib for location [PubSubClient lib ](https://github.com/adarshkumarsingh83/jmri-cmri/raw/main/DOCUMENTS/JMRI-MOSQUITTO-MQTT/lib/pubsubclient.zip)
+### or install this lib for location [PubSubClient lib ](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/pubsubclient.zip)
+
+### search for "ESP8266WiFi" lib and install it before compiling 
+### or install the wifi lib for esp8266 [esp8266wifi lib](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/ESP8266WiFi.zip)
 
 ### jmri configuration 
 * all sensors will start from 10000 to limit 
