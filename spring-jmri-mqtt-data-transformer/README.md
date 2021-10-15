@@ -40,9 +40,9 @@
 > NOTE COPY THE application.yaml and application.properties file from doc directory of this application \
 > in the same directory where jar file is present then execute the below cmd
 
-* java -jar -Dspring.profiles.active=prod spring-jmri-mqtt-data-transformer.jar --spring.config.name=application
+* java -Xmx1024m -jar -Dspring.profiles.active=prod spring-jmri-mqtt-data-transformer.jar --spring.config.name=application
 * or
-* java -jar -Dspring.profiles.active=prod spring-jmri-mqtt-data-transformer.jar --spring.config.location=./
+* java -Xmx1024m -jar -Dspring.profiles.active=prod spring-jmri-mqtt-data-transformer.jar --spring.config.location=./
 
 ### TO ACCESS THE MQTT DATA VIA END POINTS
 
