@@ -5,6 +5,17 @@
 ![img](../../../image/dig5.png)
 ![img](../../../image/dig6.png)
 
+
+## Lib installtion 
+
+### search for "PubSubClient" lib and install it before compiling 
+### or install this lib for location [PubSubClient lib ](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/pubsubclient.zip)
+
+### search for "ESP8266WiFi" lib and install it before compiling 
+### or install the wifi lib for esp8266 [esp8266wifi lib](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/ESP8266WiFi.zip)
+
+
+
 > esp will conect to mqtt via wifi network 
 > wifi credentials will be configured in Config.h file 
 ```
@@ -31,13 +42,7 @@ const char* clientID = "JMRI_SUBSCRIBER_NODE_ESP8266_1";
 #define WIFI_RECONNECT_DELAY_TIME 500
 ```
 
-## Lib installtion 
 
-### search for "PubSubClient" lib and install it before compiling 
-### or install this lib for location [PubSubClient lib ](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/pubsubclient.zip)
-
-### search for "ESP8266WiFi" lib and install it before compiling 
-### or install the wifi lib for esp8266 [esp8266wifi lib](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/ESP8266WiFi.zip)
 
 ### jmri configuration 
 * all sensors will start from 10000 to limit 
