@@ -37,7 +37,7 @@
 ### To pass the customized configuration file
 
 > for production profile with external configuration file passed from cmd line \
-> NOTE COPY THE application.yaml and application.properties file from doc directory of this application \
+> NOTE COPY THE application.yaml and application.properties file must be present \
 > in the same directory where jar file is present then execute the below cmd
 
 * java -Xmx1024m -jar -Dspring.profiles.active=prod spring-jmri-mqtt-data-transformer.jar --spring.config.name=application
