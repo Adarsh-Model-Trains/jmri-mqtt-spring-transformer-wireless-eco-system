@@ -4,8 +4,6 @@
 
 ![img](../../image/dig12.png)
 
-> arduino client will connect to the esp via seraila Rx/Tx pins 
-> gnd will be common in both the devices 
 
 ## Lib installtion 
 
@@ -14,6 +12,14 @@
 
 ### search for "ESP8266WiFi" lib and install it before compiling 
 ### or install the wifi lib for esp8266 [esp8266wifi lib](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/ESP8266WiFi.zip)
+
+## Code Download 
+### [esp8266-mqtt-ir-sensor](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/ESP-SOLUTIONS/eesp8266-mqtt-ir-sensor.zip)
+
+
+> arduino client will connect to the esp via seraila Rx/Tx pins 
+> gnd will be common in both the devices 
+
 
 ### Configuration of the number of sensors 
 > msut match in the jmri sensors configuration  
