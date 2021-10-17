@@ -13,8 +13,8 @@
 * after down and insallation check in the Device Manger the Port for the ESP8266 
 
 ## MAC DRIVER URL 
-* [CH340 DOWNLOAD FOR MAC ](https://www.silabs.com/documents/public/software/Mac_OSX_VCP_Driver.zip)
-* [CLICK TO DOWNLOAD USB DRIVER ](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/Mac_OSX_VCP_Driver.zip)
+* [CLICK TO DOWNLOAD USB DRIVER ](https://www.silabs.com/documents/public/software/Mac_OSX_VCP_Driver.zip)
+* [CH340 DOWNLOAD FOR MAC ](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/CH341SER_MAC.ZIP)
 
 ## Insttallation 
 * for mac use applle usb connector or compatable connector  
