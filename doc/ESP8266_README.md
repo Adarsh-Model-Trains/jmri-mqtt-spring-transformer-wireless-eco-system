@@ -7,37 +7,29 @@
 
 
 ## HELP URL 
-* https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all#drivers-if-you-need-them
 
-## DRIVER URL 
-* https://www.silabs.com/documents/public/software/Mac_OSX_VCP_Driver.zip
+* [drivers download page](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all#drivers-if-you-need-them)
+* Download the direr for MAC ch340 
+* after down and insallation check in the Device Manger the Port for the ESP8266 
 
-### [CLICK TO DOWNLOAD](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/Mac_OSX_VCP_Driver.zip)
+## MAC DRIVER URL 
+* [CH340 DOWNLOAD FOR MAC ](https://www.silabs.com/documents/public/software/Mac_OSX_VCP_Driver.zip)
+* [CLICK TO DOWNLOAD USB DRIVER ](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/Mac_OSX_VCP_Driver.zip)
 
 ## Insttallation 
+* for mac use applle usb connector or compatable connector  
+* then visit the url https://github.com/esp8266/Arduino
+* copy the then in arduino IDE 
+* Start Arduino and open ->  Preferences window. -> Enter Url 
 ```
-for mac use applle usb connector or compatable connector  
-
- Download the direr for MAC ch340 
- after down and insallation check in the Device Manger the Port for the ESP8266 
-
- then visit the url https://github.com/esp8266/Arduino
- copy the 
- then in arduino IDE 
-
-Start Arduino and open ->  Preferences window.
-Enter Url 
-https://arduino.esp8266.com/stable/package_esp8266com_index.json 
-into the File > Preferences > Additional Boards Manager URLs field of the Arduino IDE. You can add multiple URLs, separating them with commas.
-
-Open Boards Manager from Tools > Board menu and install esp8266 platform from community version 
-
-then select the Board Manager -> esp8266 board -> NodeMce 1.0 (ESP-12E Module)
-
-then Test from the File -> Example -> ESP8266 -> Blink 
-
+http://arduino.esp8266.com/stable/package_esp8266com_index.json, https://dl.espressif.com/dl/package_esp32_index.json
 ```
+* into the File > Preferences > Additional Boards Manager URLs field of the Arduino IDE. You can add multiple URLs, separating them with commas.
+* Open Boards Manager from Tools > Board menu and install esp8266 platform from community version 
+* then select the Board Manager -> esp8266 board -> NodeMce 1.0 (ESP-12E Module)
+* then Test from the File -> Example -> ESP8266 -> Blink 
 
+---
 
 # for solving the errror on bigsur mac os 
 ### https://forum.arduino.cc/index.php?topic=702144.0
