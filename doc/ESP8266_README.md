@@ -31,7 +31,7 @@ http://arduino.esp8266.com/stable/package_esp8266com_index.json, https://dl.espr
 
 
 ## installation dir on mac 
-```/Users/{username}/Library/Arduino15```
+``` /Users/{username}/Library/Arduino15 ```
 ---
 
 # for solving the errror on bigsur mac os 
