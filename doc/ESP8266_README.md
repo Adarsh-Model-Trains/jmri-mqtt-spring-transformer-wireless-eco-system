@@ -29,6 +29,9 @@ http://arduino.esp8266.com/stable/package_esp8266com_index.json, https://dl.espr
 * then select the Board Manager -> esp8266 board -> NodeMce 1.0 (ESP-12E Module)
 * then Test from the File -> Example -> ESP8266 -> Blink 
 
+
+## installation dir on mac 
+```/Users/{username}/Library/Arduino15```
 ---
 
 # for solving the errror on bigsur mac os 
