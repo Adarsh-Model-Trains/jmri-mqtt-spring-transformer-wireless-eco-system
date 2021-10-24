@@ -10,9 +10,9 @@
 
 
 void Pca9685::initPca9685(char type) {
-  //_pwm = Adafruit_PWMServoDriver(_boardsAddress);
-  // _pwm.begin();
-  // _pwm.setPWMFreq(PWM_FREQUENCY);
+  _pwm = Adafruit_PWMServoDriver(_boardsAddress);
+  _pwm.begin();
+  _pwm.setPWMFreq(PWM_FREQUENCY);
   _type = type;
   _pca9685PinStateList = new bool[TOTAL_BOARD_PIN];
   for (int i = 0; i < TOTAL_BOARD_PIN; i++) {
@@ -36,9 +36,9 @@ void Pca9685::turnoutThrow(int pinNo) {
   if (_type == T) {
     _pca9685PinStateList[pinNo] = true;
     _pca9685PinStateList[pinNo + 1] = false;
-    //  _pwm.setPWM(pinNo, 4096, 0);
+    _pwm.setPWM(pinNo, 4096, 0);
     delay(200);
-    //  _pwm.setPWM(pinNo, 0, 4096);
+    _pwm.setPWM(pinNo, 0, 4096);
     Serial.println(" TURNOUT THROW\n");
   }
 }
@@ -47,9 +47,9 @@ void Pca9685::turnoutClose(int pinNo) {
   if (_type ==  T) {
     _pca9685PinStateList[pinNo] = true;
     _pca9685PinStateList[pinNo - 1] = false;
-    // _pwm.setPWM(pinNo, 4096, 0);
+    _pwm.setPWM(pinNo, 4096, 0);
     delay(200);
-    // _pwm.setPWM(pinNo, 0, 4096);
+    _pwm.setPWM(pinNo, 0, 4096);
     Serial.println(" TURNOUT CLOSE\n");
   }
 }
@@ -64,7 +64,7 @@ void Pca9685::ledOn(int pinNo) {
 void Pca9685::ledOff(int pinNo) {
   if (_type == L) {
     _pca9685PinStateList[pinNo] = false;
-    // _pwm.setPWM(pinNo, 0, 4096);
+    _pwm.setPWM(pinNo, 0, 4096);
     Serial.println(" LED OFF\n");
   }
 }

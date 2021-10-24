@@ -24,7 +24,6 @@
 #define DELAY_TIME 200
 /************************************************************************************************/
 
-
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING
 // APPLICATION NODE DEFINATION THEN ONLY THIS WILL WORK
 #define NO_OF_TURNOUT_BOARDS 2

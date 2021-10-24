@@ -15,13 +15,13 @@
 #define NO_OF_TURNOUT_BOARDS 3
 #define NO_OF_LIGHT_BOARDS 3
 #define NO_OF_TOTAL_BOARDS 6
-const bool slowMove = true;
 ```
 
-### other config 
-```
+### other configuration 
+``` 
 #define BROAD_RATE 115200
 #define DELAY_TIME 200
+const bool slowMove = true;
 ```
 
 ### Configuration of the open and close range for the servo moter 

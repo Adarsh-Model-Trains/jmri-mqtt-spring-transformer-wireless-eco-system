@@ -17,8 +17,9 @@
 #define NO_OF_LIGHT_BOARDS 3
 #define NO_OF_TOTAL_BOARDS 5
 ```
-### other config 
-```
+
+## other configuraiton 
+``` 
 #define BROAD_RATE 115200
 #define DELAY_TIME 200
 ```

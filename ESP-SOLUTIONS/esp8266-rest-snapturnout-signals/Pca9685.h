@@ -9,7 +9,7 @@
 #define Pca9685_h
 
 #include <Arduino.h>
-//#include "Adafruit_PWMServoDriver.h"
+#include "Adafruit_PWMServoDriver.h"
 
 
 class Pca9685 {
@@ -19,7 +19,7 @@ class Pca9685 {
     int _boardsAddress;
     int _pwmFrequency;
     bool * _pca9685PinStateList;
-    //Adafruit_PWMServoDriver _pwm;
+    Adafruit_PWMServoDriver _pwm;
 
   public:
     Pca9685() {

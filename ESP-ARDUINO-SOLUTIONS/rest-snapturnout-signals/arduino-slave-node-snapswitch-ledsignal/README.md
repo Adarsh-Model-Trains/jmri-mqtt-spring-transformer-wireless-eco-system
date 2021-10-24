@@ -17,7 +17,7 @@
 #define NO_OF_TOTAL_BOARDS 6
 ```
 
-### other config 
+### other config
 ```
 #define BROAD_RATE 115200
 #define DELAY_TIME 200
