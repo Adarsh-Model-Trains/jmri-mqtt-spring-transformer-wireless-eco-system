@@ -13,7 +13,7 @@
 
 
 ## Code Download 
-### [esp8266-rest-snapturnout-signals](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/ESP-SOLUTIONS/eesp8266-rest-snapturnout-signals.zip)
+### [esp8266-rest-snapturnout-signals](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/ESP-SOLUTIONS/zip/eesp8266-rest-snapturnout-signals.zip)
 
 > esp rest client will connect to pca9685 
 > via scl which is D1 on esp and sda which D2 on Esp 

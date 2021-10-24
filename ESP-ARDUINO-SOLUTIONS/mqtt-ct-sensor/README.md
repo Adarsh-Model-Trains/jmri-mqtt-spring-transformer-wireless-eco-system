@@ -3,7 +3,7 @@
 --- 
 
 ## Code Download 
-### [mqtt-ct-sensor](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/ESP-ARDUINO-SOLUTIONS/mqtt-ct-sensor/mqtt-ct-sensor.zip)
+### [mqtt-ct-sensor](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/ESP-ARDUINO-SOLUTIONS/zip/mqtt-ct-sensor.zip)
 
 
 ## To Open Two arduino sperate ide on mac 

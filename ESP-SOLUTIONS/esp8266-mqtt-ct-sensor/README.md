@@ -11,7 +11,7 @@
 
 
 ## Code Download 
-### [esp8266-mqtt-ct-sensor](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/ESP-SOLUTIONS/eesp8266-mqtt-ct-sensor.zip)
+### [esp8266-mqtt-ct-sensor](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/ESP-SOLUTIONS/zip/esp8266-mqtt-ct-sensor.zip)
 
 
 ![img](../../image/dig11.png)

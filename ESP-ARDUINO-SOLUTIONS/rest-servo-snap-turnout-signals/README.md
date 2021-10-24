@@ -3,7 +3,7 @@
 --- 
 
 ## Code Download 
-### [rest-servo-snap-turnout-signals](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/ESP-ARDUINO-SOLUTIONS/rest-servo-snap-turnout-signals/rest-servo-snap-turnout-signals.zip)
+### [rest-servo-snap-turnout-signals](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/ESP-ARDUINO-SOLUTIONS/zip/rest-servo-snap-turnout-signals.zip)
 
 ## To Open Two arduino sperate ide on mac 
 * $ open -n -a Arduino
