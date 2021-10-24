@@ -39,3 +39,4 @@ take the rx pin of the nodemcu/esp8266 and connect to the tx pin of the arduino
 
 
 ![img](../../../image/con.JPG)
+![img](../../../image/snapturnout-configurations.png)
