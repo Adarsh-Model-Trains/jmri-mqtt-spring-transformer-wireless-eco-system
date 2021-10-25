@@ -75,4 +75,8 @@ via scl which is D1 on esp and sda which D2 on Esp
 
 ![img](../../image/esp-pca9685.png)
 
+![img](../../image/esp-snapturnout-configurations.png)
+
+
+
 
