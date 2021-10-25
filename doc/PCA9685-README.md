@@ -38,4 +38,15 @@ by defautl its like
 ![img](../image/3-multi-board.jpg)
 
 
+## ESP Configuration 
+
+```
+NODEMCU  PCA9685
+D2          SDA
+D1          SLC 
+```
+
+![img](../../esp-pca9685.png)
+
+
 
