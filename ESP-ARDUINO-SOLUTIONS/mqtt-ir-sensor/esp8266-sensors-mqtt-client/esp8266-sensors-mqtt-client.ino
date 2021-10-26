@@ -11,6 +11,9 @@
 #include "PubSubClient.h"
 #include"Config.h"
 
+String id;
+String val;
+String topic;
 String message;
 
 // Initialise the WiFi and MQTT Client objects
@@ -24,7 +27,7 @@ PubSubClient client(MQTT_SERVER, 1883, wifiClient);
    pushing the sensor data to the mqtt for jmri
 */
 void publishSensorData(String sensorNo, String state) {
-  String topic = JMRI_MQTT_SENSOR_TOPIC + sensorNo;
+  topic = JMRI_MQTT_SENSOR_TOPIC + sensorNo;
   Serial.print(topic + " " + state);
   Serial.println();
   client.publish(topic.c_str(), state.c_str());
@@ -83,15 +86,17 @@ void loop() {
   // Once it has done all it needs to do for this cycle, go back to checking if we are still connected.
 
   while (Serial.available()) {
-    String message = Serial.readString();
+    message = Serial.readString();
     if (message != "") {
-      String id = message.substring(0, 5); // 10000
-      String val = message.substring(6, 8); // AC | IN
+      id = message.substring(0, 5); // 10000
+      val = message.substring(6, 8); // AC | IN
       if (val == ACT) {
         publishSensorData(id, ACTIVE);
       } else {
         publishSensorData(id, INACTIVE);
       }
+      id = "";
+      val = "";
       message = "";
     }
   }

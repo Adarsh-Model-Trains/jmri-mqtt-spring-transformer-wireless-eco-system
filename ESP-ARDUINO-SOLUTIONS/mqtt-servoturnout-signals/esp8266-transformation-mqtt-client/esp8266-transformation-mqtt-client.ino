@@ -10,8 +10,9 @@
 #include "PubSubClient.h"
 #include"Config.h"
 
-String mqttTopicValue;
+int i = 0;
 String messageText;
+String mqttTopicValue;
 
 // Initialise the WiFi and MQTT Client objects
 WiFiClient wifiClient;
@@ -33,7 +34,7 @@ void subscribeMqttMessage(char* topic, byte* payload, unsigned int length) {
 */
 String getMessage(byte* message, unsigned int length) {
   messageText = "";
-  for (int i = 0; i < length; i++) {
+  for ( i = 0; i < length; i++) {
     messageText += (char)message[i];
   }
   return messageText + "\n";
@@ -63,7 +64,7 @@ void setup() {
   // Wait until the connection has been confirmed before continuing
   while (WiFi.status() != WL_CONNECTED) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-    //Serial.print(".");
+    Serial.print(".");
   }
 
   // Debugging - Output the IP Address of the ESP8266

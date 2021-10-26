@@ -9,11 +9,11 @@
 #include "Arduino.h"
 
 /************************************************************************************************/
-#define PINS 2
 #define ON LOW
 #define OFF HIGH
 #define ACTIVE ":AC\n"
 #define INACTIVE ":IN\n"
+#define PINS 2
 #define BROAD_RATE 115200
 #define DELAY_TIME 5000
 /************************************************************************************************/

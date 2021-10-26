@@ -4,9 +4,11 @@
 #include <ESP8266WiFiMulti.h>
 #include"Config.h"
 
-ESP8266WiFiMulti WiFiMulti;
 
+String payload = "";
 String serverResponse;
+int httpResponseCode;
+ESP8266WiFiMulti WiFiMulti;
 
 void setup() {
   Serial.begin(BROAD_RATE);
@@ -48,8 +50,8 @@ String httpGETRequest(const char* serverName) {
   http.begin(client, serverName);
 
   // Send HTTP POST request
-  int httpResponseCode = http.GET();
-  String payload = "";
+  httpResponseCode = http.GET();
+  payload = "";
 
   if (httpResponseCode > 0) {
     //Serial.println("HTTP Response code: " + String(httpResponseCode));

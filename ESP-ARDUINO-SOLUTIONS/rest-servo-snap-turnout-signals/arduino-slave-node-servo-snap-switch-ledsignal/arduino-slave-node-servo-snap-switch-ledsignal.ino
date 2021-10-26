@@ -15,7 +15,8 @@ String val;
 int jmriId ;
 int boardId ;
 int pinId ;
-
+char type;
+String message;
 
 const Pca9685BoardManager pcaBoardManager;
 
@@ -28,9 +29,10 @@ void setup() {
 void loop() {
   // Monitor serial communication
   while (Serial.available()) {
-    String message = Serial.readString();
+    message = Serial.readString();
     if (message != "") {
       processCall(message);
+      message = "";
     }
   }
 
@@ -41,7 +43,7 @@ void loop() {
 void processCall(String msg) {
 
   Serial.println("Message " + msg);
-  char type = msg.charAt(0);
+  type = msg.charAt(0);
   msg = msg.substring(2);
 
   if (type == S) {
@@ -71,6 +73,7 @@ void processCall(String msg) {
   } else if (type == O) {
     Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
   }
+  type = '';
 }
 
 void doExecute(String msg , char type) {

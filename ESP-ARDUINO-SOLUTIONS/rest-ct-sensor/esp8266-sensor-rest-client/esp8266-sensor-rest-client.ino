@@ -10,6 +10,7 @@ ESP8266WiFiMulti WiFiMulti;
 String id ;
 String val;
 String message;
+int httpResponseCode ;
 
 void setup() {
   Serial.begin(BROAD_RATE);
@@ -17,12 +18,12 @@ void setup() {
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while ((WiFiMulti.run() != WL_CONNECTED)) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-     //Serial.print(".");
+    //Serial.print(".");
   }
-    Serial.print("WiFi connected: ");
-    Serial.print(WiFi.SSID());
-    Serial.print(" ");
-    Serial.println(WiFi.localIP());
+  Serial.print("WiFi connected: ");
+  Serial.print(WiFi.SSID());
+  Serial.print(" ");
+  Serial.println(WiFi.localIP());
 }
 
 
@@ -55,7 +56,7 @@ int httpPostRequest(String payload) {
   http.begin(client, SERVER_URL);
   http.addHeader(CONTENT_TYPE, CONTENT_TYPE_VAL);
   // Send HTTP POST request
-  int httpResponseCode = http.POST(payload);
+  httpResponseCode = http.POST(payload);
   if (httpResponseCode > 0) {
     Serial.println("Payload " + payload + " Response code: " + String(httpResponseCode) + " Response " + http.getString());
   } else {

@@ -8,6 +8,7 @@
 #include "Pca9685.h"
 #include "Config.h"
 
+int i;
 
 void Pca9685::initPca9685(char type, char subType, int boardNumber) {
   _pwm = Adafruit_PWMServoDriver(_boardsAddress);
@@ -18,7 +19,7 @@ void Pca9685::initPca9685(char type, char subType, int boardNumber) {
   if (_type == L) {
     _pca9685PinStateList = new bool[TOTAL_BOARD_PIN];
     _pwm.setPWMFreq(PWM_LIGHT_FREQUENCY);
-    for (int i = 0; i < TOTAL_BOARD_PIN; i++) {
+    for ( i = 0; i < TOTAL_BOARD_PIN; i++) {
       _pca9685PinStateList[i] = false;
     }
     Serial.print("Type ");
@@ -30,7 +31,7 @@ void Pca9685::initPca9685(char type, char subType, int boardNumber) {
   } else if (_type == T && _subType == M) {
     _pwm.setPWMFreq(PWM_SERVO_TURNOUT_FREQUENCY);
     _pca9685PinList = new Pca9685Pin[TOTAL_BOARD_PIN];
-    for (int i = 0; i < TOTAL_BOARD_PIN; i++) {
+    for ( i = 0; i < TOTAL_BOARD_PIN; i++) {
       _pca9685PinList[i]._openState = turnoutRange[_boardNumber][i][0];
       _pca9685PinList[i]._closeState = turnoutRange[_boardNumber][i][1];
       _pca9685PinList[i]._isOpen = false;
@@ -44,7 +45,7 @@ void Pca9685::initPca9685(char type, char subType, int boardNumber) {
   } else if (_type == T && _subType == N) {
     _pwm.setPWMFreq(PWM_SNAP_TURNOUT_FREQUENCY);
     _pca9685PinStateList = new bool[TOTAL_BOARD_PIN];
-    for (int i = 0; i < TOTAL_BOARD_PIN; i++) {
+    for ( i = 0; i < TOTAL_BOARD_PIN; i++) {
       _pca9685PinStateList[i] = false;
     }
     Serial.print("Type ");
@@ -80,7 +81,7 @@ void Pca9685::turnoutThrow(int pinNo) {
     _pca9685PinList[pinNo]._isOpen = true;
     if (slowMove) {
       // slow effect for turnout
-      for (int i = _pca9685PinList[pinNo]._closeState; i >= _pca9685PinList[pinNo]._openState; i = i - 1) {
+      for ( i = _pca9685PinList[pinNo]._closeState; i >= _pca9685PinList[pinNo]._openState; i = i - 1) {
         _pwm.writeMicroseconds(pinNo, i );
       }
     } else {
@@ -102,7 +103,7 @@ void Pca9685::turnoutClose(int pinNo) {
     _pca9685PinList[pinNo]._isOpen = false;
     if (slowMove) {
       // slow effect for turnout
-      for (int i = _pca9685PinList[pinNo]._openState; i <= _pca9685PinList[pinNo]._closeState; i = i + 1) {
+      for ( i = _pca9685PinList[pinNo]._openState; i <= _pca9685PinList[pinNo]._closeState; i = i + 1) {
         _pwm.writeMicroseconds(pinNo, i );
       }
     } else {

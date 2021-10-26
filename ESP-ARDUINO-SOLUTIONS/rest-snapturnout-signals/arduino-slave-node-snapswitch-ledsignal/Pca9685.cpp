@@ -8,6 +8,7 @@
 #include "Pca9685.h"
 #include "Config.h"
 
+int i = 0;
 
 void Pca9685::initPca9685(char type) {
   _pwm = Adafruit_PWMServoDriver(_boardsAddress);
@@ -15,7 +16,7 @@ void Pca9685::initPca9685(char type) {
   _pwm.setPWMFreq(PWM_FREQUENCY);
   _type = type;
   _pca9685PinStateList = new bool[TOTAL_BOARD_PIN];
-  for (int i = 0; i < TOTAL_BOARD_PIN; i++) {
+  for ( i = 0; i < TOTAL_BOARD_PIN; i++) {
     _pca9685PinStateList[i] = false;
   }
   Serial.print("Type ");

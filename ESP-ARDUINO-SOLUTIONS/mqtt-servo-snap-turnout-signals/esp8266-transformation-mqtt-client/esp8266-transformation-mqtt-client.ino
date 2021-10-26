@@ -10,8 +10,9 @@
 #include "PubSubClient.h"
 #include"Config.h"
 
-String mqttTopicValue;
+int i;
 String messageText;
+String mqttTopicValue;
 
 // Initialise the WiFi and MQTT Client objects
 WiFiClient wifiClient;
@@ -33,7 +34,7 @@ void subscribeMqttMessage(char* topic, byte* payload, unsigned int length) {
 */
 String getMessage(byte* message, unsigned int length) {
   messageText = "";
-  for (int i = 0; i < length; i++) {
+  for ( i = 0; i < length; i++) {
     messageText += (char)message[i];
   }
   return messageText + "\n";

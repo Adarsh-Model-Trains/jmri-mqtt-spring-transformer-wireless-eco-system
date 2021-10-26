@@ -8,6 +8,7 @@
 #define Config_h
 #include "Arduino.h"
 
+
 /************************************************************************************************/
 #define ACTIVE ":AC\n"
 #define INACTIVE ":IN\n"
@@ -15,12 +16,13 @@
 #define DELAY_TIME 5000
 /************************************************************************************************/
 
+
 #define JMRI_SENSOR_START_ADDRESS 10000
-#define ENABLE_PULLUP true
 #define NO_OF_BLOCKS 2
+#define ENABLE_PULLUP true
 /*
  * CT SENSORS PIN CONFIGURATION 
-  const int sensorPin[NO_OF_BLOCKS] = {
+  const int sensorPin[NO_OF_BLOCKS][PINS] = {
   BLOCK_1__PIN,
   BLOCK_2_PIN,
   ..........
