@@ -18,7 +18,7 @@ String mqttTopicValue;
 WiFiClient wifiClient;
 
 // 1883 is the listener port for the Broker
-PubSubClient client(mqtt_server, 1883, wifiClient);
+PubSubClient client(MQTT_SERVER, 1883, wifiClient);
 
 void subscribeMqttMessage(char* topic, byte* payload, unsigned int length) {
 
@@ -42,8 +42,8 @@ String getMessage(byte* message, unsigned int length) {
 
 bool mqttConnect() {
   // Connect to MQTT Server and subscribe to the topic
-  if (client.connect(clientID, mqtt_username, mqtt_password)) {
-    client.subscribe(mqtt_topic);
+  if (client.connect(clientID, MQTT_USER, MQTT_PWD)) {
+    client.subscribe(JMRI_MQTT_TOPIC);
     return true;
   } else {
     return false;
@@ -56,10 +56,10 @@ void setup() {
   Serial.begin(BROAD_RATE);
 
   Serial.print("Connecting to ");
-  Serial.println(ssid);
+  Serial.println(SS_ID);
 
   // Connect to the WiFi
-  WiFi.begin(ssid, wifi_password);
+  WiFi.begin(SS_ID, WIFI_PWD);
 
   // Wait until the connection has been confirmed before continuing
   while (WiFi.status() != WL_CONNECTED) {
@@ -79,7 +79,7 @@ void setup() {
   if (mqttConnect()) {
     Serial.println("Connected Successfully to MQTT Broker!");
   } else {
-    Serial.println("Connection Failed!");
+    Serial.println("Connection Failed! to MQTT Broker");
   }
 }
 

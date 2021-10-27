@@ -27,7 +27,7 @@ class Pca9685 {
     int _boardNumber;
     Pca9685Pin * _pca9685PinList;
     bool * _pca9685PinStateList;
-    Adafruit_PWMServoDriver _pwm;
+    //Adafruit_PWMServoDriver _pwm;
 
   public:
     Pca9685() {

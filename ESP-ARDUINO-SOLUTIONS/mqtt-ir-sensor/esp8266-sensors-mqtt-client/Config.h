@@ -20,8 +20,8 @@
 /************************************************************************************************/
 // WiFi
 // Make sure to update this for your own WiFi network!
-#define SS_ID "adarsh_radha_2G" // ESP8266 do not support 5G wifi connection
-#define WIFI_PWD "******"
+#define SS_ID "adarsh-model-trains" // ESP8266 do not support 5G wifi connection
+#define WIFI_PWD "adarsh@model@trains"
 #define  MQTT_USER "adarsh"
 #define  MQTT_PWD "password"
 

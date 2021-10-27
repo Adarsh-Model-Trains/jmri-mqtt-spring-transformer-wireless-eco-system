@@ -22,10 +22,9 @@
 #define PWM_TURNOUT_FREQUENCY 50 
 /************************************************************************************************/
 
-
 // ESP8266 do not support 5G wifi connection
-#define WIFI_SSID  "adarsh_radha_2G"
-#define WIFI_PASSWROD  "*******"
+#define WIFI_SSID "adarsh-model-trains"
+#define WIFI_PASSWROD "adarsh@model@trains"
 
 // MQTT
 // find this ip using ipconfig or check in router

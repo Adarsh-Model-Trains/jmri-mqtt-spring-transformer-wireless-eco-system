@@ -39,7 +39,7 @@ void publishSensorData(String sensorNo, String state) {
 
 bool mqttConnect() {
   // Connect to MQTT Server and subscribe to the topic
-  if (client.connect(CLIENT_ID, MQTT_USER, MQTT_PWD)) {
+  if (client.connect(CLIENT_ID, MQTT_USERNAME, MQTT_PASSORD)) {
     client.subscribe(JMRI_MQTT_TOPIC);
     return true;
   } else {
@@ -54,10 +54,10 @@ void setup() {
   Serial.begin(BROAD_RATE);
 
   Serial.print("Connecting to ");
-  Serial.println(SS_ID);
+  Serial.println(WIFI_SSID);
 
   // Connect to the WiFi
-  WiFi.begin(SS_ID, WIFI_PWD);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWROD);
 
   // Wait until the connection has been confirmed before continuing
   while (WiFi.status() != WL_CONNECTED) {
