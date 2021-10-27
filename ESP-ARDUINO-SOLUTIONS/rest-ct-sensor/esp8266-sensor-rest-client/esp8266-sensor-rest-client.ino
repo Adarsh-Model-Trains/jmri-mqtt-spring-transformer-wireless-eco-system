@@ -4,13 +4,12 @@
 #include <ESP8266WiFiMulti.h>
 #include"Config.h"
 
-ESP8266WiFiMulti WiFiMulti;
-
-
 String id ;
 String val;
 String message;
 int httpResponseCode ;
+
+ESP8266WiFiMulti WiFiMulti;
 
 void setup() {
   Serial.begin(BROAD_RATE);

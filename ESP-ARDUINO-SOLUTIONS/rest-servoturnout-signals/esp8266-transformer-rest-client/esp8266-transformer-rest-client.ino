@@ -33,7 +33,7 @@ void loop() {
     // todo with the server response
     if (serverResponse != "") {
       pushDataToSlave(serverResponse);
-      delay(200);
+      delay(DELAY_TIME);
     }
 
   } else {

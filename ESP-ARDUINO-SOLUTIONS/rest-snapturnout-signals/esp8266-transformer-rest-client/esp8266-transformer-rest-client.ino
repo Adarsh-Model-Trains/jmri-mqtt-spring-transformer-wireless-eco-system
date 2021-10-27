@@ -33,7 +33,7 @@ void loop() {
     // todo with the server response
     if (serverResponse != "") {
       pushDataToSlave(serverResponse);
-      delay(200);
+      delay(DELAY_TIME);
     }
 
   } else {
@@ -52,7 +52,6 @@ String httpGETRequest(const char* serverName) {
   // Send HTTP POST request
   httpResponseCode = http.GET();
   payload = "";
-
   if (httpResponseCode > 0) {
     //Serial.println("HTTP Response code: " + String(httpResponseCode));
     payload = http.getString();
