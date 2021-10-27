@@ -34,6 +34,7 @@ void loop() {
     if (serverResponse != "") {
       pushDataToSlave(serverResponse);
       delay(DELAY_TIME);
+      serverResponse = "";
     }
 
   } else {

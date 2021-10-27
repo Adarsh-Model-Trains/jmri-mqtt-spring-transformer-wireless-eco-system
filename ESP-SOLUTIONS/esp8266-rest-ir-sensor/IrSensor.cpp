@@ -8,6 +8,8 @@
 #include "IrSensor.h"
 #include "Config.h"
 
+int _startBlockSensorVal;
+int _endBlockSensorVal;
 
 void IrSensor::init() {
   _startBlockSensorVal = -1;
@@ -21,8 +23,8 @@ void IrSensor::setStartAndEndBlockSensorPin(int startBlockSensorPin, int endBloc
 
 void IrSensor::calculateBlockOccupancy() {
 
-  int _startBlockSensorVal = digitalRead(_startBlockSensorPin);
-  int _endBlockSensorVal = digitalRead(_endBlockSensorPin);
+  _startBlockSensorVal = digitalRead(_startBlockSensorPin);
+  _endBlockSensorVal = digitalRead(_endBlockSensorPin);
 
   switch (_statePrevious) {
     case UNOCCUPIED:

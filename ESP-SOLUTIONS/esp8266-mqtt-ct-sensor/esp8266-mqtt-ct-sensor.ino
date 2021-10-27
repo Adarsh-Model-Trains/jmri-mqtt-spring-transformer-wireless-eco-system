@@ -12,9 +12,11 @@
 #include"Config.h"
 #include "CtSensor.h"
 
-int address = 1;
+
 int blockNo = 0;
+String topic;
 int sensStatus[NO_OF_BLOCKS];
+bool isBlockOccuipied;
 CtSensor ctSensor;
 
 // Initialise the WiFi and MQTT Client objects
@@ -28,7 +30,7 @@ PubSubClient client(MQTT_SERVER, 1883, wifiClient);
    pushing the sensor data to the mqtt for jmri
 */
 void publishSensorData(String sensorNo, String state) {
-  String topic = JMRI_MQTT_SENSOR_TOPIC + sensorNo;
+  topic = JMRI_MQTT_SENSOR_TOPIC + sensorNo;
   Serial.print(topic + " " + state);
   Serial.println();
   client.publish(topic.c_str(), state.c_str());
@@ -78,9 +80,9 @@ void setup() {
   }
 
   ctSensor.initCtSensor(NO_OF_BLOCKS);
-  for (int i = 0; i < NO_OF_BLOCKS; i++) {
-    ctSensor.setSensorPin(i + 1, sensorPin[i]);
-    sensStatus[i] = 0;
+  for ( blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
+    ctSensor.setSensorPin(blockNo + 1, sensorPin[blockNo]);
+    sensStatus[blockNo] = 0;
   }
 }
 
@@ -94,7 +96,7 @@ void loop() {
   // Once it has done all it needs to do for this cycle, go back to checking if we are still connected.
 
   for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
-    bool isBlockOccuipied = ctSensor.isSensorActive(blockNo);
+    isBlockOccuipied = ctSensor.isSensorActive(blockNo);
     if (isBlockOccuipied) {
       if (sensStatus[blockNo - 1] != 1) {
         sensStatus[blockNo - 1] = 1;

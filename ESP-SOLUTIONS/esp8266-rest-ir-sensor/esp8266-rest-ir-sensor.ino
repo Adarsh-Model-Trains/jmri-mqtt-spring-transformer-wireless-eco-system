@@ -8,8 +8,10 @@
 ESP8266WiFiMulti WiFiMulti;
 
 int blockNo = 0;
+int httpResponseCode;
 int sensStatus[NO_OF_BLOCKS];
 IrBlockSensors blockSensors;
+bool isBlockOccuipied;
 
 void setup() {
   Serial.begin(BROAD_RATE);
@@ -27,9 +29,9 @@ void setup() {
   Serial.println(WiFi.localIP());
 
   blockSensors.initBlockSensors(NO_OF_BLOCKS);
-  for (int i = 0; i < NO_OF_BLOCKS; i++) {
-    blockSensors.setBlockSensorPins(i + 1, sensorPin[i][0], sensorPin[i][1]);
-    sensStatus[i] = 0;
+  for (blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
+    blockSensors.setBlockSensorPins(blockNo + 1, sensorPin[blockNo][0], sensorPin[blockNo][1]);
+    sensStatus[blockNo] = 0;
   }
 }
 
@@ -39,7 +41,7 @@ void loop() {
   if ((WiFiMulti.run() == WL_CONNECTED)) {
 
     for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
-      bool isBlockOccuipied = blockSensors.isSensorBlockOccupied(blockNo);
+      isBlockOccuipied = blockSensors.isSensorBlockOccupied(blockNo);
       if (isBlockOccuipied) {
         if (sensStatus[blockNo - 1] != 1) {
           sensStatus[blockNo - 1] = 1;
@@ -65,7 +67,7 @@ int httpPostRequest(String payload) {
   http.begin(client, SERVER_URL);
   http.addHeader(CONTENT_TYPE, CONTENT_TYPE_VAL);
   // Send HTTP POST request
-  int httpResponseCode = http.POST(payload);
+  httpResponseCode = http.POST(payload);
   if (httpResponseCode > 0) {
     Serial.println("Payload " + payload + " Response code: " + String(httpResponseCode) + " Response " + http.getString());
   } else {

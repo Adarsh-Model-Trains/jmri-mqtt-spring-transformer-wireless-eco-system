@@ -12,8 +12,9 @@
 #include"Config.h"
 #include "IrBlockSensors.h"
 
-int address = 1;
-int blockNo = 0;
+int blockNo;
+String topic;
+bool isBlockOccuipied;
 int sensStatus[NO_OF_BLOCKS];
 IrBlockSensors blockSensors;
 
@@ -28,7 +29,7 @@ PubSubClient client(MQTT_SERVER, 1883, wifiClient);
    pushing the sensor data to the mqtt for jmri
 */
 void publishSensorData(String sensorNo, String state) {
-  String topic = JMRI_MQTT_SENSOR_TOPIC + sensorNo;
+  topic = JMRI_MQTT_SENSOR_TOPIC + sensorNo;
   Serial.print(topic + " " + state);
   Serial.println();
   client.publish(topic.c_str(), state.c_str());
@@ -78,9 +79,9 @@ void setup() {
   }
 
   blockSensors.initBlockSensors(NO_OF_BLOCKS);
-  for (int i = 0; i < NO_OF_BLOCKS; i++) {
-    blockSensors.setBlockSensorPins(i + 1, sensorPin[i][0], sensorPin[i][1]);
-    sensStatus[i] = 0;
+  for (blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
+    blockSensors.setBlockSensorPins(blockNo + 1, sensorPin[blockNo][0], sensorPin[blockNo][1]);
+    sensStatus[blockNo] = 0;
   }
 }
 
@@ -94,7 +95,7 @@ void loop() {
   // Once it has done all it needs to do for this cycle, go back to checking if we are still connected.
 
   for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
-    bool isBlockOccuipied = blockSensors.isSensorBlockOccupied(blockNo);
+    isBlockOccuipied = blockSensors.isSensorBlockOccupied(blockNo);
     if (isBlockOccuipied) {
       if (sensStatus[blockNo - 1] != 1) {
         sensStatus[blockNo - 1] = 1;

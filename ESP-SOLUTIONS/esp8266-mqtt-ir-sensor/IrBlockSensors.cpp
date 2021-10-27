@@ -7,12 +7,14 @@
 #include <Arduino.h>
 #include "IrBlockSensors.h"
 
+int i ;
+
 void IrBlockSensors::initBlockSensors(int totalSensor) {
   if (totalSensor > 0) {
     if (totalSensor > 0)
       _totalSensor = totalSensor;
     this->_irSensorBlocks = new IrSensor[_totalSensor];
-    for (int i = 0; i < _totalSensor; i++) {
+    for ( i = 0; i < _totalSensor; i++) {
       this->_irSensorBlocks[i].setStartAndEndBlockSensorPin(0, 0);
     }
   } else {

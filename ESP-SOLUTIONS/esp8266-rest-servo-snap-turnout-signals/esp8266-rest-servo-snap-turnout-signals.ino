@@ -13,7 +13,10 @@ String val;
 int jmriId ;
 int boardId ;
 int pinId ;
+char type;
+String payload = "";
 String serverResponse;
+int httpResponseCode;
 const uint32_t connectTimeoutMs = 5000;
 
 ESP8266WiFiMulti wifiMulti;
@@ -43,6 +46,7 @@ void loop() {
     if (serverResponse != "") {
       processCall(serverResponse);
       delay(DELAY_TIME);
+      serverResponse = "";
     }
   } else {
     Serial.println("WiFi Disconnected");
@@ -58,8 +62,8 @@ String httpGETRequest(const char* serverName) {
   http.begin(client, serverName);
 
   // Send HTTP POST request
-  int httpResponseCode = http.GET();
-  String payload = "";
+  httpResponseCode = http.GET();
+  payload = "";
 
   if (httpResponseCode > 0) {
     //Serial.println("HTTP Response code: " + String(httpResponseCode));
@@ -76,7 +80,7 @@ String httpGETRequest(const char* serverName) {
 void processCall(String msg) {
 
   Serial.println("Message " + msg);
-  char type = msg.charAt(0);
+  type = msg.charAt(0);
   msg = msg.substring(2);
 
   if (type == S) {
@@ -106,6 +110,7 @@ void processCall(String msg) {
   } else if (type == O) {
     Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
   }
+  type = '';
 }
 
 void doExecute(String msg , char type) {
