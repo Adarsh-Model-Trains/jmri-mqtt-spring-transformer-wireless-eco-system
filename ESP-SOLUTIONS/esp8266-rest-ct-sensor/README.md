@@ -20,15 +20,14 @@
 > esp will conect to spring transformation application via wifi network 
 > wifi credentials will be configured in Config.h file 
 ```
-const char* ssid = "adarsh_radha_2G"; // ESP8266 do not support 5G wifi connection
-const char* wifi_password = "*******";
-
+#define WIFI_SSID "adarsh-model-trains"
+#define WIFI_PASSWROD "adarsh@model@trains"
 ```
 
 > spring transformation rest service url configured in Config.h file 
 * "http://localhost:8090/amt/node/<NODE_ID>";
 ```
-const char* SERVER_URL = "http://192.168.0.188:8090/amt/node/1";
+const SERVER_URL = "http://192.168.0.188:8090/amt/node/1";
 ```
 
 ### CT Sensors configuration for arduino in Config.h 

@@ -18,6 +18,18 @@
 > esp rest client will connect to pca9685 
 > via scl which is D1 on esp and sda which D2 on Esp 
 
+> esp will conect to rest api via wifi network 
+> wifi credentials will be configured in Config.h file 
+```
+// ESP8266 do not support 5G wifi connection
+#define WIFI_SSID "adarsh-model-trains"
+#define WIFI_PASSWROD "adarsh@model@trains"
+```
+
+### change the server ip address of api 
+```
+#define SERVER_URL  "http://192.168.0.188:8090/amt/node/1"
+```
 
 ### Configuration of the number of boards based on the turnout light and 2 and 3 led signals 
 > msut match in node configuraiton in transformer 

@@ -17,9 +17,8 @@
 > esp will conect to spring transformation application via wifi network 
 > wifi credentials will be configured in Config.h file 
 ```
-const char* ssid = "adarsh_radha_2G"; // ESP8266 do not support 5G wifi connection
-const char* wifi_password = "*******";
-
+#define WIFI_SSID "adarsh-model-trains"
+#define WIFI_PASSWROD "adarsh@model@trains"
 ```
 
 > spring transformation rest service url configured in Config.h file 
@@ -27,14 +26,7 @@ const char* wifi_password = "*******";
 ```
 const char* SERVER_URL = "http://192.168.0.188:8090/amt/node/1";
 ```
-### other config 
-```
-#define NODE_ID "1"
 
-#define BROAD_RATE 115200
-#define DELAY_TIME 5000
-#define WIFI_RECONNECT_DELAY_TIME 500
-```
 
 ### jmri configuration 
 * all sensors will start from 10000 to limit 

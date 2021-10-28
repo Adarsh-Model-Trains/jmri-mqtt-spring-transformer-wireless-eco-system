@@ -19,27 +19,37 @@
 > esp will conect to mqtt via wifi network 
 > wifi credentials will be configured in Config.h file 
 ```
-const char* ssid = "adarsh_radha_2G"; // ESP8266 do not support 5G wifi connection
-const char* wifi_password = "*******";
+// ESP8266 do not support 5G wifi connection
+#define WIFI_SSID "adarsh-model-trains"
+#define WIFI_PASSWROD "adarsh@model@trains"
 ```
 > mqtt configuration and credentail will be configured in Config.h file 
 ```
-const char* mqtt_server = "192.168.0.188"; 
-const char* mqtt_username = "adarsh";
-const char* mqtt_password = "password";
-```
-> mqtt topics will be configured in Config.h 
-```
-const String JMRI_MQTT_SENSOR_TOPIC = "/trains/track/sensor/";
-
+#define MQTT_SERVER "192.168.0.188"
+#define MQTT_USERNAME "adarsh"
+#define MQTT_PASSORD "password"
 ```
 
 > esp client id is configure in Config.h 
 ```
-const char* CLIENT_ID = "JMRI_NODE_ESP8266_PUBLISHING_1";
+#define CLIENT_ID  "JMRI_NODE_ESP8266_PUBLISHING_1"
 
 ```
 
+### Configuration of the number of sensors 
+> msut match in the jmri sensors configuration  
+```
+#define JMRI_SENSOR_START_ADDRESS 10000
+#define NO_OF_BLOCKS 2
+#define ENABLE_PULLUP true
+```
+
+### sensors pins config
+```
+const int sensorPin[NO_OF_BLOCKS] = {
+  7, 6
+};
+```
 
 
 ### jmri configuration 

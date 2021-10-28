@@ -19,8 +19,8 @@
 > esp will conect to spring transformation application via wifi network 
 > wifi credentials will be configured in Config.h file 
 ```
-const char* ssid = "adarsh_radha_2G"; // ESP8266 do not support 5G wifi connection
-const char* wifi_password = "*******";
+#define WIFI_SSID "adarsh-model-trains"
+#define WIFI_PASSWROD "adarsh@model@trains"
 
 ```
 
@@ -30,12 +30,6 @@ const char* wifi_password = "*******";
 const char* SERVER_URL = "http://192.168.0.188:8090/amt/node/1";
 ```
 
-### other config
-```
-#define BROAD_RATE 115200
-#define DELAY_TIME 1000
-#define WIFI_RECONNECT_DELAY_TIME 500
-```
 
 ### TO POST THE SENSOR INFO TO  MQTT  VIA END POINTS 
 > curl --header "Content-Type: application/json" --request POST --data '{"topic":"xyz","data":"xyz"}' http://localhost:8090/amt/node/[nodeId]
