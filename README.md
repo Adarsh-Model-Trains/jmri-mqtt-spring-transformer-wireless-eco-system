@@ -4,6 +4,7 @@
 ## [YOUTUBE HELP LINK ](doc/YOUTUBE-README.md)	
 
 ![img](image/implementation.png)
+![img](image/network.png)
 
 > Jmri will push the data to the mqtt topic \
 > spring transformer application configured with nodes and its details like no of turnout, no of signals, no of light in the node \
