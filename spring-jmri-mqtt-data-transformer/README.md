@@ -11,9 +11,9 @@
 
 ## To download the executable jar 
 
-### [click to download jar](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/lib/spring-jmri-mqtt-data-transformer.jar)
+### [click to download jar](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/v1.production/lib/spring-jmri-mqtt-data-transformer.jar)
 
-### [click to download application config file](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/lib/application.config.file.zip)
+### [click to download application config file](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/v1.production/lib/application.config.file.zip)
 
 ## Min Requirement
 * java runtime 8
