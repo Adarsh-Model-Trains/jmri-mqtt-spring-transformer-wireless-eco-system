@@ -23,7 +23,7 @@ C:\Program Files\Mosquitto
 * mosquitto.config
 ```
 log_type all                 #Equivalent to setting -v (verbose mode)
-listener 1883                #To ensure listening on the appropriate port
+listener 1883 localhost      #To ensure listening on the appropriate port
 allow_anonymous true         #Allows JMRI to subscribe without an ID or password
 ```
 
@@ -50,7 +50,7 @@ user:$7$101$wTgP5RJhZ/FwqGd0$791uUt2VkgDi6me7LkX7EGECbxy+FGkCyiQR5hMr6eJGw3drxra
 * create a config file with name "mosquitto.config"  in the MOSQUITTO_HOME dir 
 ```
 log_type all                 #Equivalent to setting -v (verbose mode)
-listener 1883                #To ensure listening on the appropriate port
+listener 1883 localhost       #To ensure listening on the appropriate port
 allow_anonymous false         #Allows JMRI to subscribe without an ID or password
 password_file ./passwordfile.txt
 ```
