@@ -63,4 +63,13 @@ password_file ./passwordfile.txt
 * mosquitto_pub -h localhost -u user -P password -t /trains/info -r -m "on"
 * mosquitto_pub -h localhost -u user -P password -t /trains/info -r -m "off"
 
-
+### cmd flag 
+```
+-r  Sets retain flag
+-n  Sends Null message useful for clearing retain message.
+-p – Set Port number Default is 1883
+-u – Provide a username
+-P – Provide a password
+-i – Provide client name
+-I – Provide a client id prefix- Used when testing client restrictions using prefix security.
+```

@@ -197,4 +197,18 @@ subprocess.call('killall mosquitto',shell=True)
 * to run the script 
 	* python stop-mos.py 
 
+
+
+### cmd flag 
+```
+-r  Sets retain flag
+-n  Sends Null message useful for clearing retain message.
+-p – Set Port number Default is 1883
+-u – Provide a username
+-P – Provide a password
+-i – Provide client name
+-I – Provide a client id prefix- Used when testing client restrictions using prefix security.
+```
+
 ----
+
