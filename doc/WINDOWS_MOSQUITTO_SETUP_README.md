@@ -17,7 +17,9 @@ C:\Program Files\Mosquitto
 %MOSQUITTO_HOME%
 ```
 
-### To create the config file with basic info in the MOSQUITTO_HOME dir and take backup of the existing mosquitto.config
+### disable the autostart of mosquitto from windows services and change it to manual mode and resrat 
+
+### To create the config file with basic info 
 * mosquitto.config
 ```
 log_type all                 #Equivalent to setting -v (verbose mode)
@@ -37,7 +39,7 @@ allow_anonymous true         #Allows JMRI to subscribe without an ID or password
 
 
 ### to create the config with the user name and pwd 
-* create a password file with name password.txt in the MOSQUITTO_HOME dir 
+* create a password file with name password.txt 
 ```
 user:password
 ```
