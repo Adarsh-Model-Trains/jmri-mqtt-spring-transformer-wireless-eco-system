@@ -57,10 +57,10 @@ password_file ./passwordfile.txt
 * mosquitto -c mosquitto.conf
 
 ### To subscribe the mosquitto topic 
-* mosquitto_sub -h localhost -u user -p password -v -t /trains/#
+* mosquitto_sub -h localhost -u user -P password -v -t /trains/#
 
 ### To publish to the mosquitto topic 
-* mosquitto_pub -h localhost -u user -p password -t /trains/info -r -m "on"
-* mosquitto_pub -h localhost -u user -p password -t /trains/info -r -m "off"
+* mosquitto_pub -h localhost -u user -P password -t /trains/info -r -m "on"
+* mosquitto_pub -h localhost -u user -P password -t /trains/info -r -m "off"
 
 
