@@ -20,6 +20,7 @@
 #define TOTAL_BOARD_PIN 16
 /************************************************************************************************/
 
+const bool signalLedTypeAnode = true;
 
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING
 // APPLICATION NODE DEFINATION THEN ONLY THIS WILL WORK

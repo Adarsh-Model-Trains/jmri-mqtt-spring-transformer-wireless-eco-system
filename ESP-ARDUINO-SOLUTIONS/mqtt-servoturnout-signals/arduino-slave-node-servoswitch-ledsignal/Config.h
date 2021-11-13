@@ -28,6 +28,7 @@
 #define DEFAULT_CLOSE 2000
 /************************************************************************************************/
 
+const bool signalLedTypeAnode = true;
 const bool slowMove = true;
 
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING

@@ -13,8 +13,8 @@ String val;
 int jmriId ;
 int boardId ;
 int pinId ;
-char type
-String payload = "";
+char type;
+String payload;
 int httpResponseCode;
 String serverResponse;
 
@@ -111,7 +111,7 @@ void processCall(String msg) {
   } else if (type == O) {
     Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
   }
-  type = '';
+  type = '-';
 }
 
 void doExecute(String msg , char type) {

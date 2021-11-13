@@ -76,7 +76,11 @@ bool Pca9685BoardManager::switchClose(int boardId, int pinId) {
 
 bool Pca9685BoardManager::switchOn(int boardId, int pinId) {
   if (_pca9685Boards[boardId].getType() == L) {
-    _pca9685Boards[boardId].ledOn(pinId);
+    if (signalLedTypeAnode) {
+      _pca9685Boards[boardId].ledOff(pinId);
+    } else {
+      _pca9685Boards[boardId].ledOn(pinId);
+    }
     return true;
   } else {
     return false;
@@ -85,7 +89,11 @@ bool Pca9685BoardManager::switchOn(int boardId, int pinId) {
 
 bool Pca9685BoardManager::switchOff(int boardId, int pinId) {
   if (_pca9685Boards[boardId].getType() == L) {
-    _pca9685Boards[boardId].ledOff(pinId);
+    if (signalLedTypeAnode) {
+      _pca9685Boards[boardId].ledOn(pinId);
+    } else {
+      _pca9685Boards[boardId].ledOff(pinId);
+    }
     return true;
   } else {
     return false;

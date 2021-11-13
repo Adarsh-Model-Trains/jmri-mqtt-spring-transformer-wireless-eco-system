@@ -145,7 +145,7 @@ void processCall(String msg) {
     Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
   }
 
-  type = '';
+  type = '-';
 }
 
 void doExecute(String msg , char type) {

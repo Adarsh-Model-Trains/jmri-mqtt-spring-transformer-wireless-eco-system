@@ -15,7 +15,7 @@ String val;
 int jmriId ;
 int boardId ;
 int pinId ;
-char type
+char type;
 String message;
 
 const Pca9685BoardManager pcaBoardManager;
@@ -73,7 +73,7 @@ void processCall(String msg) {
   } else if (type == O) {
     Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
   }
-  type = '';
+  type = '-';
 }
 
 void doExecute(String msg , char type) {

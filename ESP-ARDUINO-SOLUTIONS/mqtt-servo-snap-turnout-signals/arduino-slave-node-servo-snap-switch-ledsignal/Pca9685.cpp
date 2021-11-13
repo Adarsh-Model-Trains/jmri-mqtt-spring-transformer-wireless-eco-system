@@ -80,7 +80,7 @@ void Pca9685::turnoutThrow(int pinNo) {
   if (this->_type == T && this->_subType == M) {
     _pca9685PinList[pinNo]._isOpen = true;
     if (slowMove) {
-       slow effect for turnout
+       // slow effect for turnout
       for ( i = _pca9685PinList[pinNo]._closeState; i >= _pca9685PinList[pinNo]._openState; i = i - 1) {
         _pwm.writeMicroseconds(pinNo, i );
       }
