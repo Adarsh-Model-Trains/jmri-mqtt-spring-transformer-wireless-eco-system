@@ -91,7 +91,7 @@ void Pca9685::turnoutThrow(int pinNo) {
   } else if (this->_type == T && this->_subType == N) {
     _pca9685PinStateList[pinNo] = true;
     _pca9685PinStateList[pinNo + 1] = false;
-    _pwm.setPWM(pinNo, 4096, 0);
+    _pwm.setPWM(pinNo, 4096, 0 );
     delay(200);
     _pwm.setPWM(pinNo, 0, 4096);
     Serial.println(" TURNOUT THROW\n");
@@ -113,9 +113,9 @@ void Pca9685::turnoutClose(int pinNo) {
   } else if (this->_type ==  T && this->_subType == N) {
     _pca9685PinStateList[pinNo] = true;
     _pca9685PinStateList[pinNo - 1] = false;
-    _pwm.setPWM(pinNo, 4096, 0);
-    delay(200);
     _pwm.setPWM(pinNo, 0, 4096);
+    delay(200);
+    _pwm.setPWM(pinNo, 4096, 0);
     Serial.println(" TURNOUT CLOSE\n");
   }
 }

@@ -48,9 +48,9 @@ void Pca9685::turnoutClose(int pinNo) {
   if (_type ==  T) {
     _pca9685PinStateList[pinNo] = true;
     _pca9685PinStateList[pinNo - 1] = false;
-    _pwm.setPWM(pinNo, 4096, 0);
-    delay(200);
     _pwm.setPWM(pinNo, 0, 4096);
+    delay(200);
+    _pwm.setPWM(pinNo, 4096, 0);
     Serial.println(" TURNOUT CLOSE\n");
   }
 }
@@ -58,7 +58,7 @@ void Pca9685::turnoutClose(int pinNo) {
 void Pca9685::ledOn(int pinNo) {
   if (_type == L) {
     _pca9685PinStateList[pinNo] = true;
-    // _pwm.setPWM(pinNo, 4096, 0);
+    _pwm.setPWM(pinNo, 4096, 0);
     Serial.println(" LED ON\n");
   }
 }

@@ -48,9 +48,9 @@ void Pca9685::turnoutClose(int pinNo) {
   if (_type ==  T) {
     _pca9685PinStateList[pinNo] = true;
     _pca9685PinStateList[pinNo - 1] = false;
-    _pwm.setPWM(pinNo, 4096, 0);
-    delay(DELAY_TIME);
     _pwm.setPWM(pinNo, 0, 4096);
+    delay(DELAY_TIME);
+    _pwm.setPWM(pinNo, 4096, 0);
     Serial.println(" TURNOUT CLOSE\n");
   }
 }
