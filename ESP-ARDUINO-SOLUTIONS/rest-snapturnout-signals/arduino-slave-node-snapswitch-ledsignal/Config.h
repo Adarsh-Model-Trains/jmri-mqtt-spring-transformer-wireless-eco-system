@@ -24,7 +24,6 @@
 #define DELAY_TIME 200
 /************************************************************************************************/
 
-
 const bool signalLedTypeAnode = true;
 
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING

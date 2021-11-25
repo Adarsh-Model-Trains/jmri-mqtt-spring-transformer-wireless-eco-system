@@ -75,7 +75,6 @@ bool Pca9685BoardManager::switchClose(int boardId, int pinId) {
     return false;
   }
 }
-
 bool Pca9685BoardManager::switchOn(int boardId, int pinId) {
   if (_pca9685Boards[boardId].getType() == L) {
     if (signalLedTypeAnode) {
