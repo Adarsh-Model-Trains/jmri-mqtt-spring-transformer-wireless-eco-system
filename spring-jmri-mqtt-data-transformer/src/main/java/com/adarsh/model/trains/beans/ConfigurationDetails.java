@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import static com.adarsh.model.trains.service.MQTTService.*;
 
@@ -72,6 +71,7 @@ public class ConfigurationDetails extends NodeConfigurations.Nodes {
             totalBoard += (snap / 16) + 1;
         }
         totalBoardRequired += ", Total Snap TurnoutBoard Required is " + totalBoard;
+        totalBoard = 0;
         int totalLights = node.getLightCount() + (node.getSignal2LCount() * 2) + (node.getSignal3LCount() * 3);
         if (totalLights > 0) {
             totalLights -= 1;

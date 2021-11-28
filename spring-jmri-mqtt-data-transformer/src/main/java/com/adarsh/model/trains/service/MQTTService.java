@@ -371,7 +371,7 @@ public class MQTTService {
     }
 
     public String getData(String nodeId) throws Exception {
-        if (activeNodeCache.get(nodeId)) {
+        if (activeNodeCache.containsKey(nodeId)) {
             return store.get(nodeId).dequeue();
         } else {
             return DEFAULT_BLOCK_RESULT;

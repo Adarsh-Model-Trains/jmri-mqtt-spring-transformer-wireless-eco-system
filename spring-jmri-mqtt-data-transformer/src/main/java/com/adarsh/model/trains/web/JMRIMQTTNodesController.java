@@ -42,6 +42,7 @@ public class JMRIMQTTNodesController {
 
     @GetMapping("/description/node/{nodeId}")
     public List<ConfigurationDetails> getNodeConfigurationData(@PathVariable("nodeId") String nodeId) throws Exception {
+
         return this.configurationService.getNodeConfigurationDetails(nodeId);
     }
 

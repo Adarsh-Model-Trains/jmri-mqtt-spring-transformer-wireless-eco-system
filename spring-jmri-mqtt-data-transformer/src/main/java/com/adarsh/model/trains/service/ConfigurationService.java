@@ -2,6 +2,7 @@ package com.adarsh.model.trains.service;
 
 import com.adarsh.model.trains.beans.ConfigurationDetails;
 import com.adarsh.model.trains.beans.NodeConfigurations;
+import com.adarsh.model.trains.exception.InvalidNodeIdException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,9 @@ public class ConfigurationService {
         return list;
     }
 
-    public List<ConfigurationDetails> getNodeConfigurationDetails(String nodeId) {
+    public List<ConfigurationDetails> getNodeConfigurationDetails(String nodeId) throws InvalidNodeIdException {
         Optional<NodeConfigurations.Nodes> nodesOptional =
                 nodeConfigurations.getNodes().stream().filter(e -> e.getNodeId().equalsIgnoreCase(nodeId)).findFirst();
-        return Arrays.asList(new ConfigurationDetails(nodesOptional.get(), mqttService));
+        return Arrays.asList(new ConfigurationDetails(nodesOptional.orElseThrow(()-> new InvalidNodeIdException("Invalid NodeId "+nodeId)), mqttService));
     }
 }
