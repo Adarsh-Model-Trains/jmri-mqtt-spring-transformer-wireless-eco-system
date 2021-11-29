@@ -30,10 +30,6 @@
 const char* SERVER_URL = "http://192.168.0.188:8090/amt/node/1";
 ```
 
-## Lib installtion 
-
-### search for "PubSubClient" lib and install it before compiling 
-### or install this lib for location [PubSubClient lib ](https://github.com/adarshkumarsingh83/jmri-cmri/raw/main/DOCUMENTS/JMRI-MOSQUITTO-MQTT/lib/pubsubclient.zip)
 
 ### jmri configuration 
 * all sensors will start from 10000 to limit 
