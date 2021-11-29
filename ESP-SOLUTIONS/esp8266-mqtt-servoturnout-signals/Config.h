@@ -22,11 +22,10 @@
 #define PWM_TURNOUT_FREQUENCY 50 
 /************************************************************************************************/
 
-const bool signalLedTypeAnode = true;
 
 // ESP8266 do not support 5G wifi connection
-#define WIFI_SSID "adarsh-model-trains"
-#define WIFI_PASSWROD "adarsh@model@trains"
+#define WIFI_SSID  "adarsh_radha_2G"
+#define WIFI_PASSWROD  "*******"
 
 // MQTT
 // find this ip using ipconfig or check in router
@@ -40,11 +39,12 @@ const bool signalLedTypeAnode = true;
 // change the node "number/name"  based on the node
 #define CLIENT_ID "JMRI_SUBSCRIBER_NODE_ESP8266_1"
 
+
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING
 // APPLICATION NODE DEFINATION THEN ONLY THIS WILL WORK
-#define NO_OF_TURNOUT_BOARDS 2
-#define NO_OF_LIGHT_BOARDS 9
-#define NO_OF_TOTAL_BOARDS 11
+#define NO_OF_TURNOUT_BOARDS 1
+#define NO_OF_LIGHT_BOARDS 0
+#define NO_OF_TOTAL_BOARDS 1
 
 
 /*
@@ -72,7 +72,7 @@ int turnoutRange[][TOTAL_BOARD_PIN][RANGE_TYPE] = {
 */
 const int turnoutRange[][TOTAL_BOARD_PIN][RANGE_TYPE] = {
   {
-    {1000, 2000},
+    {1350, 1650},
     {1000, 2000},
     {1000, 2000},
     {1000, 2000},

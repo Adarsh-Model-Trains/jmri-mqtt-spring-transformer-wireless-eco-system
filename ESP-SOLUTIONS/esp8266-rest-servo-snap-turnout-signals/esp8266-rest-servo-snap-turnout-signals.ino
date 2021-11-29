@@ -13,10 +13,7 @@ String val;
 int jmriId ;
 int boardId ;
 int pinId ;
-char type;
-String payload = "";
 String serverResponse;
-int httpResponseCode;
 const uint32_t connectTimeoutMs = 5000;
 
 ESP8266WiFiMulti wifiMulti;
@@ -29,9 +26,10 @@ void setup() {
   wifiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while (wifiMulti.run(connectTimeoutMs) != WL_CONNECTED) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-    //Serial.print(".");
+    Serial.print(".");
   }
   // Debugging - Output the IP Address of the ESP8266
+  Serial.println();
   Serial.print("WiFi connected: ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
@@ -46,7 +44,6 @@ void loop() {
     if (serverResponse != "") {
       processCall(serverResponse);
       delay(DELAY_TIME);
-      serverResponse = "";
     }
   } else {
     Serial.println("WiFi Disconnected");
@@ -62,8 +59,8 @@ String httpGETRequest(const char* serverName) {
   http.begin(client, serverName);
 
   // Send HTTP POST request
-  httpResponseCode = http.GET();
-  payload = "";
+  int httpResponseCode = http.GET();
+  String payload = "";
 
   if (httpResponseCode > 0) {
     //Serial.println("HTTP Response code: " + String(httpResponseCode));
@@ -80,7 +77,7 @@ String httpGETRequest(const char* serverName) {
 void processCall(String msg) {
 
   Serial.println("Message " + msg);
-  type = msg.charAt(0);
+  char type = msg.charAt(0);
   msg = msg.substring(2);
 
   if (type == S) {
@@ -110,7 +107,6 @@ void processCall(String msg) {
   } else if (type == O) {
     Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
   }
-  type = '-';
 }
 
 void doExecute(String msg , char type) {

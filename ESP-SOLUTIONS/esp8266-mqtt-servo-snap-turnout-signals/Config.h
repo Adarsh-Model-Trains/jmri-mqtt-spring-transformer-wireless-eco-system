@@ -25,11 +25,10 @@
 #define PWM_SERVO_TURNOUT_FREQUENCY 50 
 /************************************************************************************************/
 
-const bool signalLedTypeAnode = true;
 
 // ESP8266 do not support 5G wifi connection
-#define WIFI_SSID "adarsh-model-trains"
-#define WIFI_PASSWROD "adarsh@model@trains"
+#define WIFI_SSID  "adarsh_radha_2G"
+#define WIFI_PASSWROD  "*********"
 
 // MQTT
 // find this ip using ipconfig or check in router

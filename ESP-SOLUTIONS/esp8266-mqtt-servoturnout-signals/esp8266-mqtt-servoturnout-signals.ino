@@ -7,7 +7,7 @@
 // Enables the ESP8266 to connect to the local network (via WiFi)
 #include <ESP8266WiFi.h>
 // Allows us to connect to, and publish to the MQTT broker
-#include "PubSubClient.h"
+#include <PubSubClient.h>
 #include"Config.h"
 #include "Pca9685BoardManager.h"
 
@@ -19,9 +19,9 @@ String val;
 int jmriId ;
 int boardId ;
 int pinId ;
-char type;
 String mqttTopicValue;
 String messageText;
+
 Pca9685BoardManager pcaBoardManager;
 
 // Initialise the WiFi and MQTT Client objects
@@ -74,7 +74,7 @@ void setup() {
   // Wait until the connection has been confirmed before continuing
   while (WiFi.status() != WL_CONNECTED) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-    //Serial.print(".");
+    Serial.print(".");
   }
 
   // Debugging - Output the IP Address of the ESP8266
@@ -112,7 +112,7 @@ void loop() {
 void processCall(String msg) {
 
   Serial.println("Message " + msg);
-  type = msg.charAt(0);
+  char type = msg.charAt(0);
   msg = msg.substring(2);
 
   if (type == S) {
@@ -142,7 +142,6 @@ void processCall(String msg) {
   } else if (type == O) {
     Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
   }
-  type = '-';
 }
 
 void doExecute(String msg , char type) {

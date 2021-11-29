@@ -13,9 +13,6 @@ String val;
 int jmriId ;
 int boardId ;
 int pinId ;
-char type ;
-String payload = "";
-int httpResponseCode;
 String serverResponse;
 
 Pca9685BoardManager pcaBoardManager;
@@ -27,9 +24,9 @@ void setup() {
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while ((WiFiMulti.run() != WL_CONNECTED)) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-    //Serial.print(".");
+    Serial.print(".");
   }
-
+  
   // Debugging - Output the IP Address of the ESP8266
   Serial.print("WiFi connected: ");
   Serial.print(WiFi.SSID());
@@ -46,7 +43,6 @@ void loop() {
     if (serverResponse != "") {
       processCall(serverResponse);
       delay(DELAY_TIME);
-      serverResponse = "";
     }
 
   } else {
@@ -63,8 +59,8 @@ String httpGETRequest(const char* serverName) {
   http.begin(client, serverName);
 
   // Send HTTP POST request
-  httpResponseCode = http.GET();
-  payload = "";
+  int httpResponseCode = http.GET();
+  String payload = "";
 
   if (httpResponseCode > 0) {
     //Serial.println("HTTP Response code: " + String(httpResponseCode));
@@ -81,7 +77,7 @@ String httpGETRequest(const char* serverName) {
 void processCall(String msg) {
 
   Serial.println("Message " + msg);
-  type = msg.charAt(0);
+  char type = msg.charAt(0);
   msg = msg.substring(2);
 
   if (type == S) {
@@ -111,8 +107,6 @@ void processCall(String msg) {
   } else if (type == O) {
     Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
   }
-
-  type = '-';
 }
 
 void doExecute(String msg , char type) {
