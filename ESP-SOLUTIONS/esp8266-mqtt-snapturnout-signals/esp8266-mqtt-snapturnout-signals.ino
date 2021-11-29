@@ -76,7 +76,7 @@ void setup() {
   // Wait until the connection has been confirmed before continuing
   while (WiFi.status() != WL_CONNECTED) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-    //Serial.print(".");
+    Serial.print(".");
   }
 
   // Debugging - Output the IP Address of the ESP8266

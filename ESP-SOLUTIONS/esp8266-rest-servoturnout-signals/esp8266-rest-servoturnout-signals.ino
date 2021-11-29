@@ -24,7 +24,7 @@ void setup() {
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while ((WiFiMulti.run() != WL_CONNECTED)) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-    //Serial.print(".");
+    Serial.print(".");
   }
   
   // Debugging - Output the IP Address of the ESP8266
