@@ -18,7 +18,7 @@ int pinId ;
 char type;
 String message;
 
-const Pca9685BoardManager pcaBoardManager;
+ Pca9685BoardManager pcaBoardManager;
 
 void setup() {
   Serial.begin(BROAD_RATE);

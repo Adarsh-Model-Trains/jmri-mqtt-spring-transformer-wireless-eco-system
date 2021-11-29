@@ -8,17 +8,17 @@
 #include "Pca9685BoardManager.h"
 
 String comp;
-String jId ;
-String bId ;
-String pId ;
+String jId;
+String bId;
+String pId;
 String val;
-int jmriId ;
-int boardId ;
-int pinId ;
-char type
+int jmriId;
+int boardId;
+int pinId;
+char type;
 String message;
 
-const Pca9685BoardManager pcaBoardManager;
+Pca9685BoardManager pcaBoardManager;
 
 void setup() {
   Serial.begin(BROAD_RATE);
@@ -73,7 +73,7 @@ void processCall(String msg) {
   } else if (type == O) {
     Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
   }
-  type = '';
+  type = '-';
 }
 
 void doExecute(String msg , char type) {

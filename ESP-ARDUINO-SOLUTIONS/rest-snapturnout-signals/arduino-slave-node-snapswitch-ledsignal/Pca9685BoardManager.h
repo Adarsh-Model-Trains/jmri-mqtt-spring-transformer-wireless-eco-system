@@ -8,8 +8,8 @@
 #define Pca9685BoardManager_h
 
 #include <Arduino.h>
-#include "Pca9685.h"
 #include "Config.h"
+#include "Adafruit_PWMServoDriver.h"
 
 class Pca9685BoardManager {
 
@@ -22,7 +22,8 @@ class Pca9685BoardManager {
     };
     
     int index = 0;
-    Pca9685 * _pca9685Boards;
+    Adafruit_PWMServoDriver * _pwmBoards;
+    char * _pwmBoardTypes;
 
   public:
     Pca9685BoardManager()  {
@@ -35,10 +36,10 @@ class Pca9685BoardManager {
     bool switchOff(int boardId, int pinId);
 
     ~Pca9685BoardManager() {
-      for (int i = 0; i < NO_OF_TOTAL_BOARDS; i++) {
-        delete &_pca9685Boards[i];
+     for (int i = 0; i < NO_OF_TOTAL_BOARDS; i++) {
+        delete &_pwmBoards[i];
       }
-      delete[] _pca9685Boards;
+      delete[] _pwmBoards;
     }
 };
 #endif

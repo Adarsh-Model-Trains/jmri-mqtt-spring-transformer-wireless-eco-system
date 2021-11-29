@@ -8,17 +8,17 @@
 #include "Pca9685BoardManager.h"
 
 String comp;
-String jId ;
-String bId ;
-String pId ;
+String jId;
+String bId;
+String pId;
 String val;
-int jmriId ;
-int boardId ;
-int pinId ;
+int jmriId;
+int boardId;
+int pinId;
 char type;
 String message;
 
-const Pca9685BoardManager pcaBoardManager;
+Pca9685BoardManager pcaBoardManager;
 
 void setup() {
   Serial.begin(BROAD_RATE);
