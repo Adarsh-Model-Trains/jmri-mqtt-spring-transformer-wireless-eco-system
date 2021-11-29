@@ -41,6 +41,8 @@ void Pca9685BoardManager::initPca9685Boards() {
         if ( index < NO_OF_TURNOUT_BOARDS) {
 
           _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
+          _pwmBoards[index].begin();
+          _pwmBoards[index].setPWMFreq(PWM_FREQUENCY);
           _pwmBoardTypes[index] = T;
 
           Serial.print(" value of Index ");
@@ -48,7 +50,9 @@ void Pca9685BoardManager::initPca9685Boards() {
         } else  {
           _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
           _pwmBoardTypes[index] = L;
-
+          _pwmBoards[index].begin();
+          _pwmBoards[index].setPWMFreq(PWM_FREQUENCY);
+          
           Serial.print(" value of Index ");
           Serial.println(index);
         }

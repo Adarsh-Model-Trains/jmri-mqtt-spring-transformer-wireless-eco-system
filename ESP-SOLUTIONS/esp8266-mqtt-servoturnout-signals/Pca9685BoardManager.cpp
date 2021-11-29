@@ -39,16 +39,18 @@ void Pca9685BoardManager::initPca9685Boards() {
 
       while (index < NO_OF_TOTAL_BOARDS) {
         if ( index < NO_OF_TURNOUT_BOARDS) {
-
           _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
+          _pwmBoards[index].begin();
+          _pwmBoards[index].setPWMFreq(PWM_TURNOUT_FREQUENCY);
           _pwmBoardTypes[index] = T;
 
           Serial.print(" value of Index ");
           Serial.println(index);
         } else  {
           _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
+          _pwmBoards[index].begin();
+          _pwmBoards[index].setPWMFreq(PWM_LIGHT_FREQUENCY);
           _pwmBoardTypes[index] = L;
-
           Serial.print(" value of Index ");
           Serial.println(index);
         }
@@ -62,7 +64,7 @@ void Pca9685BoardManager::initPca9685Boards() {
 }
 
 bool Pca9685BoardManager::switchThrow(int boardId, int pinId) {
-  
+
   if (_pwmBoardTypes[boardId] == T) {
     _pwmBoards[boardId].writeMicroseconds(pinId,  turnoutRange[boardId][pinId][0]);
     Serial.println(" TURNOUT THROW\n");

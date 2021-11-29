@@ -26,8 +26,9 @@ void setup() {
     delay(WIFI_RECONNECT_DELAY_TIME);
     Serial.print(".");
   }
-  
+
   // Debugging - Output the IP Address of the ESP8266
+  Serial.println();
   Serial.print("WiFi connected: ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
@@ -44,7 +45,6 @@ void loop() {
       processCall(serverResponse);
       delay(DELAY_TIME);
     }
-
   } else {
     Serial.println("WiFi Disconnected");
   }

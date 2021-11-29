@@ -23,14 +23,12 @@
 /************************************************************************************************/
 
 // ESP8266 do not support 5G wifi connection
-#define WIFI_SSID  "adarsh_radha_2G"
-#define WIFI_PASSWROD  "*******"
+#define WIFI_SSID  "adarsh-model-trains"
+#define WIFI_PASSWROD  "adarsh@model@trains"
 
 // IP OF THE SERVER MACHINE WHERE SPRING TRANSFORMER IS RUNNING
 #define SERVER_URL  "http://192.168.0.188:8090/amt/node/1"
 #define NODE_ID  "1"
-
-const bool slowMove = true;
 
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING
 // APPLICATION NODE DEFINATION THEN ONLY THIS WILL WORK
