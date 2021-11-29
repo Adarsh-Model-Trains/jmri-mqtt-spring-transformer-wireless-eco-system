@@ -8,9 +8,6 @@
 
 ## Lib installtion 
 
-### search for "PubSubClient" lib and install it before compiling 
-### or install this lib for location [PubSubClient lib ](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/pubsubclient.zip)
-
 ### search for "ESP8266WiFi" lib and install it before compiling 
 ### or install the wifi lib for esp8266 [esp8266wifi lib](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/ESP8266WiFi.zip)
 

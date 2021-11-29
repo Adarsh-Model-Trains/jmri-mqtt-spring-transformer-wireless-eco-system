@@ -7,7 +7,7 @@
 // Enables the ESP8266 to connect to the local network (via WiFi)
 #include <ESP8266WiFi.h>
 // Allows us to connect to, and publish to the MQTT broker
-#include <PubSubClient.h>
+#include "PubSubClient.h"
 #include"Config.h"
 #include "Pca9685BoardManager.h"
 
@@ -78,6 +78,7 @@ void setup() {
   }
 
   // Debugging - Output the IP Address of the ESP8266
+  Serial.println();
   Serial.print("WiFi connected: ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
