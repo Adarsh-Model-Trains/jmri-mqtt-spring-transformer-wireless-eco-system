@@ -71,7 +71,7 @@ bool Pca9685BoardManager::switchThrow(int boardId, int pinId) {
     _pwmBoards[boardId].setPWM(pinId, 4096, 0);
     delay(200);
     _pwmBoards[boardId].setPWM(pinId, 0, 4096);
-    Serial.println(" TURNOUT THROW\n");
+    Serial.println(TURNOUT_THROW);
     return true;
   } else {
     return false;
@@ -83,7 +83,7 @@ bool Pca9685BoardManager::switchClose(int boardId, int pinId) {
     _pwmBoards[boardId].setPWM(pinId, 4096, 0);
     delay(200);
     _pwmBoards[boardId].setPWM(pinId, 0, 4096);
-    Serial.println(" TURNOUT CLOSE\n");
+    Serial.println(TURNOUT_CLOSE);
     return true;
   } else {
     return false;
@@ -93,8 +93,12 @@ bool Pca9685BoardManager::switchClose(int boardId, int pinId) {
 bool Pca9685BoardManager::switchOn(int boardId, int pinId) {
 
   if (_pwmBoardTypes[boardId] == L) {
-    _pwmBoards[boardId].setPWM(pinId, 4096, 0);
-    Serial.println(" LED ON\n");
+    if (signalLedTypeAnode) {
+      _pwmBoards[boardId].setPWM(pinId, 4096, 0);
+    } else {
+      _pwmBoards[boardId].setPWM(pinId, 0, 4096);
+    }
+    Serial.println(LED_ON);
     return true;
   } else {
     return false;
@@ -104,8 +108,12 @@ bool Pca9685BoardManager::switchOn(int boardId, int pinId) {
 bool Pca9685BoardManager::switchOff(int boardId, int pinId) {
 
   if (_pwmBoardTypes[boardId] == L) {
-    _pwmBoards[boardId].setPWM(pinId, 0, 4096);
-    Serial.println(" LED OFF\n");
+    if (signalLedTypeAnode) {
+      _pwmBoards[boardId].setPWM(pinId, 0, 4096);
+    } else {
+      _pwmBoards[boardId].setPWM(pinId, 4096, 0);
+    }
+    Serial.println(LED_OFF);
     return true;
   } else {
     return false;

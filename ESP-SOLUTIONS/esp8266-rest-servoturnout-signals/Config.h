@@ -21,6 +21,16 @@
 #define PWM_LIGHT_FREQUENCY 1000
 #define PWM_TURNOUT_FREQUENCY 50 
 /************************************************************************************************/
+#define REST_API_DISABLED "REST API IS NOT ENABLED FOR THIS NODE"
+#define BOARDS_CONFIG "BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED"
+#define TURNOUT_THROW "TURNOUT THROW\n"
+#define TURNOUT_CLOSE "TURNOUT CLOSE\n"
+#define LED_ON " LED ON\n"
+#define LED_OFF " LED OFF\n"
+/************************************************************************************************/
+
+const bool signalLedTypeAnode = true;
+
 
 // ESP8266 do not support 5G wifi connection
 #define WIFI_SSID  "adarsh-model-trains"

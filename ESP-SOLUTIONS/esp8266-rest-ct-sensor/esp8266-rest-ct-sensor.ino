@@ -13,6 +13,7 @@ CtSensor ctSensor;
 ESP8266WiFiMulti WiFiMulti;
 
 void setup() {
+  
   Serial.begin(115200);
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
@@ -22,12 +23,12 @@ void setup() {
   }
   // Debugging - Output the IP Address of the ESP8266
   Serial.println();
-  Serial.print("WiFi connected: ");
+  Serial.print(" CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
 
-  ctSensor.initCtSensor(NO_OF_BLOCKS);
+  ctSensor.initCtSensor(NO_OF_BLOCKS);  
   for (blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
     ctSensor.setSensorPin(blockNo + 1, sensorPin[blockNo]);
     sensStatus[blockNo] = 0;
@@ -55,7 +56,7 @@ void loop() {
     }
     delay(DELAY_TIME);
   } else {
-    Serial.println("WiFi Disconnected");
+    Serial.println(WIFI_MSG_F);
   }
 }
 

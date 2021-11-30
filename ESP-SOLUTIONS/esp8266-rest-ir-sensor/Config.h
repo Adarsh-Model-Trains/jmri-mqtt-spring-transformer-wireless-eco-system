@@ -16,6 +16,10 @@
 #define PAYLOAD_BACK_ACTIVE "\", \"data\": \"ACTIVE\"}"
 #define PAYLOAD_BACK_INACTIVE "\", \"data\": \"INACTIVE\"}"
 /************************************************************************************************/
+#define WIFI_MSG_F " NOT CONNECTED TO WIFI "
+#define INVALID_SENSOR_NUMBER " INVLAID SENEOR NUMBER "
+#define INVALID_SENSOR_PIN " INVLAID SENEOR PIN NO "
+/************************************************************************************************/
 
 // ESP8266 do not support 5G wifi connection
 #define WIFI_SSID "adarsh-model-trains"
@@ -28,7 +32,7 @@
 #define NO_OF_BLOCKS 3
 
 /*
- * IR SENSORS PIN CONFIGURATION 
+   IR SENSORS PIN CONFIGURATION
   const int sensorPin[NO_OF_BLOCKS][PINS] = {
   {BLOCK_1_END_PIN, BLOCK_1_START_PIN },
   {BLOCK_2_END_PIN, BLOCK_2_START_PIN },

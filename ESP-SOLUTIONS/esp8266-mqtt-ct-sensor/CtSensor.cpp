@@ -17,7 +17,7 @@ void CtSensor::initCtSensor(int sensorsCount) {
       _sensorsPins[i] = -1;
     }
   } else {
-    Serial.println("Invalid Sensor Count");
+    Serial.println(" INVLAID SENEOR COUNT ");
   }
 }
 
@@ -31,10 +31,10 @@ void CtSensor::setSensorPin(int sensorNo, int pinNo) {
         pinMode(pinNo, INPUT);
       }
     } else {
-      Serial.println("Invalid Sensor Pin No");
+      Serial.println(INVALID_SENSOR_PIN);
     }
   } else {
-    Serial.println("Invalid Sensor Number");
+    Serial.println(INVALID_SENSOR_NUMBER);
   }
 }
 
@@ -50,7 +50,7 @@ bool CtSensor:: isSensorActive(int sensorNo) {
       return false;
     }
   } else {
-    Serial.println("Invalid Sensor Number");
+    Serial.println(INVALID_SENSOR_NUMBER);
     return false;
   }
 }

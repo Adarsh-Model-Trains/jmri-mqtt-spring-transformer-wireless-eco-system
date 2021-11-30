@@ -81,7 +81,7 @@ void setup() {
 
   // Debugging - Output the IP Address of the ESP8266
   Serial.println();
-  Serial.print("WiFi connected: ");
+  Serial.print("CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
@@ -90,9 +90,9 @@ void setup() {
   // setCallback sets the function to be called when a message is received.
   client.setCallback(subscribeMqttMessage);
   if (mqttConnect()) {
-    Serial.println("Connected Successfully to MQTT Broker!");
+    Serial.println("CONNNECTED TO MQTT ");
   } else {
-    Serial.println("Connection Failed!");
+    Serial.println("NOT CONNNECTED TO MQTT");
   }
 
   pcaBoardManager.initPca9685Boards();
@@ -143,7 +143,7 @@ void processCall(String msg) {
     doExecute(msg, L);
 
   } else if (type == O) {
-    Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
+    Serial.println(REST_API_DISABLED);
   }
 }
 
@@ -173,7 +173,7 @@ void doExecute(String msg , char type) {
       }
     }
   } else {
-    Serial.println("BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED ");
+    Serial.println(BOARDS_CONFIG);
   }
 }
 

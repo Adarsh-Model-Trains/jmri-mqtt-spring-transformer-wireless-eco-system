@@ -18,7 +18,7 @@ void IrBlockSensors::initBlockSensors(int totalSensor) {
       this->_irSensorBlocks[i].setStartAndEndBlockSensorPin(0, 0);
     }
   } else {
-    Serial.println("Invalid Sensor Count");
+    Serial.println("INVLAID SENEOR COUNT");
   }
 }
 
@@ -29,10 +29,10 @@ void IrBlockSensors::setBlockSensorPins(int blockNo, int startBlockSensorPin, in
       pinMode(endBlockSensorPin, INPUT);
       _irSensorBlocks[blockNo - 1].setStartAndEndBlockSensorPin(startBlockSensorPin, endBlockSensorPin);
     } else {
-      Serial.println("Invalid Block Sensor Pin No.");
+      Serial.println(INVALID_SENSOR_PIN);
     }
   } else {
-    Serial.println("Invalid Block Sensor Input No.");
+    Serial.println(INVALID_SENSOR_NUMBER);
   }
 }
 
@@ -40,7 +40,7 @@ bool IrBlockSensors::isSensorBlockOccupied(int blockNo) {
   if (blockNo > -1 && blockNo <= _totalSensor) {
     return _irSensorBlocks[blockNo - 1].isBlockOccupied();
   } else {
-    Serial.println("Invalid Block Sensor No");
+    Serial.println(INVALID_SENSOR_NUMBER);
     return false;
   }
 }
