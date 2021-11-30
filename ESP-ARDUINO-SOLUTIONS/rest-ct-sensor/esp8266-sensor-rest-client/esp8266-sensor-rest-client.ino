@@ -17,9 +17,10 @@ void setup() {
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while ((WiFiMulti.run() != WL_CONNECTED)) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-    //Serial.print(".");
+    Serial.print(".");
   }
-  Serial.print("WiFi connected: ");
+  Serial.println();
+  Serial.print("CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
@@ -44,7 +45,7 @@ void loop() {
     }
     delay(DELAY_TIME);
   } else {
-    Serial.println("WiFi Disconnected");
+    Serial.println("NOT CONNECTED TO WIFI");
   }
 }
 

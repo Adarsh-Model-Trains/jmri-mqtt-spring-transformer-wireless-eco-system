@@ -71,7 +71,7 @@ void processCall(String msg) {
     doExecute(msg, L);
 
   } else if (type == O) {
-    Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
+    Serial.println(REST_API_DISABLED);
   }
   type = '-';
 }
@@ -102,7 +102,7 @@ void doExecute(String msg , char type) {
       }
     }
   } else {
-    Serial.println("BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED ");
+    Serial.println(BOARDS_CONFIG);
   }
 }
 

@@ -23,6 +23,13 @@
 #define BROAD_RATE 115200
 #define DELAY_TIME 200
 /************************************************************************************************/
+#define REST_API_DISABLED "REST API IS NOT ENABLED FOR THIS NODE"
+#define BOARDS_CONFIG "BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED"
+#define TURNOUT_THROW "TURNOUT THROW\n"
+#define TURNOUT_CLOSE "TURNOUT CLOSE\n"
+#define LED_ON " LED ON\n"
+#define LED_OFF " LED OFF\n"
+/************************************************************************************************/
 
 const bool signalLedTypeAnode = true;
 
