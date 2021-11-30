@@ -90,7 +90,7 @@ bool Pca9685BoardManager::switchThrow(int boardId, int pinId) {
     return true;
   } else if (_pwmBoardTypes[boardId] == S) {
     _pwmBoards[boardId].setPWM(pinId, 4096, 0);
-    delay(200);
+    delay(DELAY_TIME);
     _pwmBoards[boardId].setPWM(pinId, 0, 4096);
     Serial.println(TURNOUT_THROW);
   } else {
@@ -105,7 +105,7 @@ bool Pca9685BoardManager::switchClose(int boardId, int pinId) {
     return true;
   } else if (_pwmBoardTypes[boardId] == S) {
     _pwmBoards[boardId].setPWM(pinId, 4096, 0);
-    delay(200);
+    delay(DELAY_TIME);
     _pwmBoards[boardId].setPWM(pinId, 0, 4096);
     Serial.println(TURNOUT_CLOSE);
   } else {
