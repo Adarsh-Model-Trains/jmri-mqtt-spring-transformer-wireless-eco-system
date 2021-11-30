@@ -27,8 +27,8 @@
 #define PWM_SNAP_TURNOUT_FREQUENCY 1000
 #define PWM_SERVO_TURNOUT_FREQUENCY 50 
 #define DELAY_TIME 200
-#define DEFAULT_OPEN 1000
-#define DEFAULT_CLOSE 2000
+#define F0 0
+#define F4096 4096
 /************************************************************************************************/
 #define REST_API_DISABLED "REST API IS NOT ENABLED FOR THIS NODE"
 #define BOARDS_CONFIG "BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED"
