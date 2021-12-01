@@ -10,6 +10,7 @@ ESP8266WiFiMulti WiFiMulti;
 int blockNo = 0;
 int httpResponseCode;
 int sensStatus[NO_OF_BLOCKS];
+int sendThreashold[NO_OF_BLOCKS];
 IrBlockSensors blockSensors;
 bool isBlockOccuipied;
 
@@ -33,6 +34,7 @@ void setup() {
   for (blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
     blockSensors.setBlockSensorPins(blockNo + 1, sensorPin[blockNo][0], sensorPin[blockNo][1]);
     sensStatus[blockNo] = 0;
+    sendThreashold[blockNo] = 0;
   }
 }
 
@@ -44,14 +46,25 @@ void loop() {
     for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
       isBlockOccuipied = blockSensors.isSensorBlockOccupied(blockNo);
       if (isBlockOccuipied) {
-        if (sensStatus[blockNo - 1] != 1) {
-          sensStatus[blockNo - 1] = 1;
-          httpPostRequest(PAYLOAD_FROUNT + String(JMRI_SENSOR_START_ADDRESS + blockNo) + PAYLOAD_BACK_ACTIVE);
+        if (sendThreashold[blockNo - 1] != 1) {
+          if (sendThreashold[blockNo - 1] < SEND_THRESHOLD) {
+            sendThreashold[blockNo - 1] = sendThreashold[blockNo - 1] + 1;
+            httpPostRequest(PAYLOAD_FROUNT + String(JMRI_SENSOR_START_ADDRESS + blockNo) + PAYLOAD_BACK_ACTIVE);
+          } else {
+            sensStatus[blockNo - 1] = 1;
+            sendThreashold[blockNo - 1] = 0;
+          }
         }
+
       } else {
-        if (sensStatus[blockNo - 1] != 0) {
-          sensStatus[blockNo - 1] = 0;
-          httpPostRequest(PAYLOAD_FROUNT + String(JMRI_SENSOR_START_ADDRESS + blockNo)  + PAYLOAD_BACK_INACTIVE);
+        if (sendThreashold[blockNo - 1] != 0) {
+          if (sendThreashold[blockNo - 1] < SEND_THRESHOLD) {
+            sendThreashold[blockNo - 1] = sendThreashold[blockNo - 1] + 1;
+            httpPostRequest(PAYLOAD_FROUNT + String(JMRI_SENSOR_START_ADDRESS + blockNo)  + PAYLOAD_BACK_INACTIVE);
+          } else {
+            sendThreashold[blockNo - 1] = 0;
+            sensStatus[blockNo - 1] = 0;
+          }
         }
       }
     }
