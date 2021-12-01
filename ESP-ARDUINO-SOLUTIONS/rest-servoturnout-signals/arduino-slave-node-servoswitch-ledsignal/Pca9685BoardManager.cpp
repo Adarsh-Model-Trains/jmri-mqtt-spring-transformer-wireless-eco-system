@@ -14,19 +14,19 @@ void Pca9685BoardManager::initPca9685Boards() {
 
   if ((NO_OF_TOTAL_BOARDS) > 0 && (NO_OF_TOTAL_BOARDS) < 65) {
 
-     Serial.print("TOTAL PCA9685 BOARDS FOR TURNOUT & SIGNALS ");
+    Serial.print("TOTAL PCA9685 BOARDS FOR TURNOUT & SIGNALS ");
     Serial.println(NO_OF_TOTAL_BOARDS);
 
     if (NO_OF_TURNOUT_BOARDS > -1 && NO_OF_TURNOUT_BOARDS < 65) {
-       Serial.println("INVALID TURNOUT BOARDS COUNT ");
+      Serial.print("TOTAL PCA9685 BOARDS FOR TURNOUT ");
       Serial.println(NO_OF_TURNOUT_BOARDS);
     } else {
-      Serial.println("invalid arguments supplied ");
+      Serial.println("INVALID TURNOUT BOARDS COUNT ");
       return;
     }
 
     if (NO_OF_LIGHT_BOARDS > -1 && NO_OF_LIGHT_BOARDS < 65) {
-       Serial.print("TOTAL PCA9685 BOARDS FOR LIGHTS ");
+      Serial.print("TOTAL PCA9685 BOARDS FOR LIGHTS ");
       Serial.println(NO_OF_LIGHT_BOARDS);
     } else {
       Serial.println("INVALID LIGHT BOARDS COUNT ");
@@ -60,7 +60,7 @@ void Pca9685BoardManager::initPca9685Boards() {
       }
     }
   } else {
-   Serial.println("INVALID BOARD COUNT FOR TURNOUT AND LIGHTS ");
+    Serial.println("INVALID BOARD COUNT FOR TURNOUT AND LIGHTS ");
   }
 }
 

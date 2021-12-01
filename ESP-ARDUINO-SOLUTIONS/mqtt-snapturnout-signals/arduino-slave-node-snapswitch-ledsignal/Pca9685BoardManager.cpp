@@ -21,7 +21,7 @@ void Pca9685BoardManager::initPca9685Boards() {
       Serial.print("TOTAL PCA9685 BOARDS FOR TURNOUT ");
       Serial.println(NO_OF_TURNOUT_BOARDS);
     } else {
-      Serial.println("INVALID SERVO TURNOUT BOARDS COUNT ");
+      Serial.println("INVALID TURNOUT BOARDS COUNT ");
       return;
     }
 
