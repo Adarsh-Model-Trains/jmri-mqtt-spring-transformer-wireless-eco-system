@@ -49,7 +49,7 @@ void loop() {
       delay(DELAY_TIME);
     }
   } else {
-    Serial.println("NOT CONNECTED TO WIFI ");
+    Serial.println(" NOT CONNECTED TO WIFI ");
   }
 }
 

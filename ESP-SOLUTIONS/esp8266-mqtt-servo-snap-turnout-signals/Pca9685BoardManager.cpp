@@ -14,36 +14,36 @@ void Pca9685BoardManager::initPca9685Boards() {
 
   if ((NO_OF_TOTAL_BOARDS) > 0 && (NO_OF_TOTAL_BOARDS) < 65) {
 
-    Serial.print("Total Pca9685 boards for Turnout and Light ");
+    Serial.print(" TOTAL PCA9685 BOARDS FOR TURNOUT & SIGNALS ");
     Serial.println(NO_OF_TOTAL_BOARDS);
 
     if (NO_OF_SERVO_TURNOUT_BOARDS > -1 && NO_OF_SERVO_TURNOUT_BOARDS < 65) {
-      Serial.print("Total Pca9685 boards for Servo Turnout ");
+      Serial.print(" TOTAL PCA9685 BOARDS FOR SERVO TURNOUT ");
       Serial.println(NO_OF_SERVO_TURNOUT_BOARDS);
     } else {
-      Serial.println("invalid arguments supplied ");
+      Serial.println(" INVALID SERVO TURNOUT BOARDS COUNT ");
       return;
     }
 
     if (NO_OF_SNAP_TURNOUT_BOARDS > -1 && NO_OF_SNAP_TURNOUT_BOARDS < 65) {
-      Serial.print("Total Pca9685 boards for Snap Turnout ");
+      Serial.print(" TOTAL PCA9685 BOARDS FOR SNAP TURNOUT ");
       Serial.println(NO_OF_SNAP_TURNOUT_BOARDS);
     } else {
-      Serial.println("invalid arguments supplied ");
+      Serial.println(" INVALID SNAP TURNOUT BOARDS COUNT ");
       return;
     }
 
 
     if (NO_OF_LIGHT_BOARDS > -1 && NO_OF_LIGHT_BOARDS < 65) {
-      Serial.print("Total Pca9685 boards for Light ");
+      Serial.print(" TOTAL PCA9685 BOARDS FOR LIGHTS ");
       Serial.println(NO_OF_LIGHT_BOARDS);
     } else {
-      Serial.println("invalid arguments supplied ");
+      Serial.println(" INVALID LIGHT BOARDS COUNT ");
       return;
     }
 
     if (index <= 0) {
-      
+
       _pwmBoards = new Adafruit_PWMServoDriver[NO_OF_TOTAL_BOARDS];
       _pwmBoardTypes  = new char[NO_OF_TOTAL_BOARDS];
 
@@ -55,7 +55,7 @@ void Pca9685BoardManager::initPca9685Boards() {
           _pwmBoards[index].setPWMFreq(PWM_LIGHT_FREQUENCY);
           _pwmBoardTypes[index] = M;
 
-          Serial.print(" value of Index ");
+          Serial.print(" INDEX VALUE ");
           Serial.println(index);
         } else if (index >= NO_OF_SERVO_TURNOUT_BOARDS &&  index < NO_OF_SNAP_TURNOUT_BOARDS + NO_OF_SERVO_TURNOUT_BOARDS) {
           _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
@@ -63,7 +63,7 @@ void Pca9685BoardManager::initPca9685Boards() {
           _pwmBoards[index].setPWMFreq(PWM_SNAP_TURNOUT_FREQUENCY);
           _pwmBoardTypes[index] = S;
 
-          Serial.print(" value of Index ");
+          Serial.print(" INDEX VALUE ");
           Serial.println(index);
         } else  {
           _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
@@ -71,7 +71,7 @@ void Pca9685BoardManager::initPca9685Boards() {
           _pwmBoards[index].setPWMFreq(PWM_LIGHT_FREQUENCY);
           _pwmBoardTypes[index] = L;
 
-          Serial.print(" value of Index ");
+          Serial.print(" INDEX VALUE ");
           Serial.println(index);
         }
         delay(50);
@@ -79,7 +79,7 @@ void Pca9685BoardManager::initPca9685Boards() {
       }
     }
   } else {
-    Serial.println("invalid arguments supplied ");
+    Serial.println(" INVALID BOARD COUNT FOR TURNOUT AND LIGHTS ");
   }
 }
 
