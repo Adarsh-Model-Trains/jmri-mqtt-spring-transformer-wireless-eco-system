@@ -79,7 +79,7 @@ void Pca9685BoardManager::initPca9685Boards() {
       }
     }
   } else {
-    Serial.println("invalid arguments supplied ");
+    Serial.println("INVALID BOARD COUNT FOR TURNOUT AND LIGHTS ");
   }
 }
 
