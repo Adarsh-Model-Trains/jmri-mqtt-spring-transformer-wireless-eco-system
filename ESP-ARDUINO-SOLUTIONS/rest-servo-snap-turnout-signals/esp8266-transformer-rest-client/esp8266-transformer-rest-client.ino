@@ -55,7 +55,7 @@ String httpGETRequest(const char* serverName) {
   httpResponseCode = http.GET();
   payload = "";
   if (httpResponseCode > 0) {
-    //Serial.println("HTTP Response code: " + String(httpResponseCode));
+    Serial.println("HTTP Response code: " + String(httpResponseCode));
     payload = http.getString();
   }
   else {

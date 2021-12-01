@@ -17,7 +17,7 @@ void setup() {
   Serial.begin(BROAD_RATE);
   Serial.flush();
   ctSensor.initCtSensor(NO_OF_BLOCKS);
-  for (int blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
+  for (blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
     ctSensor.setSensorPin(blockNo + 1, sensorPin[blockNo]);
     sensStatus[blockNo] = 0;
   }

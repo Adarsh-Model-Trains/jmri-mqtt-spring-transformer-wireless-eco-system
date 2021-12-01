@@ -14,6 +14,7 @@ class CtSensor {
     int _sensorsCount;
     int * _sensorsPins;
 
+
   public:
     CtSensor() {
     }

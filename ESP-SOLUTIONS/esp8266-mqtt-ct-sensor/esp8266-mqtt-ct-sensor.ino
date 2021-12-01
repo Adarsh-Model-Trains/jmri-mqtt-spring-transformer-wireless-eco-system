@@ -19,6 +19,7 @@ int sensStatus[NO_OF_BLOCKS];
 bool isBlockOccuipied;
 CtSensor ctSensor;
 
+
 // Initialise the WiFi and MQTT Client objects
 WiFiClient wifiClient;
 

@@ -16,6 +16,7 @@
 #define INACTIVE "INACTIVE"
 #define JMRI_MQTT_TOPIC  "/trains/track/#"
 #define JMRI_MQTT_SENSOR_TOPIC "/trains/track/sensor/"
+#define SEND_THRESHHOLD 3
 /************************************************************************************************/
 #define INVALID_SENSOR_NUMBER " INVLAID SENEOR NUMBER "
 #define INVALID_SENSOR_PIN " INVLAID SENEOR PIN NO "

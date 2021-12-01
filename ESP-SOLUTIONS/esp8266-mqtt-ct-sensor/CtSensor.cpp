@@ -15,6 +15,8 @@ void CtSensor::initCtSensor(int sensorsCount) {
     _sensorsPins = new int[_sensorsCount];
     for ( i = 0; i < _sensorsCount; i++) {
       _sensorsPins[i] = -1;
+      _sendThreashold[i] = 0;
+      _sensorActive[i] = false;
     }
   } else {
     Serial.println(" INVLAID SENEOR COUNT ");

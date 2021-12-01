@@ -35,7 +35,6 @@ void loop() {
       message = "";
     }
   }
-
   delay(DELAY_TIME);
 }
 
