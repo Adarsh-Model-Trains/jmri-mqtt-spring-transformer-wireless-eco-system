@@ -11,6 +11,7 @@
 int blockNo = 0;
 bool isBlockOccuipied = false;
 int sensStatus[NO_OF_BLOCKS];
+int sendThreashold[NO_OF_BLOCKS];
 CtSensor ctSensor;
 
 void setup() {
@@ -20,6 +21,7 @@ void setup() {
   for (blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
     ctSensor.setSensorPin(blockNo + 1, sensorPin[blockNo]);
     sensStatus[blockNo] = 0;
+    sendThreashold[blockNo] = 0;
   }
 }
 
@@ -29,13 +31,23 @@ void loop() {
     isBlockOccuipied = ctSensor.isSensorActive(blockNo);
     if (isBlockOccuipied) {
       if (sensStatus[blockNo - 1] != 1) {
-        sensStatus[blockNo - 1] = 1;
-        sendData(String(JMRI_SENSOR_START_ADDRESS + blockNo) + ACTIVE);
+        if (sendThreashold[blockNo - 1] < SEND_THRESHOLD) {
+          sendThreashold[blockNo - 1] = sendThreashold[blockNo - 1] + 1;
+          sendData(String(JMRI_SENSOR_START_ADDRESS + blockNo) + ACTIVE);
+        } else {
+          sensStatus[blockNo - 1] = 1;
+          sendThreashold[blockNo - 1] = 0;
+        }
       }
     } else {
       if (sensStatus[blockNo - 1] != 0) {
-        sensStatus[blockNo - 1] = 0;
-        sendData(String(JMRI_SENSOR_START_ADDRESS + blockNo) + INACTIVE);
+        if (sendThreashold[blockNo - 1] < SEND_THRESHOLD) {
+          sendThreashold[blockNo - 1] = sendThreashold[blockNo - 1] + 1;
+          sendData(String(JMRI_SENSOR_START_ADDRESS + blockNo) + INACTIVE);
+        } else {
+          sendThreashold[blockNo - 1] = 0;
+          sensStatus[blockNo - 1] = 0;
+        }
       }
     }
   }
