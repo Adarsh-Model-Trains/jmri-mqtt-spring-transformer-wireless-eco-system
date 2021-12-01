@@ -20,7 +20,8 @@ String val;
 int jmriId ;
 int boardId ;
 int pinId ;
-
+int i = 0;
+char type = '-';
 String mqttTopicValue;
 String messageText;
 
@@ -46,7 +47,7 @@ void subscribeMqttMessage(char* topic, byte* payload, unsigned int length) {
 */
 String getMessage(byte* message, unsigned int length) {
   messageText = "";
-  for (int i = 0; i < length; i++) {
+  for ( i = 0; i < length; i++) {
     messageText += (char)message[i];
   }
   return messageText + "\n";
@@ -115,7 +116,7 @@ void loop() {
 void processCall(String msg) {
 
   Serial.println("Message " + msg);
-  char type = msg.charAt(0);
+  type = msg.charAt(0);
   msg = msg.substring(2);
 
   if (type == S) {
@@ -145,6 +146,7 @@ void processCall(String msg) {
   } else if (type == O) {
     Serial.println(REST_API_DISABLED);
   }
+  type = '-';
 }
 
 void doExecute(String msg , char type) {

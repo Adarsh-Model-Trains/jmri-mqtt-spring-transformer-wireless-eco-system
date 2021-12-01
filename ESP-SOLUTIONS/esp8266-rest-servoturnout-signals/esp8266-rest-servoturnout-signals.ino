@@ -14,6 +14,9 @@ int jmriId ;
 int boardId ;
 int pinId ;
 String serverResponse;
+int httpResponseCode = -1;
+String payload = "";
+char type = '-';
 
 Pca9685BoardManager pcaBoardManager;
 ESP8266WiFiMulti WiFiMulti;
@@ -59,8 +62,8 @@ String httpGETRequest(const char* serverName) {
   http.begin(client, serverName);
 
   // Send HTTP POST request
-  int httpResponseCode = http.GET();
-  String payload = "";
+  httpResponseCode = http.GET();
+  payload = "";
 
   if (httpResponseCode > 0) {
     //Serial.println("HTTP Response code: " + String(httpResponseCode));
@@ -77,7 +80,7 @@ String httpGETRequest(const char* serverName) {
 void processCall(String msg) {
 
   Serial.println("Message " + msg);
-  char type = msg.charAt(0);
+  type = msg.charAt(0);
   msg = msg.substring(2);
 
   if (type == S) {
@@ -107,6 +110,7 @@ void processCall(String msg) {
   } else if (type == O) {
     Serial.println(REST_API_DISABLED);
   }
+  type = '-';
 }
 
 void doExecute(String msg , char type) {

@@ -43,8 +43,7 @@ void Pca9685BoardManager::initPca9685Boards() {
     }
 
     if (index <= 0) {
-      // _pca9685Boards = new Pca9685[NO_OF_TOTAL_BOARDS];
-
+      
       _pwmBoards = new Adafruit_PWMServoDriver[NO_OF_TOTAL_BOARDS];
       _pwmBoardTypes  = new char[NO_OF_TOTAL_BOARDS];
 
