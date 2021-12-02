@@ -66,11 +66,11 @@ String httpGETRequest(const char* serverName) {
   payload = "";
 
   if (httpResponseCode > 0) {
-    Serial.println("HTTP Response code: " + String(httpResponseCode));
+     Serial.println("HTTP RESPONSE CODE: " + String(httpResponseCode));
     payload = http.getString();
   }
   else {
-    Serial.println("Error code: " + String(httpResponseCode));
+    Serial.println("ERROR CODE: " + String(httpResponseCode));
   }
   // Free resources
   http.end();

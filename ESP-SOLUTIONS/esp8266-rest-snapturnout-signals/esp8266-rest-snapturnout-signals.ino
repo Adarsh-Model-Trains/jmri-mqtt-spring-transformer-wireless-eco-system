@@ -26,7 +26,7 @@ void setup() {
 
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
-  while ((WiFiMulti.run() == WL_CONNECTED)) {
+  while ((WiFiMulti.run() != WL_CONNECTED)) {
     delay(WIFI_RECONNECT_DELAY_TIME);
     Serial.print(".");
   }
@@ -41,7 +41,7 @@ void setup() {
 }
 
 void loop() {
-  if ((WiFiMulti.run() != WL_CONNECTED)) {
+  if ((WiFiMulti.run() == WL_CONNECTED)) {
     serverResponse = httpGETRequest(SERVER_URL);
     // todo with the server response
     if (serverResponse != "") {
@@ -67,11 +67,11 @@ String httpGETRequest(const char* serverName) {
   payload = "";
 
   if (httpResponseCode > 0) {
-    //Serial.println("HTTP Response code: " + String(httpResponseCode));
+    Serial.println("HTTP RESPONSE CODE: " + String(httpResponseCode));
     payload = http.getString();
   }
   else {
-    Serial.println("Error code: " + String(httpResponseCode));
+    Serial.println("CRROR CODE: " + String(httpResponseCode));
   }
   // Free resources
   http.end();
