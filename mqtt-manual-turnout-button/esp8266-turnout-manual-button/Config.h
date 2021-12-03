@@ -9,8 +9,8 @@
 #include "Arduino.h"
 
 /************************************************************************************************/
-#define THROWN " THROWN\n"
-#define CLOSED " CLOSED\n"
+#define THROWN " THROWN"
+#define CLOSED " CLOSED"
 #define TH "TH"
 #define BROAD_RATE 115200
 #define DELAY_TIME 5000
