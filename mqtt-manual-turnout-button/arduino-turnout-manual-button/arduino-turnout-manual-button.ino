@@ -23,16 +23,19 @@ void loop() {
   for (index = 0 ; index < NO_OF_TURNOUT; index++) {
     if (digitalRead(swtichs[index][0]) == HIGH) {
       if (swtichs[index][3] == 0) {
-        sendData(String(swtichs[index][1] + THROWN));
+        sendData(String(swtichs[index][2] + THROWN));
         swtichs[index][3] = 1;
         swtichs[index][4] = 0;
       }
     } else if (digitalRead(swtichs[index][1]) == HIGH) {
       if (swtichs[index][4] == 0) {
-        sendData(String(swtichs[index][1] + CLOSED));
+        sendData(String(swtichs[index][2] + CLOSED));
         swtichs[index][4] = 1;
         swtichs[index][3] = 0;
       }
+    } else if (digitalRead(swtichs[index][0]) == LOW && digitalRead(swtichs[index][1]) == LOW) {
+      swtichs[index][3] = 0;
+      swtichs[index][4] = 0;
     }
   }
   delay(DELAY_TIME);
