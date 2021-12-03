@@ -22,9 +22,17 @@ void setup() {
 void loop() {
   for (index = 0 ; index < NO_OF_TURNOUT; index++) {
     if (digitalRead(swtichs[index][0]) == HIGH) {
-      sendData(String(swtichs[index][1] + THROWN));
+      if (swtichs[index][3] == 0) {
+        sendData(String(swtichs[index][1] + THROWN));
+        swtichs[index][3] = 1;
+        swtichs[index][4] = 0;
+      }
     } else if (digitalRead(swtichs[index][1]) == HIGH) {
-      sendData(String(swtichs[index][1] + CLOSED));
+      if (swtichs[index][4] == 0) {
+        sendData(String(swtichs[index][1] + CLOSED));
+        swtichs[index][4] = 1;
+        swtichs[index][3] = 0;
+      }
     }
   }
   delay(DELAY_TIME);

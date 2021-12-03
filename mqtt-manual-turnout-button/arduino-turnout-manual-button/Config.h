@@ -26,9 +26,9 @@
 
   };
 */
-const int swtichs[NO_OF_TURNOUT][3] = {
-  {3, 4, 40001},
-  {5, 6, 50001},
+const int swtichs[NO_OF_TURNOUT][5] = {
+  {3, 4, 40001, 0, 0},
+  {5, 6, 50001, 0, 0},
 };
 
 #endif
