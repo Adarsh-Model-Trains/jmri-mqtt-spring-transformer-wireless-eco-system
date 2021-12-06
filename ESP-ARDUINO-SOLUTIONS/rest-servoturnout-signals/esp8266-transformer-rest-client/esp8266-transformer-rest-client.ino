@@ -59,7 +59,7 @@ String httpGETRequest(const char* serverName) {
     payload = http.getString();
   }
   else {
-    Serial.println("Error code: " + String(httpResponseCode));
+    //Serial.println("Error code: " + String(httpResponseCode));
   }
   // Free resources
   http.end();
