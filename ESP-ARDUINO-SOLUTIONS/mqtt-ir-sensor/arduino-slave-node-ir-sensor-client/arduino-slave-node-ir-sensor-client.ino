@@ -29,6 +29,7 @@ void setup() {
 void loop() {
 
   for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
+
     isBlockOccuipied = blockSensors.isSensorBlockOccupied(blockNo);
     if (isBlockOccuipied) {
       if (sensStatus[blockNo - 1] != 1) {

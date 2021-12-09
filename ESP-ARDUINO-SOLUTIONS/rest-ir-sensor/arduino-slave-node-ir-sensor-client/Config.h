@@ -9,13 +9,20 @@
 #include "Arduino.h"
 
 /************************************************************************************************/
+enum BLOCK_STATES {
+  UNOCCUPIED,
+  OCCUPYING_FROM_START_OF_BLOCK,
+  OCCUPYING_FROM_END_OF_BLOCK,
+  OCCUPIED,
+};
+
 #define ON LOW
 #define OFF HIGH
 #define ACTIVE ":AC\n"
 #define INACTIVE ":IN\n"
 #define PINS 2
 #define BROAD_RATE 115200
-#define DELAY_TIME 5000
+#define DELAY_TIME 200
 /************************************************************************************************/
 #define INVALID_SENSOR_NUMBER " INVLAID SENEOR NUMBER "
 /************************************************************************************************/
@@ -34,8 +41,8 @@
 */
 const int sensorPin[NO_OF_BLOCKS][PINS] = {
   {13, 12 },
-  {11, 10 },
-  {9, 8}
+  {12, 11 },
+  {11, 10}
 };
 
 #endif

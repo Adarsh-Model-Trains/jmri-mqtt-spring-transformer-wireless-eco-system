@@ -35,14 +35,14 @@ void IrSensor::calculateBlockOccupancy() {
       break;
 
     case OCCUPYING_FROM_START_OF_BLOCK:
-      _stateCurrent = occupiedFromEndOfBlock(_statePrevious, _startBlockSensorVal, _endBlockSensorVal);
+      _stateCurrent = occupiedFromEndOfBlock (_statePrevious, _startBlockSensorVal, _endBlockSensorVal);
       if (_stateCurrent != _statePrevious) {
         _statePrevious = _stateCurrent;
       }
       break;
 
     case OCCUPYING_FROM_END_OF_BLOCK:
-      _stateCurrent = occupiedFromStartOfBlock(_statePrevious, _startBlockSensorVal, _endBlockSensorVal);
+      _stateCurrent =  occupiedFromStartOfBlock (_statePrevious, _startBlockSensorVal, _endBlockSensorVal);
       if (_stateCurrent != _statePrevious) {
         _statePrevious = _stateCurrent;
       }
@@ -78,15 +78,6 @@ BLOCK_STATES IrSensor::unOccupiedBlock(BLOCK_STATES signalState, int startSensor
 }
 
 
-BLOCK_STATES IrSensor::occupiedFromEndOfBlock(BLOCK_STATES signalState, int startSensor, int endSensor) {
-
-  if (startSensor == OFF && endSensor == ON) {
-    signalState = OCCUPIED;
-  }
-  return signalState;
-}
-
-
 BLOCK_STATES IrSensor::occupiedFromStartOfBlock(BLOCK_STATES signalState, int startSensor, int endSensor) {
 
   if (startSensor == ON  && endSensor == OFF) {
@@ -95,6 +86,14 @@ BLOCK_STATES IrSensor::occupiedFromStartOfBlock(BLOCK_STATES signalState, int st
   return signalState;
 }
 
+
+BLOCK_STATES IrSensor::occupiedFromEndOfBlock(BLOCK_STATES signalState, int startSensor, int endSensor) {
+
+  if (startSensor == OFF && endSensor == ON) {
+    signalState = OCCUPIED;
+  }
+  return signalState;
+}
 
 BLOCK_STATES IrSensor::occupiedBlock(BLOCK_STATES signalState, int startSensor, int endSensor) {
 
