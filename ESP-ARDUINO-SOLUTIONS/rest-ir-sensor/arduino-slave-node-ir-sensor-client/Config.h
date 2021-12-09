@@ -22,7 +22,7 @@ enum BLOCK_STATES {
 #define INACTIVE ":IN\n"
 #define PINS 2
 #define BROAD_RATE 115200
-#define DELAY_TIME 200
+#define DELAY_TIME 100
 /************************************************************************************************/
 #define INVALID_SENSOR_NUMBER " INVLAID SENEOR NUMBER "
 /************************************************************************************************/

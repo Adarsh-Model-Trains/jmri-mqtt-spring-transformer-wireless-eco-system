@@ -42,7 +42,7 @@ void loop() {
       }
     } else {
       if (sensStatus[blockNo - 1] != 0) {
-        if (sendThreashold[blockNo - 1] < SEND_THRESHOLD) {
+        if (sendThreashold[blockNo - 1] < SEND_THRESHOLD ) {
           sendThreashold[blockNo - 1] = sendThreashold[blockNo - 1] + 1;
           sendData(String(JMRI_SENSOR_START_ADDRESS + blockNo) + INACTIVE);
         } else {
