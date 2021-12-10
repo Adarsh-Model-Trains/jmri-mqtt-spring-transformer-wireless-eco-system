@@ -16,8 +16,10 @@
 int blockNo = 0;
 String topic;
 int sensStatus[NO_OF_BLOCKS];
+int sendThreashold[NO_OF_BLOCKS];
 bool isBlockOccuipied;
 CtSensor ctSensor;
+
 
 // Initialise the WiFi and MQTT Client objects
 WiFiClient wifiClient;
@@ -53,7 +55,7 @@ void setup() {
   // Begin Serial on 115200
   Serial.begin(BROAD_RATE);
 
-  Serial.print("Connecting to ");
+  Serial.print("CONNECTING TO WIFI .. ");
   Serial.println(WIFI_SSID);
 
   // Connect to the WiFi
@@ -67,23 +69,24 @@ void setup() {
 
 
   // Debugging - Output the IP Address of the ESP8266
-  Serial.println(();
-  Serial.print("WiFi connected: ");
+  Serial.println();
+  Serial.print("CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
 
   // Connect to MQTT Broker
   if (mqttConnect()) {
-    Serial.println("Connected Successfully to MQTT Broker!");
+    Serial.println(" CONNNECTED TO MQTT ");
   } else {
-    Serial.println("Connection Failed!");
+    Serial.println(" NOT CONNNECTED TO MQTT ");
   }
 
   ctSensor.initCtSensor(NO_OF_BLOCKS);
   for ( blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
     ctSensor.setSensorPin(blockNo + 1, sensorPin[blockNo]);
     sensStatus[blockNo] = 0;
+    sendThreashold[blockNo] = 0;
   }
 }
 
@@ -100,13 +103,23 @@ void loop() {
     isBlockOccuipied = ctSensor.isSensorActive(blockNo);
     if (isBlockOccuipied) {
       if (sensStatus[blockNo - 1] != 1) {
-        sensStatus[blockNo - 1] = 1;
-        publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , ACTIVE);
+        if (sendThreashold[blockNo - 1] < SEND_THRESHOLD) {
+          sendThreashold[blockNo - 1] = sendThreashold[blockNo - 1] + 1;
+          publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , ACTIVE);
+        } else {
+          sensStatus[blockNo - 1] = 1;
+          sendThreashold[blockNo - 1] = 0;
+        }
       }
     } else {
       if (sensStatus[blockNo - 1] != 0) {
-        sensStatus[blockNo - 1] = 0;
-        publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , INACTIVE);
+        if (sendThreashold[blockNo - 1] < SEND_THRESHOLD) {
+          sendThreashold[blockNo - 1] = sendThreashold[blockNo - 1] + 1;
+          publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , INACTIVE);
+        } else {
+          sendThreashold[blockNo - 1] = 0;
+          sensStatus[blockNo - 1] = 0;
+        }
       }
     }
   }

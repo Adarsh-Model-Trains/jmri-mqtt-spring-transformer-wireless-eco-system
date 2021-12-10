@@ -13,7 +13,10 @@ String val;
 int jmriId ;
 int boardId ;
 int pinId ;
+char type = '-';
 String serverResponse;
+int httpResponseCode = -1;
+String payload = "";
 const uint32_t connectTimeoutMs = 5000;
 
 ESP8266WiFiMulti wifiMulti;
@@ -30,7 +33,7 @@ void setup() {
   }
   // Debugging - Output the IP Address of the ESP8266
   Serial.println();
-  Serial.print("WiFi connected: ");
+  Serial.print("CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
@@ -46,7 +49,7 @@ void loop() {
       delay(DELAY_TIME);
     }
   } else {
-    Serial.println("WiFi Disconnected");
+    Serial.println(" NOT CONNECTED TO WIFI ");
   }
 }
 
@@ -59,15 +62,15 @@ String httpGETRequest(const char* serverName) {
   http.begin(client, serverName);
 
   // Send HTTP POST request
-  int httpResponseCode = http.GET();
-  String payload = "";
+  httpResponseCode = http.GET();
+  payload = "";
 
   if (httpResponseCode > 0) {
-    //Serial.println("HTTP Response code: " + String(httpResponseCode));
+     Serial.println("HTTP RESPONSE CODE: " + String(httpResponseCode));
     payload = http.getString();
   }
   else {
-    Serial.println("Error code: " + String(httpResponseCode));
+    Serial.println("ERROR CODE: " + String(httpResponseCode));
   }
   // Free resources
   http.end();
@@ -77,7 +80,7 @@ String httpGETRequest(const char* serverName) {
 void processCall(String msg) {
 
   Serial.println("Message " + msg);
-  char type = msg.charAt(0);
+  type = msg.charAt(0);
   msg = msg.substring(2);
 
   if (type == S) {
@@ -105,8 +108,9 @@ void processCall(String msg) {
     doExecute(msg, L);
 
   } else if (type == O) {
-    Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
+    Serial.println(REST_API_DISABLED);
   }
+  type = '-';
 }
 
 void doExecute(String msg , char type) {
@@ -135,7 +139,7 @@ void doExecute(String msg , char type) {
       }
     }
   } else {
-    Serial.println("BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED ");
+    Serial.println(BOARDS_CONFIG);
   }
 }
 

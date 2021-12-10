@@ -18,8 +18,17 @@
 #define WIFI_RECONNECT_DELAY_TIME 500
 #define PWM_FREQUENCY 1000
 #define TOTAL_BOARD_PIN 16
+#define F0 0
+#define F4096 4096
 /************************************************************************************************/
-
+#define REST_API_DISABLED "REST API IS NOT ENABLED FOR THIS NODE"
+#define BOARDS_CONFIG "BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED"
+#define TURNOUT_THROW "TURNOUT THROW\n"
+#define TURNOUT_CLOSE "TURNOUT CLOSE\n"
+#define LED_ON " LED ON\n"
+#define LED_OFF " LED OFF\n"
+/************************************************************************************************/
+const bool signalLedTypeAnode = true;
 
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING
 // APPLICATION NODE DEFINATION THEN ONLY THIS WILL WORK

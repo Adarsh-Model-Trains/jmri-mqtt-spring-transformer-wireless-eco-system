@@ -23,6 +23,15 @@
 #define PWM_LIGHT_FREQUENCY 1000
 #define PWM_SNAP_TURNOUT_FREQUENCY 1000
 #define PWM_SERVO_TURNOUT_FREQUENCY 50 
+#define F0 0
+#define F4096 4096
+/************************************************************************************************/
+#define REST_API_DISABLED "REST API IS NOT ENABLED FOR THIS NODE"
+#define BOARDS_CONFIG "BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED"
+#define TURNOUT_THROWN "TURNOUT THROW\n"
+#define TURNOUT_CLOSE "TURNOUT CLOSE\n"
+#define LED_ON " LED ON\n"
+#define LED_OFF " LED OFF\n"
 /************************************************************************************************/
 
 
@@ -48,6 +57,8 @@
 #define NO_OF_SNAP_TURNOUT_BOARDS 1
 #define NO_OF_LIGHT_BOARDS 3
 #define NO_OF_TOTAL_BOARDS 5
+
+const bool signalLedTypeAnode = true;
 
 /*
 int turnoutRange[][TOTAL_BOARD_PIN][RANGE_TYPE] = {

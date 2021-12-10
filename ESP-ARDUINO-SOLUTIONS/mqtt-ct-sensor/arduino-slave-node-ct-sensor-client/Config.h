@@ -15,11 +15,13 @@
 #define BROAD_RATE 115200
 #define DELAY_TIME 5000
 /************************************************************************************************/
-
+#define INVALID_SENSOR_NUMBER " INVLAID SENEOR NUMBER "
+/************************************************************************************************/
 
 #define JMRI_SENSOR_START_ADDRESS 10000
 #define NO_OF_BLOCKS 2
 #define ENABLE_PULLUP true
+#define SEND_THRESHOLD 3
 /*
  * CT SENSORS PIN CONFIGURATION 
   const int sensorPin[NO_OF_BLOCKS][PINS] = {

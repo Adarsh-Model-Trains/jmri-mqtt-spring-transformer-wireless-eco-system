@@ -19,8 +19,11 @@
 #define PINS 2
 #define JMRI_MQTT_TOPIC  "/trains/track/#"
 #define JMRI_MQTT_SENSOR_TOPIC "/trains/track/sensor/"
+#define SEND_THRESHOLD 3
 /************************************************************************************************/
-
+#define INVALID_SENSOR_NUMBER " INVLAID SENEOR NUMBER "
+#define INVALID_SENSOR_PIN " INVLAID SENEOR PIN NO "
+/************************************************************************************************/
 // WiFi
 // Make sure to update this for your own WiFi network!
 // ESP8266 do not support 5G wifi connection

@@ -16,6 +16,10 @@
 #define INACTIVE "INACTIVE"
 #define JMRI_MQTT_TOPIC  "/trains/track/#"
 #define JMRI_MQTT_SENSOR_TOPIC "/trains/track/sensor/"
+#define SEND_THRESHOLD 3
+/************************************************************************************************/
+#define INVALID_SENSOR_NUMBER " INVLAID SENEOR NUMBER "
+#define INVALID_SENSOR_PIN " INVLAID SENEOR PIN NO "
 /************************************************************************************************/
 
 // WiFi
@@ -36,7 +40,7 @@
 #define NO_OF_BLOCKS 2
 #define ENABLE_PULLUP true
 /*
- * CT SENSORS PIN CONFIGURATION 
+   CT SENSORS PIN CONFIGURATION
   const int sensorPin[NO_OF_BLOCKS][PINS] = {
   BLOCK_1__PIN,
   BLOCK_2_PIN,

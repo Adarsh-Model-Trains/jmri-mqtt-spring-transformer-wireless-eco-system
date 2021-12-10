@@ -55,7 +55,7 @@ void setup() {
   // Begin Serial on 115200
   Serial.begin(BROAD_RATE);
 
-  Serial.print("Connecting to ");
+  Serial.print("CONNECTING TO WIFI  ");
   Serial.println(WIFI_SSID);
 
   // Connect to the WiFi
@@ -64,11 +64,12 @@ void setup() {
   // Wait until the connection has been confirmed before continuing
   while (WiFi.status() != WL_CONNECTED) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-    //Serial.print(".");
+    Serial.print(".");
   }
 
   // Debugging - Output the IP Address of the ESP8266
-  Serial.print("WiFi connected: ");
+  Serial.println();
+  Serial.print("CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
@@ -77,9 +78,9 @@ void setup() {
   // setCallback sets the function to be called when a message is received.
   client.setCallback(subscribeMqttMessage);
   if (mqttConnect()) {
-    Serial.println("Connected Successfully to MQTT Broker!");
+    Serial.println("CONNNECTED TO MQTT ");
   } else {
-    Serial.println("Connection Failed!");
+    Serial.println("NOT CONNNECTED TO MQTT ");
   }
 }
 

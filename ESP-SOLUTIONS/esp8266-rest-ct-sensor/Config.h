@@ -14,6 +14,11 @@
 #define PAYLOAD_FROUNT "{\"topic\": \"/trains/track/sensor/"
 #define PAYLOAD_BACK_ACTIVE "\", \"data\": \"ACTIVE\"}"
 #define PAYLOAD_BACK_INACTIVE "\", \"data\": \"INACTIVE\"}"
+#define SEND_THRESHOLD 3
+/************************************************************************************************/
+#define WIFI_MSG_F " NOT CONNECTED TO WIFI "
+#define INVALID_SENSOR_NUMBER " INVLAID SENEOR NUMBER "
+#define INVALID_SENSOR_PIN " INVLAID SENEOR PIN NO "
 /************************************************************************************************/
 
 // ESP8266 do not support 5G wifi connection

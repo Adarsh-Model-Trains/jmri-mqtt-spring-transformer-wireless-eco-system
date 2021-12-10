@@ -14,37 +14,46 @@ void Pca9685BoardManager::initPca9685Boards() {
 
   if (NO_OF_TOTAL_BOARDS > 0 && NO_OF_TOTAL_BOARDS < 65) {
 
-    Serial.print("Total Pca9685 boards for Turnout and Light ");
+    Serial.print(" TOTAL PCA9685 BOARDS FOR TURNOUT & SIGNALS ");
     Serial.println(NO_OF_TOTAL_BOARDS);
 
     if (NO_OF_TURNOUT_BOARDS > -1 && NO_OF_TURNOUT_BOARDS < 65) {
-      Serial.print("Total Pca9685 boards for Turnout ");
+      Serial.print(" TOTAL PCA9685 BOARDS FOR TURNOUT ");
       Serial.println(NO_OF_TURNOUT_BOARDS);
     } else {
-      Serial.println("invalid arguments supplied ");
+      Serial.println(" INVALID TURNOUT BOARDS COUNT ");
       return;
     }
 
     if (NO_OF_LIGHT_BOARDS > -1 && NO_OF_LIGHT_BOARDS < 65) {
-      Serial.print("Total Pca9685 boards for Light ");
+      Serial.print(" TOTAL PCA9685 BOARDS FOR LIGHTS ");
       Serial.println(NO_OF_LIGHT_BOARDS);
     } else {
-      Serial.println("invalid arguments supplied ");
+      Serial.println(" INVALID LIGHT BOARDS COUNT ");
       return;
     }
 
     if (index <= 0) {
-      _pca9685Boards = new Pca9685[NO_OF_TOTAL_BOARDS];
+      _pwmBoards = new Adafruit_PWMServoDriver[NO_OF_TOTAL_BOARDS];
+      _pwmBoardTypes  = new char[NO_OF_TOTAL_BOARDS];
+
       while (index < NO_OF_TOTAL_BOARDS) {
         if ( index < NO_OF_TURNOUT_BOARDS) {
-          _pca9685Boards[index].setBoardAddress(_boardAddress[index]);
-          _pca9685Boards[index].initPca9685(T);
-          Serial.print(" value of Index ");
+
+          _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
+          _pwmBoards[index].begin();
+          _pwmBoards[index].setPWMFreq(PWM_FREQUENCY);
+          _pwmBoardTypes[index] = T;
+
+          Serial.print(" INDEX VALUE ");
           Serial.println(index);
         } else  {
-          _pca9685Boards[index].setBoardAddress(_boardAddress[index]);
-          _pca9685Boards[index].initPca9685(L);
-          Serial.print(" value of Index ");
+          _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
+          _pwmBoardTypes[index] = L;
+          _pwmBoards[index].begin();
+          _pwmBoards[index].setPWMFreq(PWM_FREQUENCY);
+
+          Serial.print(" INDEX VALUE ");
           Serial.println(index);
         }
         delay(50);
@@ -53,14 +62,17 @@ void Pca9685BoardManager::initPca9685Boards() {
     }
 
   } else {
-    Serial.println("invalid arguments supplied ");
+    Serial.println(" INVALID BOARD COUNT FOR TURNOUT AND LIGHTS ");
   }
 
 }
 
 bool Pca9685BoardManager::switchThrow(int boardId, int pinId) {
-  if (_pca9685Boards[boardId].getType() == T) {
-    _pca9685Boards[boardId].turnoutThrow(pinId);
+  if (_pwmBoardTypes[boardId] == T) {
+    _pwmBoards[boardId].setPWM(pinId, F4096, F0);
+    delay(DELAY_TIME);
+    _pwmBoards[boardId].setPWM(pinId, F0, F4096);
+    Serial.println(TURNOUT_THROW);
     return true;
   } else {
     return false;
@@ -68,20 +80,24 @@ bool Pca9685BoardManager::switchThrow(int boardId, int pinId) {
 }
 
 bool Pca9685BoardManager::switchClose(int boardId, int pinId) {
-  if (_pca9685Boards[boardId].getType() == T) {
-    _pca9685Boards[boardId].turnoutClose(pinId);
+  if (_pwmBoardTypes[boardId] == T) {
+    _pwmBoards[boardId].setPWM(pinId, F4096, F0);
+    delay(DELAY_TIME);
+    _pwmBoards[boardId].setPWM(pinId, F0, F4096);
+    Serial.println(TURNOUT_CLOSE);
     return true;
   } else {
     return false;
   }
 }
 bool Pca9685BoardManager::switchOn(int boardId, int pinId) {
-  if (_pca9685Boards[boardId].getType() == L) {
+  if (_pwmBoardTypes[boardId] == L) {
     if (signalLedTypeAnode) {
-      _pca9685Boards[boardId].ledOff(pinId);
+      _pwmBoards[boardId].setPWM(pinId, F4096, F0);
     } else {
-      _pca9685Boards[boardId].ledOn(pinId);
+      _pwmBoards[boardId].setPWM(pinId, F0, F4096);
     }
+    Serial.println(LED_ON);
     return true;
   } else {
     return false;
@@ -89,12 +105,13 @@ bool Pca9685BoardManager::switchOn(int boardId, int pinId) {
 }
 
 bool Pca9685BoardManager::switchOff(int boardId, int pinId) {
-  if (_pca9685Boards[boardId].getType() == L) {
+  if (_pwmBoardTypes[boardId] == L) {
     if (signalLedTypeAnode) {
-      _pca9685Boards[boardId].ledOn(pinId);
+      _pwmBoards[boardId].setPWM(pinId, F0, F4096);
     } else {
-      _pca9685Boards[boardId].ledOff(pinId);
+      _pwmBoards[boardId].setPWM(pinId, F4096, F0);
     }
+    Serial.println(LED_OFF);
     return true;
   } else {
     return false;

@@ -40,8 +40,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-
-
+		
 		<!--MQTT-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

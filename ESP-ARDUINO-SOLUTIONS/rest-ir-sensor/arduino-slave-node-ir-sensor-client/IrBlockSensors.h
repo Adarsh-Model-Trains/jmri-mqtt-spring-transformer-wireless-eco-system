@@ -5,8 +5,9 @@
 */
 #ifndef IrBlockSensors_h
 #define IrBlockSensors_h
-
+#include "Config.h"
 #include "IrSensor.h"
+
 
 class IrBlockSensors {
 
