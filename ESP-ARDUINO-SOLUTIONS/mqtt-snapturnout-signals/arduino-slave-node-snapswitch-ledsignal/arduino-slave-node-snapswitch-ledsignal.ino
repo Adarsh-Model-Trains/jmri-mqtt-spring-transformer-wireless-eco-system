@@ -7,7 +7,7 @@
 #include "Config.h"
 #include "Pca9685BoardManager.h"
 
-String light;
+String comp;
 String jId ;
 String bId ;
 String pId ;
@@ -42,10 +42,9 @@ void processCall(String msg) {
 
   Serial.println("Message " + msg);
   type = msg.charAt(0);
-  msg = msg.substring(2);
 
   if (type == S) {
-
+    msg = msg.substring(2);
     doExecute(msg, S);
     msg = msg.substring(15);
 
@@ -61,11 +60,11 @@ void processCall(String msg) {
       }
     }
   } else if (type == T) {
-
+    msg = msg.substring(2);
     doExecute(msg, T);
 
   } else if (type == L) {
-
+    msg = msg.substring(2);
     doExecute(msg, L);
 
   }  else if (type == E) {
@@ -80,16 +79,16 @@ void processCall(String msg) {
 }
 
 void doExecute(String msg , char type) {
-  light = msg.substring(0, MSG_SIZE);
-  jId = light.substring(0, 5);
-  bId = light.substring(6, 8);
-  pId = light.substring(9, 11);
-  val = light.substring(12, MSG_SIZE);
+  comp = msg.substring(0, MSG_SIZE);
+  jId = comp.substring(0, 5);
+  bId = comp.substring(6, 8);
+  pId = comp.substring(9, 11);
+  val = comp.substring(12, MSG_SIZE);
 
   boardId = atoi(bId.c_str());
   pinId = atoi(pId.c_str());
 
-  doPrint(light, jId, bId, pId, val);
+  doPrint(comp, jId, bId, pId, val);
   if (boardId <= NO_OF_TOTAL_BOARDS) {
     if (type == T ) {
       if (val == THROWN) {

@@ -48,7 +48,6 @@ void setup() {
 void loop() {
   if ((WiFiMulti.run() == WL_CONNECTED)) {
     serverResponse = httpGETRequest();
-    // todo with the server response
     if (serverResponse != "") {
       processCall(serverResponse);
       delay(DELAY_TIME);
@@ -77,10 +76,9 @@ void processCall(String msg) {
 
   Serial.println(" Message " + msg);
   type = msg.charAt(0);
-  msg = msg.substring(2);
 
   if (type == S) {
-
+    msg = msg.substring(2);
     doExecute(msg, S);
     msg = msg.substring(15);
 
@@ -96,11 +94,11 @@ void processCall(String msg) {
       }
     }
   } else if (type == T) {
-
+    msg = msg.substring(2);
     doExecute(msg, T);
 
   } else if (type == L) {
-
+    msg = msg.substring(2);
     doExecute(msg, L);
 
   }  else if (type == E) {
