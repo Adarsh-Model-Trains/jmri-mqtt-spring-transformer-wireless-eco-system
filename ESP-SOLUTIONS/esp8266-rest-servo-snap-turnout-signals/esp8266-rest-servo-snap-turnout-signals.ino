@@ -19,6 +19,8 @@ int httpResponseCode = -1;
 String payload = "";
 const uint32_t connectTimeoutMs = 5000;
 
+HTTPClient http;
+WiFiClient client;
 ESP8266WiFiMulti wifiMulti;
 Pca9685BoardManager pcaBoardManager;
 
@@ -38,11 +40,14 @@ void setup() {
   Serial.print(" ");
   Serial.println(WiFi.localIP());
   pcaBoardManager.initPca9685Boards();
+
+  // Your IP address with path or Domain name with URL path
+  http.begin(client, SERVER_URL);
 }
 
 void loop() {
   if (wifiMulti.run(connectTimeoutMs) == WL_CONNECTED) {
-    serverResponse = httpGETRequest(SERVER_URL);
+    serverResponse = httpGETRequest();
     // todo with the server response
     if (serverResponse != "") {
       processCall(serverResponse);
@@ -53,27 +58,18 @@ void loop() {
   }
 }
 
-String httpGETRequest(const char* serverName) {
-
-  WiFiClient client;
-  HTTPClient http;
-
-  // Your IP address with path or Domain name with URL path
-  http.begin(client, serverName);
-
-  // Send HTTP POST request
+String httpGETRequest() {
   httpResponseCode = http.GET();
   payload = "";
 
   if (httpResponseCode > 0) {
-     Serial.println("HTTP RESPONSE CODE: " + String(httpResponseCode));
+    Serial.println("HTTP RESPONSE CODE: " + String(httpResponseCode));
     payload = http.getString();
-  }
-  else {
+  } else if (httpResponseCode == -1) {
+    Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
+  } else {
     Serial.println("ERROR CODE: " + String(httpResponseCode));
   }
-  // Free resources
-  http.end();
   return payload;
 }
 

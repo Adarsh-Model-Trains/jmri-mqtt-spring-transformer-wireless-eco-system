@@ -10,7 +10,10 @@ int httpResponseCode;
 bool isBlockOccuipied;
 int sensStatus[NO_OF_BLOCKS];
 int sendThreashold[NO_OF_BLOCKS];
+
 CtSensor ctSensor;
+HTTPClient http;
+WiFiClient client;
 ESP8266WiFiMulti WiFiMulti;
 
 void setup() {
@@ -28,6 +31,9 @@ void setup() {
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
+
+  // Your IP address with path or Domain name with URL path
+  http.begin(client, SERVER_URL);
 
   ctSensor.initCtSensor(NO_OF_BLOCKS);
   for (blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
@@ -73,18 +79,16 @@ void loop() {
 }
 
 int httpPostRequest(String payload) {
-  WiFiClient client;
-  HTTPClient http;
-  // Your IP address with path or Domain name with URL path
-  http.begin(client, SERVER_URL);
+
   http.addHeader(CONTENT_TYPE, CONTENT_TYPE_VAL);
   // Send HTTP POST request
   httpResponseCode = http.POST(payload);
   if (httpResponseCode > 0) {
-    Serial.println("Payload " + payload + " Response code: " + String(httpResponseCode) + " Response " + http.getString());
+    Serial.println("RESPONSE Payload " + payload + " Response code: " + String(httpResponseCode) + " Response " + http.getString());
+  } else if (httpResponseCode == -1) {
+    Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
   } else {
-    Serial.println("Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
+    Serial.println("ERROR Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
   }
-  http.end();
   return httpResponseCode;
 }

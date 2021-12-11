@@ -15,6 +15,7 @@
 #define O 'O'
 #define M 'M'
 #define N 'N'
+#define E 'E'
 #define THROWN "TH"
 #define CLOSED "CL"
 #define ON "ON"
@@ -31,6 +32,7 @@
 #define F4096 4096
 /************************************************************************************************/
 #define REST_API_DISABLED "REST API IS NOT ENABLED FOR THIS NODE"
+#define NO_DATA_AVALIABLE "NO DATA AVALIABLE FOR THIS NODE"
 #define BOARDS_CONFIG "BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED"
 #define TURNOUT_THROW "TURNOUT THROW\n"
 #define TURNOUT_CLOSE "TURNOUT CLOSE\n"

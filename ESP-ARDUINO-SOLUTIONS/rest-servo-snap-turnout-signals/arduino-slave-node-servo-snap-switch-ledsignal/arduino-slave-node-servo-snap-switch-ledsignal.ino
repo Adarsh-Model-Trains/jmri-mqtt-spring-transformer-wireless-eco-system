@@ -18,7 +18,7 @@ int pinId ;
 char type;
 String message;
 
- Pca9685BoardManager pcaBoardManager;
+Pca9685BoardManager pcaBoardManager;
 
 void setup() {
   Serial.begin(BROAD_RATE);
@@ -70,7 +70,12 @@ void processCall(String msg) {
 
     doExecute(msg, L);
 
-  } else if (type == O) {
+  } else if (type == E) {
+
+    Serial.println(NO_DATA_AVALIABLE);
+
+  }  else if (type == O) {
+
     Serial.println(REST_API_DISABLED);
   }
   type = '-';

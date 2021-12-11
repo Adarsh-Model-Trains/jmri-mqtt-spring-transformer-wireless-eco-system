@@ -45,9 +45,9 @@ void processCall(String msg) {
   Serial.println("Message " + msg);
   type = msg.charAt(0);
   msg = msg.substring(2);
-
+  
   if (type == S) {
-
+  
     doExecute(msg, S);
     msg = msg.substring(15);
 
@@ -70,7 +70,12 @@ void processCall(String msg) {
 
     doExecute(msg, L);
 
-  } else if (type == O) {
+  }  else if (type == E) {
+
+    Serial.println(NO_DATA_AVALIABLE);
+
+  }  else if (type == O) {
+
     Serial.println(REST_API_DISABLED);
   }
   type = '-';

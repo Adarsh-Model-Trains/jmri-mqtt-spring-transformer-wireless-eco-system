@@ -73,7 +73,7 @@ void setup() {
   if (mqttConnect()) {
     Serial.println("CONNNECTED TO MQTT  ");
   } else {
-    Serial.println("NOT CONNNECTED TO MQTT  ");
+    Serial.println("ERROR NOT CONNNECTED TO MQTT  ");
   }
 }
 
