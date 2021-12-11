@@ -53,7 +53,7 @@ void setup() {
   // Begin Serial on 115200
   Serial.begin(BROAD_RATE);
 
-  Serial.print("CONNECTING TO WIFI ");
+  Serial.print(" CONNECTING TO WIFI ");
   Serial.println(WIFI_SSID);
 
   // Connect to the WiFi
@@ -75,9 +75,9 @@ void setup() {
 
   // Connect to MQTT Broker
   if (mqttConnect()) {
-    Serial.println("CONNNECTED TO MQTT ");
+    Serial.println(" CONNNECTED TO MQTT ");
   } else {
-    Serial.println("NOT CONNNECTED TO MQTT ");
+    Serial.println(" ERROR NOT CONNNECTED TO MQTT ");
   }
 
   blockSensors.initBlockSensors(NO_OF_BLOCKS);

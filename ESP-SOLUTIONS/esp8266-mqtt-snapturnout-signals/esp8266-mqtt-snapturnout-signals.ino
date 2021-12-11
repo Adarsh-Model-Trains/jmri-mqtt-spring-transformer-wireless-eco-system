@@ -68,7 +68,7 @@ void setup() {
   // Begin Serial on 115200
   Serial.begin(BROAD_RATE);
 
-  Serial.print("Connecting to ");
+  Serial.print( " CONNECTING TO WIFI ");
   Serial.println(WIFI_SSID);
 
   // Connect to the WiFi
@@ -80,9 +80,8 @@ void setup() {
     Serial.print(".");
   }
 
-  // Debugging - Output the IP Address of the ESP8266
   Serial.println();
-  Serial.print("CONNECTED TO WIFI ");
+  Serial.print(" CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
@@ -91,9 +90,9 @@ void setup() {
   // setCallback sets the function to be called when a message is received.
   client.setCallback(subscribeMqttMessage);
   if (mqttConnect()) {
-    Serial.println("CONNNECTED TO MQTT ");
+    Serial.println(" CONNNECTED TO MQTT ");
   } else {
-    Serial.println("NOT CONNNECTED TO MQTT");
+    Serial.println(" ERROR NOT CONNNECTED TO MQTT");
   }
 
   pcaBoardManager.initPca9685Boards();
@@ -115,7 +114,7 @@ void loop() {
 
 void processCall(String msg) {
 
-  Serial.println("Message " + msg);
+  Serial.println(" Message " + msg);
   type = msg.charAt(0);
   msg = msg.substring(2);
 
@@ -143,9 +142,7 @@ void processCall(String msg) {
 
     doExecute(msg, L);
 
-  } else if (type == O) {
-    Serial.println(REST_API_DISABLED);
-  }
+  } 
   type = '-';
 }
 

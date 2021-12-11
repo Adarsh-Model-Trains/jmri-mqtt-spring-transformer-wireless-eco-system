@@ -15,6 +15,7 @@
 #define O 'O'
 #define M 'M'
 #define N 'N'
+#define E 'E'
 #define THROWN "TH"
 #define CLOSED "CL"
 #define ON "ON"
@@ -25,12 +26,13 @@
 #define RANGE_TYPE 2
 #define PWM_LIGHT_FREQUENCY 1000
 #define PWM_SNAP_TURNOUT_FREQUENCY 1000
-#define PWM_SERVO_TURNOUT_FREQUENCY 50 
+#define PWM_SERVO_TURNOUT_FREQUENCY 50
 #define DELAY_TIME 200
 #define F0 0
 #define F4096 4096
 /************************************************************************************************/
 #define REST_API_DISABLED "REST API IS NOT ENABLED FOR THIS NODE"
+#define NO_DATA_AVALIABLE "NO DATA AVALIABLE FOR THIS NODE"
 #define BOARDS_CONFIG "BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED"
 #define TURNOUT_THROW "TURNOUT THROW\n"
 #define TURNOUT_CLOSE "TURNOUT CLOSE\n"
@@ -48,27 +50,27 @@ const bool slowMove = true;
 #define NO_OF_TOTAL_BOARDS 5
 
 /*
-int turnoutRange[][TOTAL_BOARD_PIN][RANGE_TYPE] = {
-  {  // BOARD 0 
+  int turnoutRange[][TOTAL_BOARD_PIN][RANGE_TYPE] = {
+  {  // BOARD 0
     {OPEN_RANGE, CLOSE_RANGE},  // PIN 0
     {OPEN_RANGE, CLOSE_RANGE}   // PIN 1
     ........
    },
-   {  // BOARD 1 
+   {  // BOARD 1
     {OPEN_RANGE, CLOSE_RANGE},  // PIN 0
     {OPEN_RANGE, CLOSE_RANGE}   // PIN 1
     ........
    },
-   
+
    ........
    ........
-   
-   {  // BOARD N 
+
+   {  // BOARD N
     {OPEN_RANGE, CLOSE_RANGE},  // PIN 0
     {OPEN_RANGE, CLOSE_RANGE}   // PIN 1
     ........
    }
-};
+  };
 */
 const int turnoutRange[][TOTAL_BOARD_PIN][RANGE_TYPE] = {
   {

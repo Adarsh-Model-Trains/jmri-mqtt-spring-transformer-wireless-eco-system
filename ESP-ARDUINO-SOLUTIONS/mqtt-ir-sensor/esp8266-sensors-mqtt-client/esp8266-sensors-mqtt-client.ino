@@ -22,7 +22,6 @@ WiFiClient wifiClient;
 // 1883 is the listener port for the Broker
 PubSubClient client(MQTT_SERVER, 1883, wifiClient);
 
-
 /*
    pushing the sensor data to the mqtt for jmri
 */
@@ -73,7 +72,7 @@ void setup() {
   if (mqttConnect()) {
     Serial.println("CONNNECTED TO MQTT");
   } else {
-    Serial.println("NOT CONNNECTED TO MQTT");
+    Serial.println("ERROR NOT CONNNECTED TO MQTT");
   }
 }
 

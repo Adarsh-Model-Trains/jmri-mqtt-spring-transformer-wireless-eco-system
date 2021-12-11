@@ -55,7 +55,7 @@ void setup() {
   // Begin Serial on 115200
   Serial.begin(BROAD_RATE);
 
-  Serial.print("CONNECTING TO WIFI .. ");
+  Serial.print(" CONNECTING TO WIFI .. ");
   Serial.println(WIFI_SSID);
 
   // Connect to the WiFi
@@ -70,7 +70,7 @@ void setup() {
 
   // Debugging - Output the IP Address of the ESP8266
   Serial.println();
-  Serial.print("CONNECTED TO WIFI ");
+  Serial.print(" CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
@@ -79,7 +79,7 @@ void setup() {
   if (mqttConnect()) {
     Serial.println(" CONNNECTED TO MQTT ");
   } else {
-    Serial.println(" NOT CONNNECTED TO MQTT ");
+    Serial.println(" ERROR NOT CONNNECTED TO MQTT ");
   }
 
   ctSensor.initCtSensor(NO_OF_BLOCKS);

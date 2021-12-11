@@ -22,7 +22,6 @@
 #define F4096 4096
 /************************************************************************************************/
 #define BOARDS_CONFIG "BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED"
-#define REST_API_DISABLED "REST API IS NOT ENABLED FOR THIS NODE"
 #define TURNOUT_THROW "TURNOUT THROW\n"
 #define TURNOUT_CLOSE "TURNOUT CLOSE\n"
 #define LED_ON " LED ON\n"

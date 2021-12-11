@@ -49,6 +49,7 @@ public class MQTTService {
     final public static String SIGNAL = "SIGNAL";
     final public static String TURNOUT = "TURNOUT";
     final public static String DEFAULT_BLOCK_RESULT = "O:0000:00:00:00";
+    final public static String DEFAULT_EMPTY_RESULT = "E:0000:00:00:00";
 
 
     @Autowired
@@ -313,7 +314,7 @@ public class MQTTService {
         }).findFirst().get();
     }
 
-    public  String findBoardPin(NodeConfigurations.Nodes node, Integer pinNo, String state) {
+    public String findBoardPin(NodeConfigurations.Nodes node, Integer pinNo, String state) {
         String data = "";
         int pin = pinNo - 1;
         int board = (pin / 16);
@@ -372,7 +373,8 @@ public class MQTTService {
 
     public String getData(String nodeId) throws Exception {
         if (activeNodeCache.containsKey(nodeId)) {
-            return store.get(nodeId).dequeue();
+            String data = store.get(nodeId).dequeue();
+            return (data != null) ? data : DEFAULT_EMPTY_RESULT;
         } else {
             return DEFAULT_BLOCK_RESULT;
         }
