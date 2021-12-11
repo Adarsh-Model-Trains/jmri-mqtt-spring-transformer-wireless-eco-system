@@ -46,7 +46,6 @@ void loop() {
 
 String httpGETRequest() {
 
-  // Send HTTP POST request
   httpResponseCode = http.GET();
   payload = "";
   if (httpResponseCode > 0) {
@@ -56,8 +55,6 @@ String httpGETRequest() {
   } else {
     Serial.println("ERROR CODE: " + String(httpResponseCode));
   }
-  // Free resources
-  http.end();
   return payload;
 }
 

@@ -60,7 +60,6 @@ void loop() {
 String httpGETRequest() {
   httpResponseCode = http.GET();
   payload = "";
-
   if (httpResponseCode > 0) {
     Serial.println("HTTP RESPONSE CODE: " + String(httpResponseCode));
     payload = http.getString();

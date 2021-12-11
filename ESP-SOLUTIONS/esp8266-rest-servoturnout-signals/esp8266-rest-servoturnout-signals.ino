@@ -33,7 +33,6 @@ void setup() {
     Serial.print(".");
   }
 
-  // Debugging - Output the IP Address of the ESP8266
   Serial.println();
   Serial.print(" CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
@@ -61,10 +60,8 @@ void loop() {
 
 String httpGETRequest() {
 
-  // Send HTTP POST request
   httpResponseCode = http.GET();
   payload = "";
-
   if (httpResponseCode > 0) {
     Serial.println(" HTTP RESPONSE CODE: " + String(httpResponseCode));
     payload = http.getString();
@@ -73,7 +70,6 @@ String httpGETRequest() {
   } else {
     Serial.println(" ERROR CODE: " + String(httpResponseCode));
   }
-
   return payload;
 }
 
