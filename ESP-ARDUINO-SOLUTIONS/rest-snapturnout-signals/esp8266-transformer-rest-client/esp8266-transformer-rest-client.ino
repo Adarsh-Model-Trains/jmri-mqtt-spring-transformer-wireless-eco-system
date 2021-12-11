@@ -22,7 +22,6 @@ void setup() {
     delay(WIFI_RECONNECT_DELAY_TIME);
     Serial.print(".");
   }
-  // Debugging - Output the IP Address of the ESP8266
   Serial.println();
   Serial.print("CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
@@ -35,7 +34,6 @@ void setup() {
 void loop() {
   if ((WiFiMulti.run() == WL_CONNECTED)) {
     serverResponse = httpGETRequest();
-    // todo with the server response
     if (serverResponse != "") {
       pushDataToSlave(serverResponse);
       delay(DELAY_TIME);
@@ -52,7 +50,6 @@ String httpGETRequest() {
   httpResponseCode = http.GET();
   payload = "";
   if (httpResponseCode > 0) {
-    //Serial.println("HTTP Response code: " + String(httpResponseCode));
     payload = http.getString();
   } else if (httpResponseCode == -1) {
     Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));

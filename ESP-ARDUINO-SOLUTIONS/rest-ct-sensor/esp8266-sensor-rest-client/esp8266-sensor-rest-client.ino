@@ -57,11 +57,12 @@ void loop() {
 int httpPostRequest(String payload) {
 
   http.addHeader(CONTENT_TYPE, CONTENT_TYPE_VAL);
-  // Send HTTP POST request
   httpResponseCode = http.POST(payload);
   if (httpResponseCode > 0) {
     Serial.println("Payload " + payload + " Response code: " + String(httpResponseCode) + " Response " + http.getString());
-  } else {
+  } else if (httpResponseCode == -1) {
+    Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
+  }  else {
     Serial.println("ERROR Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
   }
   return httpResponseCode;

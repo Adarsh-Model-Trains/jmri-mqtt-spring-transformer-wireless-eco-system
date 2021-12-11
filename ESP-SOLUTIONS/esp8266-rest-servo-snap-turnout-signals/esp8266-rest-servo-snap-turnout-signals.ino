@@ -17,7 +17,6 @@ char type = '-';
 String serverResponse;
 int httpResponseCode = -1;
 String payload = "";
-const uint32_t connectTimeoutMs = 5000;
 
 HTTPClient http;
 WiFiClient client;
@@ -29,13 +28,13 @@ void setup() {
   WiFi.persistent(false);
   WiFi.mode(WIFI_STA);
   wifiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
-  while (wifiMulti.run(connectTimeoutMs) != WL_CONNECTED) {
+  while (wifiMulti.run() != WL_CONNECTED) {
     delay(WIFI_RECONNECT_DELAY_TIME);
     Serial.print(".");
   }
-  // Debugging - Output the IP Address of the ESP8266
+
   Serial.println();
-  Serial.print("CONNECTED TO WIFI ");
+  Serial.print(" CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
@@ -46,7 +45,7 @@ void setup() {
 }
 
 void loop() {
-  if (wifiMulti.run(connectTimeoutMs) == WL_CONNECTED) {
+  if (wifiMulti.run() == WL_CONNECTED) {
     serverResponse = httpGETRequest();
     // todo with the server response
     if (serverResponse != "") {
@@ -54,7 +53,7 @@ void loop() {
       delay(DELAY_TIME);
     }
   } else {
-    Serial.println(" NOT CONNECTED TO WIFI ");
+    Serial.println(" ERROR NOT CONNECTED TO WIFI ");
   }
 }
 
@@ -66,9 +65,9 @@ String httpGETRequest() {
     Serial.println("HTTP RESPONSE CODE: " + String(httpResponseCode));
     payload = http.getString();
   } else if (httpResponseCode == -1) {
-    Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
+    Serial.println(" ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
   } else {
-    Serial.println("ERROR CODE: " + String(httpResponseCode));
+    Serial.println(" ERROR CODE: " + String(httpResponseCode));
   }
   return payload;
 }

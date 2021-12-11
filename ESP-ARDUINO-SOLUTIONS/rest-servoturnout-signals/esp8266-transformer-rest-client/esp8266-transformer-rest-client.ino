@@ -22,7 +22,7 @@ void setup() {
     delay(WIFI_RECONNECT_DELAY_TIME);
     Serial.print(".");
   }
-  // Debugging - Output the IP Address of the ESP8266
+  
   Serial.println();
   Serial.print("CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
@@ -36,7 +36,6 @@ void setup() {
 void loop() {
   if ((WiFiMulti.run() == WL_CONNECTED)) {
     serverResponse = httpGETRequest();
-    // todo with the server response
     if (serverResponse != "") {
       pushDataToSlave(serverResponse);
       delay(DELAY_TIME);
@@ -49,7 +48,6 @@ void loop() {
 
 String httpGETRequest() {
 
-  // Send HTTP POST request
   httpResponseCode = http.GET();
   payload = "";
 

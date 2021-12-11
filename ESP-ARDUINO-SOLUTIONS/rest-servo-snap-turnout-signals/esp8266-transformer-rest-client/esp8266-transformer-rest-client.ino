@@ -4,7 +4,6 @@
 #include <ESP8266WiFiMulti.h>
 #include"Config.h"
 
-
 String payload = "";
 int httpResponseCode;
 String serverResponse;
@@ -22,28 +21,25 @@ void setup() {
     delay(WIFI_RECONNECT_DELAY_TIME);
     Serial.print(".");
   }
-  // Debugging - Output the IP Address of the ESP8266
   Serial.println();
   Serial.print("CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
 
-  // Your IP address with path or Domain name with URL path
   http.begin(client, SERVER_URL);
 }
 
 void loop() {
   if ((WiFiMulti.run() == WL_CONNECTED)) {
     serverResponse = httpGETRequest();
-    // todo with the server response
     if (serverResponse != "") {
       pushDataToSlave(serverResponse);
       delay(DELAY_TIME);
       serverResponse = "";
     }
   } else {
-    Serial.println("NOT CONNECTED TO WIFI");
+    Serial.println("ERROR NOT CONNECTED TO WIFI");
   }
 }
 
@@ -58,7 +54,6 @@ String httpGETRequest() {
   } else {
     Serial.println("ERROR CODE: " + String(httpResponseCode));
   }
-  // Free resources
   return payload;
 }
 

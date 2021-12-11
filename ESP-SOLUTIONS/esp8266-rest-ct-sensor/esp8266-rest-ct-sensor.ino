@@ -84,11 +84,11 @@ int httpPostRequest(String payload) {
   // Send HTTP POST request
   httpResponseCode = http.POST(payload);
   if (httpResponseCode > 0) {
-    Serial.println("RESPONSE Payload " + payload + " Response code: " + String(httpResponseCode) + " Response " + http.getString());
+    Serial.println(" RESPONSE Payload " + payload + " Response code: " + String(httpResponseCode) + " Response " + http.getString());
   } else if (httpResponseCode == -1) {
-    Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
+    Serial.println(" ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
   } else {
-    Serial.println("ERROR Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
+    Serial.println(" ERROR Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
   }
   return httpResponseCode;
 }

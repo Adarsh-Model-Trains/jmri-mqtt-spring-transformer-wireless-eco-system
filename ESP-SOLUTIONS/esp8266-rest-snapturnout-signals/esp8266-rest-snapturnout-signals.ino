@@ -32,9 +32,9 @@ void setup() {
     delay(WIFI_RECONNECT_DELAY_TIME);
     Serial.print(".");
   }
-  // Debugging - Output the IP Address of the ESP8266
+
   Serial.println();
-  Serial.print("CONNECTED TO WIFI ");
+  Serial.print(" CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
@@ -55,7 +55,7 @@ void loop() {
     }
 
   } else {
-    Serial.println("ERROR NOT CONNECTED TO WIFI ");
+    Serial.println(" ERROR NOT CONNECTED TO WIFI ");
   }
 }
 
@@ -66,19 +66,19 @@ String httpGETRequest() {
   payload = "";
 
   if (httpResponseCode > 0) {
-    Serial.println("HTTP RESPONSE CODE: " + String(httpResponseCode));
+    Serial.println(" HTTP RESPONSE CODE: " + String(httpResponseCode));
     payload = http.getString();
   } else if (httpResponseCode == -1) {
-    Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
+    Serial.println(" ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
   } else {
-    Serial.println("ERROR CODE: " + String(httpResponseCode));
+    Serial.println(" ERROR CODE: " + String(httpResponseCode));
   }
   return payload;
 }
 
 void processCall(String msg) {
 
-  Serial.println("Message " + msg);
+  Serial.println(" Message " + msg);
   type = msg.charAt(0);
   msg = msg.substring(2);
 

@@ -25,15 +25,12 @@ void setup() {
     Serial.print(".");
   }
 
-  // Debugging - Output the IP Address of the ESP8266
   Serial.println();
   Serial.print(" CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
 
-
-  // Your IP address with path or Domain name with URL path
   http.begin(client, SERVER_URL);
 
   blockSensors.initBlockSensors(NO_OF_BLOCKS);
@@ -43,7 +40,6 @@ void setup() {
     sendThreashold[blockNo] = 0;
   }
 }
-
 
 void loop() {
 
@@ -83,14 +79,13 @@ void loop() {
 int httpPostRequest(String payload) {
 
   http.addHeader(CONTENT_TYPE, CONTENT_TYPE_VAL);
-  // Send HTTP POST request
   httpResponseCode = http.POST(payload);
   if (httpResponseCode > 0) {
-    Serial.println("Payload " + payload + " Response code: " + String(httpResponseCode) + " Response " + http.getString());
+    Serial.println(" RESPONSE Payload " + payload + " Response code: " + String(httpResponseCode) + " Response " + http.getString());
   } else if (httpResponseCode == -1) {
-    Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
+    Serial.println(" ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
   } else {
-    Serial.println("ERROR Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
+    Serial.println(" ERROR Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
   }
   return httpResponseCode;
 }

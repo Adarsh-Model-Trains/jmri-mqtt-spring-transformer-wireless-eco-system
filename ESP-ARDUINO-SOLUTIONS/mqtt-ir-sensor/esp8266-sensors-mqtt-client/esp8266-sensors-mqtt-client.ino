@@ -22,7 +22,6 @@ WiFiClient wifiClient;
 // 1883 is the listener port for the Broker
 PubSubClient client(MQTT_SERVER, 1883, wifiClient);
 
-
 /*
    pushing the sensor data to the mqtt for jmri
 */
