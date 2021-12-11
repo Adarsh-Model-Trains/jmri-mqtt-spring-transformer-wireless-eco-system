@@ -2,7 +2,7 @@ package com.adarsh.model.trains.service;
 
 import com.adarsh.model.trains.beans.MqttProperties;
 import com.adarsh.model.trains.beans.NodeConfigurations;
-import com.adarsh.model.trains.util.CircularQueue;
+import com.adarsh.model.trains.util.DataCircularQueue;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Service
 public class MQTTService {
 
-    final public static Map<String, CircularQueue<String>> store = new HashMap<>();
+    final public static Map<String, DataCircularQueue> store = new HashMap<>();
     final public static Map<String, List<String>> cache2Led = new HashMap<>();
     final public static Map<String, List<String>> cache3Led = new HashMap<>();
     final public static Map<String, Long> cache2LedTime = new HashMap<>();
@@ -70,7 +70,7 @@ public class MQTTService {
             if (node.getEnableNode()) {
                 if (node.getEnableRestApi()) {
                     activeNodeCache.put(node.getNodeId(), true);
-                    store.put(node.getNodeId(), new CircularQueue<String>(node.getApiEndpointCacheSize()));
+                    store.put(node.getNodeId(), new DataCircularQueue(node.getApiEndpointCacheSize()));
                 } else {
                     activeNodeCache.put(node.getNodeId(), false);
                 }
@@ -173,7 +173,6 @@ public class MQTTService {
                         if (node.getEnableRestApi()) {
                             store.get(node.getNodeId()).enqueue(SIGNAL_PREFIX + signalData);
                         }
-
                         cache3Led.get(node.getNodeId()).clear();
                     }
                 } else if (jmriId >= node.getSignal2LStartAddress()) {
@@ -373,11 +372,11 @@ public class MQTTService {
 
     public String getData(String nodeId) throws Exception {
         if (activeNodeCache.containsKey(nodeId)) {
-            String data = store.get(nodeId).dequeue();
-            return (data != null) ? data : DEFAULT_EMPTY_RESULT;
+            return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeue() : DEFAULT_EMPTY_RESULT;
         } else {
             return DEFAULT_BLOCK_RESULT;
         }
+
     }
 
     public void flushCache(NodeConfigurations.Nodes node, Map<String, List<String>> cache) throws Exception {
