@@ -57,7 +57,6 @@ void loop() {
 int httpPostRequest(String payload) {
 
   http.addHeader(CONTENT_TYPE, CONTENT_TYPE_VAL);
-  // Send HTTP POST request
   httpResponseCode = http.POST(payload);
   if (httpResponseCode > 0) {
     Serial.println("Payload " + payload + " Response code: " + String(httpResponseCode) + " Response " + http.getString());
