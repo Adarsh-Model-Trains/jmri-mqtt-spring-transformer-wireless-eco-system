@@ -55,7 +55,7 @@ void loop() {
     }
 
   } else {
-    Serial.println("NOT CONNECTED TO WIFI ");
+    Serial.println("ERROR NOT CONNECTED TO WIFI ");
   }
 }
 
@@ -106,9 +106,15 @@ void processCall(String msg) {
 
     doExecute(msg, L);
 
-  } else if (type == O) {
+  }  else if (type == E) {
+
+    Serial.println(NO_DATA_AVALIABLE);
+
+  }  else if (type == O) {
+
     Serial.println(REST_API_DISABLED);
   }
+
   type = '-';
 }
 
