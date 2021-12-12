@@ -46,13 +46,10 @@ public class DataCircularQueue {
     }
 
     public boolean isEmpty() throws Exception {
-        if (startPoint != endPoint) {
             int newRemovalPoint = (startPoint + 1) % size;
             if (queueData[newRemovalPoint] != null) {
                 return false;
             }
             return true;
-        }
-        return true;
     }
 }
