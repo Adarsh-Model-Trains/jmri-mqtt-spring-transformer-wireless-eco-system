@@ -30,6 +30,7 @@ public class MQTTService {
     final public static Map<String, Long> cache2LedTime = new HashMap<>();
     final public static Map<String, Long> cache3LedTime = new HashMap<>();
     final public static Map<String, Boolean> activeNodeCache = new HashMap<>();
+    final public static MqttMessage mqttMessage = new MqttMessage();
     final public static String EMPTY = "";
     final public static Integer led2 = 2;
     final public static Integer led3 = 3;
@@ -360,10 +361,10 @@ public class MQTTService {
         return null;
     }
 
+
     public void publish(final String topic, final String payload, int qos, boolean retained)
             throws MqttException {
         log.debug("Publishing to Mqtt after transformation  Topic = {}  payload = {}", topic, payload);
-        MqttMessage mqttMessage = new MqttMessage();
         mqttMessage.setPayload(payload.getBytes());
         mqttMessage.setQos(qos);
         mqttMessage.setRetained(retained);
@@ -376,7 +377,6 @@ public class MQTTService {
         } else {
             return DEFAULT_BLOCK_RESULT;
         }
-
     }
 
     public void flushCache(NodeConfigurations.Nodes node, Map<String, List<String>> cache) throws Exception {
