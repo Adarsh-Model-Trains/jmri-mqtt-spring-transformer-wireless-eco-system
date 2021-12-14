@@ -44,17 +44,13 @@ void Pca9685BoardManager::initPca9685Boards() {
           _pwmBoards[index].begin();
           _pwmBoards[index].setPWMFreq(PWM_FREQUENCY);
           _pwmBoardTypes[index] = T;
-
-          Serial.print(" INDEX VALUE ");
-          Serial.println(index);
+          Serial.println(" BOARD INDEX " + String(index) + " BOARD ADDRESS " + String(_boardAddress[index], HEX));
         } else  {
           _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
           _pwmBoards[index].begin();
           _pwmBoards[index].setPWMFreq(PWM_FREQUENCY);
           _pwmBoardTypes[index] = L;
-
-          Serial.print(" INDEX VALUE ");
-          Serial.println(index);
+          Serial.println(" BOARD INDEX " + String(index) + " BOARD ADDRESS " + String(_boardAddress[index], HEX));
         }
         delay(50);
         index++;
