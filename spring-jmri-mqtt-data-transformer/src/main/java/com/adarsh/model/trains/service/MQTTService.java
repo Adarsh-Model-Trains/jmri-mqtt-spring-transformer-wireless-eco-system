@@ -371,11 +371,7 @@ public class MQTTService {
     }
 
     public static String getData(String nodeId) throws Exception {
-        if (activeNodeCache.containsKey(nodeId)) {
-            return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeue() : DEFAULT_EMPTY_RESULT;
-        } else {
-            return DEFAULT_BLOCK_RESULT;
-        }
+        return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeue() : DEFAULT_EMPTY_RESULT;
     }
 
     public void flushCache(NodeConfigurations.Nodes node, Map<String, List<String>> cache) throws Exception {

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
+import static com.adarsh.model.trains.service.MQTTService.DEFAULT_BLOCK_RESULT;
+
 /*
  * @author Adarsh
  * @author $LastChangedBy: adarsh $
@@ -33,8 +35,12 @@ public class JMRIMQTTNodesController {
 
     @GetMapping("/node/{nodeId}")
     public String getNodeData(@PathVariable("nodeId") String nodeId, HttpServletResponse response) throws Exception {
-        response.setHeader("Content-Length","16");
-        return this.mqttService.getData(nodeId);
+        response.setHeader("Content-Length", "16");
+        if (MQTTService.activeNodeCache.containsKey(nodeId)) {
+            return MQTTService.getData(nodeId);
+        } else {
+            return DEFAULT_BLOCK_RESULT;
+        }
     }
 
     @GetMapping("/description/node")
