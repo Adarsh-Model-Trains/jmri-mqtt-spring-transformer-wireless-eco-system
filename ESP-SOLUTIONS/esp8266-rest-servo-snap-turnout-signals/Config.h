@@ -25,6 +25,8 @@
 #define PWM_SERVO_TURNOUT_FREQUENCY 50 
 #define F0 0
 #define F4096 4096
+#define HEADER_NAME "Accept"
+#define HEADER_VALUE "text/plain"
 /************************************************************************************************/
 #define REST_API_DISABLED "REST API IS NOT ENABLED FOR THIS NODE"
 #define NO_DATA_AVALIABLE "NO DATA AVALIABLE FOR THIS NODE"
@@ -35,7 +37,7 @@
 #define LED_OFF " LED OFF\n"
 /************************************************************************************************/
 
-const bool signalLedTypeAnode = true;
+const bool signalLedTypeAnode = false;
 
 // ESP8266 do not support 5G wifi connection
 #define WIFI_SSID  "adarsh_radha_2G"

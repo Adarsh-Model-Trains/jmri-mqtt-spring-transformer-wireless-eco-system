@@ -26,9 +26,6 @@ void setup() {
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
-
-  // Your IP address with path or Domain name with URL path
-  http.begin(client, SERVER_URL);
 }
 
 
@@ -55,7 +52,7 @@ void loop() {
 }
 
 int httpPostRequest(String payload) {
-
+  http.begin(client, SERVER_URL);
   http.addHeader(CONTENT_TYPE, CONTENT_TYPE_VAL);
   httpResponseCode = http.POST(payload);
   if (httpResponseCode > 0) {
@@ -65,5 +62,6 @@ int httpPostRequest(String payload) {
   }  else {
     Serial.println("ERROR Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
   }
+  http.end();
   return httpResponseCode;
 }

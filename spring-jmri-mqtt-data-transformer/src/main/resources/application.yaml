@@ -45,17 +45,17 @@ node:
         enableRestApi: true                       # to enable the rest service for the node
         apiEndpointCacheSize: 10                  # cache for rest api to hold the data for service call
         lightStartAddress: 10000
-        lightCount: 2                             # 1 pin for each light on the pca9685 board
+        lightCount: 1                             # 1 pin for each light on the pca9685 board
         signal2LStartAddress: 20000
-        signal2LCount: 8                         # 2 pins for each signal light on the pca9685 board
+        signal2LCount: 1                         # 2 pins for each signal light on the pca9685 board
         signal3LStartAddress: 30000
-        signal3LCount: 5                          # 3 pins for each signal on the pca9685 board  (5 * 3) => 15
+        signal3LCount: 1                          # 3 pins for each signal on the pca9685 board  (5 * 3) => 15
         turnoutServoStartAddress: 40000
-        turnoutServoCount: 8                      # 1 pin for each servo turnout
+        turnoutServoCount: 0                      # 1 pin for each servo turnout
         turnoutSnapStartAddress: 50000
         turnoutSnapCount: 8                       # 2 pins for each turnout on the pca9685 board (16 * 2) /16 => 16
-        turnoutBoardCount: 2                      # (turnoutCount * 2)/16 :=>  (16 * 2) / 16 => 2
-        lightBoardCount: 2                        # (lightCount + signal2LCount + signal3LCount) /16 :=>  (5+32+30)/16 =>  5
+        turnoutBoardCount: 1                      # (turnoutCount * 2)/16 :=>  (16 * 2) / 16 => 2
+        lightBoardCount: 1                        # (lightCount + signal2LCount + signal3LCount) /16 :=>  (5+32+30)/16 =>  5
         nodeSubscriptionTopic: /amt/node/1/data/  # topic for every node for reading data from spring transformation application
 
       -
