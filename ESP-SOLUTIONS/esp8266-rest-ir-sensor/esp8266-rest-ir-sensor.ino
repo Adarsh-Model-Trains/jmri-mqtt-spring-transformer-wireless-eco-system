@@ -31,8 +31,6 @@ void setup() {
   Serial.print(" ");
   Serial.println(WiFi.localIP());
 
-  http.begin(client, SERVER_URL);
-
   blockSensors.initBlockSensors(NO_OF_BLOCKS);
   for (blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
     blockSensors.setBlockSensorPins(blockNo + 1, sensorPin[blockNo][0], sensorPin[blockNo][1]);
@@ -77,7 +75,7 @@ void loop() {
 }
 
 int httpPostRequest(String payload) {
-
+  http.begin(client, SERVER_URL);
   http.addHeader(CONTENT_TYPE, CONTENT_TYPE_VAL);
   httpResponseCode = http.POST(payload);
   if (httpResponseCode > 0) {
@@ -87,5 +85,6 @@ int httpPostRequest(String payload) {
   } else {
     Serial.println(" ERROR Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
   }
+  http.end();
   return httpResponseCode;
 }

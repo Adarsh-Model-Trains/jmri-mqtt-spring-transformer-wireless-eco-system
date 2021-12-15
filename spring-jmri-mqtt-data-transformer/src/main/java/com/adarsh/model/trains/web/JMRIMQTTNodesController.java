@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -31,7 +32,8 @@ public class JMRIMQTTNodesController {
     ConfigurationService configurationService;
 
     @GetMapping("/node/{nodeId}")
-    public String getNodeData(@PathVariable("nodeId") String nodeId) throws Exception {
+    public String getNodeData(@PathVariable("nodeId") String nodeId, HttpServletResponse response) throws Exception {
+        response.setHeader("Content-Length","16");
         return this.mqttService.getData(nodeId);
     }
 

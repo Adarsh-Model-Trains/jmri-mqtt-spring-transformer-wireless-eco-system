@@ -26,8 +26,6 @@ void setup() {
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
-
-  http.begin(client, SERVER_URL);
 }
 
 void loop() {
@@ -44,7 +42,8 @@ void loop() {
 }
 
 String httpGETRequest() {
-  // Send HTTP POST request
+  http.begin(client, SERVER_URL);
+  http.addHeader(HEADER_NAME, HEADER_VALUE);
   httpResponseCode = http.GET();
   payload = "";
   if (httpResponseCode > 0) {
@@ -54,6 +53,7 @@ String httpGETRequest() {
   } else {
     Serial.println("ERROR CODE: " + String(httpResponseCode));
   }
+  http.end();
   return payload;
 }
 

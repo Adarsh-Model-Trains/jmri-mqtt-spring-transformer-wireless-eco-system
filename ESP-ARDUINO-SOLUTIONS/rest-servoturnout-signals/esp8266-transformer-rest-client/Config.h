@@ -6,6 +6,8 @@
 #define BROAD_RATE 115200
 #define DELAY_TIME 200
 #define WIFI_RECONNECT_DELAY_TIME 500
+#define HEADER_NAME "Accept"
+#define HEADER_VALUE "text/plain"
 /************************************************************************************************/
 // ESP8266 do not support 5G wifi connection
 #define WIFI_SSID "adarsh-model-trains"

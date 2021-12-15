@@ -22,15 +22,12 @@ void setup() {
     delay(WIFI_RECONNECT_DELAY_TIME);
     Serial.print(".");
   }
-  
+
   Serial.println();
   Serial.print("CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
-
-  // Your IP address with path or Domain name with URL path
-  http.begin(client, SERVER_URL);
 }
 
 void loop() {
@@ -47,7 +44,8 @@ void loop() {
 }
 
 String httpGETRequest() {
-
+  http.begin(client, SERVER_URL);
+  http.addHeader(HEADER_NAME, HEADER_VALUE);
   httpResponseCode = http.GET();
   payload = "";
   if (httpResponseCode > 0) {
@@ -57,6 +55,7 @@ String httpGETRequest() {
   } else {
     Serial.println("ERROR CODE: " + String(httpResponseCode));
   }
+  http.end();
   return payload;
 }
 

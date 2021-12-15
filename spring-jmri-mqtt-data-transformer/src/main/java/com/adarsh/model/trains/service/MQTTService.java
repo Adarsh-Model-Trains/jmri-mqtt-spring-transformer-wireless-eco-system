@@ -50,7 +50,7 @@ public class MQTTService {
     final public static String SIGNAL = "SIGNAL";
     final public static String TURNOUT = "TURNOUT";
     final public static String DEFAULT_BLOCK_RESULT = "O:0000:00:00:00";
-    final public static String DEFAULT_EMPTY_RESULT = "E:0000:00:00:00";
+    final public static String DEFAULT_EMPTY_RESULT = "";
 
 
     @Autowired
@@ -65,7 +65,6 @@ public class MQTTService {
     @PostConstruct
     public void init() {
         nodeConfigurations.getNodes().stream().forEach(node -> {
-            log.info("");
             log.info("Node Id = {}  Node Enabled = {} Publishing Enabled = {}  Rest ApiEnabled = {} Api Cache Size ={}",
                     node.getNodeId(), node.getEnableNode(), node.getEnablePublishing(), node.getEnableRestApi(), node.getApiEndpointCacheSize());
             if (node.getEnableNode()) {
@@ -371,7 +370,7 @@ public class MQTTService {
         mqttClient.publish(topic, mqttMessage);
     }
 
-    public String getData(String nodeId) throws Exception {
+    public static String getData(String nodeId) throws Exception {
         if (activeNodeCache.containsKey(nodeId)) {
             return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeue() : DEFAULT_EMPTY_RESULT;
         } else {

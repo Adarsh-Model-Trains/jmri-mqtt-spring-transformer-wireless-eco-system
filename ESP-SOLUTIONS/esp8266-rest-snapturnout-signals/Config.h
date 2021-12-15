@@ -20,6 +20,8 @@
 #define TOTAL_BOARD_PIN 16
 #define F0 0
 #define F4096 4096
+#define HEADER_NAME "Accept"
+#define HEADER_VALUE "text/plain"
 /************************************************************************************************/
 #define REST_API_DISABLED "REST API IS NOT ENABLED FOR THIS NODE"
 #define NO_DATA_AVALIABLE "NO DATA AVALIABLE FOR THIS NODE"
