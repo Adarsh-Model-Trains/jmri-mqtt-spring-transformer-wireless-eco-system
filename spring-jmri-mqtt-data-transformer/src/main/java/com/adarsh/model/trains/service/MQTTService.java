@@ -144,7 +144,7 @@ public class MQTTService {
         }
     }
 
-    private void processSignal(Integer jmriId, String jmriState) throws Exception {
+    public void processSignal(Integer jmriId, String jmriState) throws Exception {
         log.debug("processSignal jmriId = {} with jmriState = {} ", jmriId, jmriState);
         try {
             //  to find out the node and then push the data to that node topic
@@ -212,7 +212,7 @@ public class MQTTService {
         }
     }
 
-    private void processTurnout(Integer jmriId, String jmriState) throws Exception {
+    public void processTurnout(Integer jmriId, String jmriState) throws Exception {
         log.debug("processTurnout jmriId = {} with jmriState = {} ", jmriId, jmriState);
         //  to find out the node and then push the data to that node topic
         try {
@@ -239,7 +239,7 @@ public class MQTTService {
         }
     }
 
-    private void processLight(Integer jmriId, String jmriState) throws Exception {
+    public void processLight(Integer jmriId, String jmriState) throws Exception {
         log.debug("processLight jmriId = {} with jmriState = {} ", jmriId, jmriState);
         try {
             //  to find out the node and then push the data to that topic

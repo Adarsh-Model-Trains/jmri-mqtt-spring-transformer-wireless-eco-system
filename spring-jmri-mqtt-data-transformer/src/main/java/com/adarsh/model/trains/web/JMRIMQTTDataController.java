@@ -1,17 +1,12 @@
 package com.adarsh.model.trains.web;
 
-import com.adarsh.model.trains.beans.ConfigurationDetails;
 import com.adarsh.model.trains.beans.RequestBean;
-import com.adarsh.model.trains.service.ConfigurationService;
 import com.adarsh.model.trains.service.MQTTService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.List;
-
 import static com.adarsh.model.trains.service.MQTTService.DEFAULT_BLOCK_RESULT;
 
 /*
@@ -22,16 +17,13 @@ import static com.adarsh.model.trains.service.MQTTService.DEFAULT_BLOCK_RESULT;
 
 @Slf4j
 @RestController
-public class JMRIMQTTNodesController {
+public class JMRIMQTTDataController {
 
     private static final String PROCESSED_FAILED = "PROCESSED-FAILED";
     private static final String PROCESSED_SUCCESS = "PROCESSED-SUCCESS";
 
     @Autowired
     MQTTService mqttService;
-
-    @Autowired
-    ConfigurationService configurationService;
 
     @GetMapping("/node/{nodeId}")
     public String getNodeData(@PathVariable("nodeId") String nodeId, HttpServletResponse response) throws Exception {
@@ -41,17 +33,6 @@ public class JMRIMQTTNodesController {
         } else {
             return DEFAULT_BLOCK_RESULT;
         }
-    }
-
-    @GetMapping("/description/node")
-    public List<ConfigurationDetails> getNodesConfigurationData() throws Exception {
-        return this.configurationService.getNodeConfigurationDetails();
-    }
-
-    @GetMapping("/description/node/{nodeId}")
-    public List<ConfigurationDetails> getNodeConfigurationData(@PathVariable("nodeId") String nodeId) throws Exception {
-
-        return this.configurationService.getNodeConfigurationDetails(nodeId);
     }
 
     @PostMapping("/node/{nodeId}")
