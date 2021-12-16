@@ -587,8 +587,43 @@ $ curl -X GET http://localhost:8090/amt/description/node/1
 ]
 ```
 
+### TO TEST THE PARTICULAR NODE CONFIGURATION 
+* curl -X GET http://localhost:8090/amt/test/node/config/[nodeId]
+* http://localhost:8090/amt/test/node/config/[nodeId]
+* http://localhost:8090/amt/test/node/config//1
+```
 
-## TO CONFIGURE THE LOG FOR THE APLICATION
+/amt/node/1/data/ T:40001:00:00:CL
+/amt/node/1/data/ T:40001:00:00:TH
+/amt/node/1/data/ T:40008:00:07:CL
+/amt/node/1/data/ T:40008:00:07:TH
+
+/amt/node/1/data/ T:50001:01:01:CL
+/amt/node/1/data/ T:50001:01:00:TH
+/amt/node/1/data/ T:50008:01:15:CL
+/amt/node/1/data/ T:50008:01:14:TH
+
+/amt/node/1/data/ S:20002:02:03:ON|20001:02:02:OF
+/amt/node/1/data/ S:20002:02:03:ON|20001:02:02:ON
+/amt/node/1/data/ S:20002:02:03:OF|20001:02:02:ON
+/amt/node/1/data/ S:20002:02:03:OF|20001:02:02:OF
+/amt/node/1/data/ S:20016:03:01:ON|20015:03:00:OF
+/amt/node/1/data/ S:20016:03:01:ON|20015:03:00:ON
+/amt/node/1/data/ S:20016:03:01:OF|20015:03:00:ON
+/amt/node/1/data/ S:20016:03:01:OF|20015:03:00:OF
+
+/amt/node/1/signal/ S:30003:03:02:ON|30002:03:01:OF|30001:03:00:OF
+/amt/node/1/signal/ S:30003:03:02:OF|30002:03:01:ON|30001:03:00:OF
+/amt/node/1/signal/ S:30003:03:02:OF|30002:03:01:OF|30001:03:00:ON
+/amt/node/1/signal/ S:30003:03:02:OF|30002:03:01:OF|30001:03:00:OF
+
+/amt/node/1/data/ L:10001:02:00:ON
+/amt/node/1/data/ L:10001:02:00:OF
+/amt/node/1/data/ L:10002:02:01:ON
+/amt/node/1/data/ L:10002:02:01:OF        
+```
+
+## TO CONFIGURE THE LOG FOR THE APPLICATION
 * application.properties
 ```
 ### Use any of them => DEBUG,ERROR,FATAL,INFO,OFF,TRACE,WARN
