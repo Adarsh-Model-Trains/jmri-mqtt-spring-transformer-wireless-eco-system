@@ -69,7 +69,9 @@ void Pca9685BoardManager::initPca9685Boards() {
           _pwmBoards[index].begin();
           _pwmBoards[index].setPWMFreq(PWM_LIGHT_FREQUENCY);
           _pwmBoardTypes[index] = L;
-
+          for (i = 0 ; i < TOTAL_BOARD_PIN; i++) {
+            _pwmBoards[index].setPWM(i, 0, 4096);
+          }
           Serial.println(" BOARD INDEX " + String(index) + " BOARD ADDRESS " + String(_boardAddress[index], HEX));
         }
         delay(50);
@@ -91,6 +93,7 @@ bool Pca9685BoardManager::switchThrow(int boardId, int pinId) {
     delay(DELAY_TIME);
     _pwmBoards[boardId].setPWM(pinId, F0, F4096);
     Serial.println(TURNOUT_THROW);
+    return true;
   } else {
     return false;
   }
@@ -106,6 +109,7 @@ bool Pca9685BoardManager::switchClose(int boardId, int pinId) {
     delay(DELAY_TIME);
     _pwmBoards[boardId].setPWM(pinId, F0, F4096);
     Serial.println(TURNOUT_CLOSE);
+    return true;
   } else {
     return false;
   }

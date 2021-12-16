@@ -68,6 +68,9 @@ void Pca9685BoardManager::initPca9685Boards() {
           _pwmBoards[index].begin();
           _pwmBoards[index].setPWMFreq(PWM_LIGHT_FREQUENCY);
           _pwmBoardTypes[index] = L;
+          for (i = 0 ; i < TOTAL_BOARD_PIN; i++) {
+            _pwmBoards[index].setPWM(i, 0, 4096);
+          }
           Serial.println(" BOARD INDEX " + String(index) + " BOARD ADDRESS " + String(_boardAddress[index], HEX));
         }
         delay(50);
