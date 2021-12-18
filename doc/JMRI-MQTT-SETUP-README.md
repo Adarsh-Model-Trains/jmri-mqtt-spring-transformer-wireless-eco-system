@@ -161,3 +161,31 @@ and click on the L3 and L4 light button on and off and see the output of them in
 * $ mosquitto_pub -h localhost -u adarsh -P password -t /trains/track/sensor/1 -r -m "ACTIVE"
 
 ![img](../image/18.png)
+
+
+### Download the Mqtt UI 
+* https://mqttx.app/
+
+### Install the UI client 
+
+### Add the Connection 
+* click on plus button on left side 
+* provide the connection name  => local-connection
+* provide host name            => localhost
+* provide the username         => adarsh  
+* provide the password         => password 
+* click on connection link on the top right corner 
+
+
+### Create a new subscription 
+* ensure the connection is alive 
+* click on new subscription button 
+* provide the topic name => /trains/#
+* provide the Qos        => 1
+* Click on Confirm button 
+* Once data is published we can see the data on the ui client 
+
+### To clear the screen 
+* click on the 3 dot button on the top right cornder 
+* select the clear history 
+
