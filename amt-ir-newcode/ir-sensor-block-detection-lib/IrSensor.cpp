@@ -11,8 +11,8 @@
 
 void IrSensor::init() {
   if (NO_OF_BLOCKS > 0) {
-    _blockStatesCurrent = new BLOCK_STATES[NO_OF_BLOCKS];
-    _blockStatesPrevious = new BLOCK_STATES[NO_OF_BLOCKS];
+    _blockStatesCurrent = new int[NO_OF_BLOCKS];
+    _blockStatesPrevious = new int[NO_OF_BLOCKS];
     for ( i = 0; i < NO_OF_BLOCKS; i++) {
       if (sensorPin[i][1] > -1 && sensorPin[i][0] > -1) {
         pinMode(sensorPin[i][0], INPUT);  // block end pin
@@ -32,8 +32,10 @@ void IrSensor::init() {
 
 void IrSensor::calculateBlockOccupancy(int blockNo) {
 
-  _startBlockSensorVal = digitalRead(sensorPin[blockNo][1]);
-  _endBlockSensorVal = digitalRead(sensorPin[blockNo][0]);
+  _startBlockSensorVal = digitalRead(sensorPin[blockNo][0]);
+  _endBlockSensorVal = digitalRead(sensorPin[blockNo][1]);
+
+  //Serial.println("blockNo " + String(blockNo) + " _startBlockSensorVal " + String(_startBlockSensorVal) + " _startBlockSensorVal " + String(_startBlockSensorVal) + " _blockStatesCurrent " + String(_blockStatesCurrent[blockNo]) + " _blockStatesPrevious " + String(_blockStatesPrevious[blockNo]));
 
   switch (_blockStatesPrevious[blockNo]) {
     case UNOCCUPIED:
@@ -82,36 +84,42 @@ bool IrSensor::isBlockOccupied(int blockNo) {
 }
 
 
-BLOCK_STATES IrSensor::unOccupiedBlock(BLOCK_STATES signalState, int startSensor, int endSensor) {
+int IrSensor::unOccupiedBlock(int signalState, int startSensor, int endSensor) {
 
   if (startSensor == ON  && endSensor == OFF) {
+    Serial.println("unOccupiedBlock startSensor " + String(startSensor) + " endSensor " + String(endSensor) + " OCCUPYING_FROM_START_OF_BLOCK");
     signalState = OCCUPYING_FROM_START_OF_BLOCK;
   } else if (startSensor == OFF  && endSensor == ON) {
+    Serial.println("unOccupiedBlock startSensor " + String(startSensor) + " endSensor " + String(endSensor) + " OCCUPYING_FROM_END_OF_BLOCK");
     signalState = OCCUPYING_FROM_END_OF_BLOCK;
   }
   return signalState;
 }
 
 
-BLOCK_STATES IrSensor::occupiedFromEndOfBlock(BLOCK_STATES signalState, int startSensor, int endSensor) {
+int IrSensor::occupiedFromEndOfBlock(int signalState, int startSensor, int endSensor) {
 
   if (startSensor == OFF && endSensor == ON) {
+    Serial.println("occupiedFromEndOfBlock  startSensor " + String(startSensor) + " endSensor " + String(endSensor) + " OCCUPIED");
     signalState = OCCUPIED;
   }
   return signalState;
 }
 
 
-BLOCK_STATES IrSensor::occupiedFromStartOfBlock(BLOCK_STATES signalState, int startSensor, int endSensor) {  if (startSensor == ON  && endSensor == OFF) {
+int IrSensor::occupiedFromStartOfBlock(int signalState, int startSensor, int endSensor) {
+  if (startSensor == ON  && endSensor == OFF) {
+    Serial.println("occupiedFromStartOfBlock  startSensor " + String(startSensor) + " endSensor " + String(endSensor) + " OCCUPIED");
     signalState = OCCUPIED;
   }
   return signalState;
 }
 
 
-BLOCK_STATES IrSensor::occupiedBlock(BLOCK_STATES signalState, int startSensor, int endSensor) {
+int IrSensor::occupiedBlock(int signalState, int startSensor, int endSensor) {
 
   if ((startSensor == OFF) && (endSensor == OFF)) {
+    Serial.println("occupiedBlock  startSensor " + String(startSensor) + " endSensor " + String(endSensor) + " UNOCCUPIED");
     signalState = UNOCCUPIED;
   }
   return signalState;

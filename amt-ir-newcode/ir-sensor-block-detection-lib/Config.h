@@ -9,15 +9,15 @@
 #include "Arduino.h"
 
 enum BLOCK_STATES {
-  UNOCCUPIED,
-  OCCUPYING_FROM_START_OF_BLOCK,
-  OCCUPYING_FROM_END_OF_BLOCK,
-  OCCUPIED,
+  UNOCCUPIED,                    //UOB
+  OCCUPYING_FROM_START_OF_BLOCK, //OSB
+  OCCUPYING_FROM_END_OF_BLOCK,   //OEB
+  OCCUPIED,                      //OPB
 };
 
 /************************************************************************************************/
 #define BROAD_RATE 115200
-#define DELAY_TIME 5000
+#define DELAY_TIME 200
 #define ON LOW
 #define OFF HIGH
 #define PINS 2
@@ -28,7 +28,7 @@ enum BLOCK_STATES {
 
 
 /*
- * IR SENSORS PIN CONFIGURATION 
+   IR SENSORS PIN CONFIGURATION
   const int sensorPin[NO_OF_BLOCKS][PINS] = {
   {BLOCK_1_END_PIN, BLOCK_1_START_PIN },
   {BLOCK_2_END_PIN, BLOCK_2_START_PIN },
@@ -39,8 +39,8 @@ enum BLOCK_STATES {
 #define NO_OF_BLOCKS 3
 const int sensorPin[NO_OF_BLOCKS][PINS] = {
   {13, 12 },
-  {11, 10 },
-  {9, 8}
+  {12, 11},
+  {11, 10}
 };
 
 #endif
