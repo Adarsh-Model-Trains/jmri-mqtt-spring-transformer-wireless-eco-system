@@ -17,6 +17,7 @@ IrSensor irSensor;
 
 void setup() {
   Serial.begin(BROAD_RATE);
+  irSensor.init();
   Serial.flush();
   for (blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
     sensStatus[blockNo] = 0;

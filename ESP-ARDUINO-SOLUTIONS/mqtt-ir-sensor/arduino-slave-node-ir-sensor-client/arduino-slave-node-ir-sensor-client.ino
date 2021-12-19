@@ -6,21 +6,20 @@
 */
 
 #include "Config.h"
-#include "IrBlockSensors.h"
+#include "IrSensor.h"
 
 
 int blockNo = 0;
 bool isBlockOccuipied;
 int sensStatus[NO_OF_BLOCKS];
 int sendThreashold[NO_OF_BLOCKS];
-IrBlockSensors blockSensors;
+IrSensor irSensor;
 
 void setup() {
   Serial.begin(BROAD_RATE);
+  irSensor.init();
   Serial.flush();
-  blockSensors.initBlockSensors(NO_OF_BLOCKS);
   for (blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
-    blockSensors.setBlockSensorPins(blockNo + 1, sensorPin[blockNo][0], sensorPin[blockNo][1]);
     sensStatus[blockNo] = 0;
     sendThreashold[blockNo] = 0;
   }
@@ -30,7 +29,7 @@ void loop() {
 
   for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
 
-    isBlockOccuipied = blockSensors.isSensorBlockOccupied(blockNo);
+    isBlockOccuipied = irSensor.isBlockOccupied(blockNo);
     if (isBlockOccuipied) {
       if (sensStatus[blockNo - 1] != 1) {
         if (sendThreashold[blockNo - 1] < SEND_THRESHOLD) {

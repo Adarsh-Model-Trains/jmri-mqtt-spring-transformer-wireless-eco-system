@@ -10,11 +10,12 @@
 
 /************************************************************************************************/
 enum BLOCK_STATES {
-  UNOCCUPIED,
-  OCCUPYING_FROM_START_OF_BLOCK,
-  OCCUPYING_FROM_END_OF_BLOCK,
-  OCCUPIED,
+  UNOCCUPIED,                    //UOB
+  OCCUPYING_FROM_START_OF_BLOCK, //OSB
+  OCCUPYING_FROM_END_OF_BLOCK,   //OEB
+  OCCUPIED,                      //OPB
 };
+
 #define ON LOW
 #define OFF HIGH
 #define ACTIVE ":AC\n"

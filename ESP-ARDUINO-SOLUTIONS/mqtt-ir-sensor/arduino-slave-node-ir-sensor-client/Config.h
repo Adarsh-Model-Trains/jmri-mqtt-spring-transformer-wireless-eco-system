@@ -8,14 +8,14 @@
 #define Config_h
 #include "Arduino.h"
 
+/************************************************************************************************/
 enum BLOCK_STATES {
-  UNOCCUPIED,
-  OCCUPYING_FROM_START_OF_BLOCK,
-  OCCUPYING_FROM_END_OF_BLOCK,
-  OCCUPIED,
+  UNOCCUPIED,                    //UOB
+  OCCUPYING_FROM_START_OF_BLOCK, //OSB
+  OCCUPYING_FROM_END_OF_BLOCK,   //OEB
+  OCCUPIED,                      //OPB
 };
 
-/************************************************************************************************/
 #define ON LOW
 #define OFF HIGH
 #define ACTIVE ":AC\n"
@@ -23,13 +23,12 @@ enum BLOCK_STATES {
 #define PINS 2
 #define BROAD_RATE 115200
 #define DELAY_TIME 200
+#define SEND_THRESHOLD 3
 /************************************************************************************************/
 #define INVALID_SENSOR_NUMBER " INVLAID SENEOR NUMBER "
+#define INVALID_SENSOR_PIN " INVLAID SENEOR PIN NO "
 /************************************************************************************************/
-
 #define JMRI_SENSOR_START_ADDRESS 10000
-#define NO_OF_BLOCKS 3
-#define SEND_THRESHOLD 3
 
 /*
  * IR SENSORS PIN CONFIGURATION 
@@ -40,6 +39,7 @@ enum BLOCK_STATES {
   {BLOCK_N_END_PIN, BLOCK_N_START_PIN }
   };
 */
+#define NO_OF_BLOCKS 3
 const int sensorPin[NO_OF_BLOCKS][PINS] = {
   {13, 12 },
   {12, 11 },
