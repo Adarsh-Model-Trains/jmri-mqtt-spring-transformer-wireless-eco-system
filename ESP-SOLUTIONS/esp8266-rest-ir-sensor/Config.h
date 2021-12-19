@@ -3,6 +3,13 @@
 #include "Arduino.h"
 
 /************************************************************************************************/
+enum BLOCK_STATES {
+  UNOCCUPIED,
+  OCCUPYING_FROM_START_OF_BLOCK,
+  OCCUPYING_FROM_END_OF_BLOCK,
+  OCCUPIED,
+};
+
 #define PINS 2
 #define JMRI_SENSOR_START_ADDRESS 10000
 #define BROAD_RATE 115200

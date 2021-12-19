@@ -9,6 +9,13 @@
 #include "Arduino.h"
 
 /************************************************************************************************/
+enum BLOCK_STATES {
+  UNOCCUPIED,
+  OCCUPYING_FROM_START_OF_BLOCK,
+  OCCUPYING_FROM_END_OF_BLOCK,
+  OCCUPIED,
+};
+
 #define BROAD_RATE 115200
 #define DELAY_TIME 5000
 #define WIFI_RECONNECT_DELAY_TIME 500

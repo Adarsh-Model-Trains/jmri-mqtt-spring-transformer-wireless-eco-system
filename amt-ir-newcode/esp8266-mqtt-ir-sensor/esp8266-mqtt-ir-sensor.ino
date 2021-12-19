@@ -25,7 +25,6 @@ WiFiClient wifiClient;
 // 1883 is the listener port for the Broker
 PubSubClient client(MQTT_SERVER, 1883, wifiClient);
 
-
 /*
    pushing the sensor data to the mqtt for jmri
 */
@@ -52,7 +51,7 @@ void setup() {
 
   // Begin Serial on 115200
   Serial.begin(BROAD_RATE);
-
+  irSensor.init();
   Serial.print(" CONNECTING TO WIFI ");
   Serial.println(WIFI_SSID);
 
@@ -65,15 +64,12 @@ void setup() {
     Serial.print(".");
   }
 
-
-  // Debugging - Output the IP Address of the ESP8266
   Serial.println();
   Serial.print(" CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
 
-  // Connect to MQTT Broker
   if (mqttConnect()) {
     Serial.println(" CONNNECTED TO MQTT ");
   } else {
@@ -87,13 +83,10 @@ void setup() {
 }
 
 void loop() {
-  // If the connection is lost, try to connect again
   if (!client.connected()) {
     mqttConnect();
   }
-  // client.loop() just tells the MQTT client code to do what it needs to do itself (i.e. check for messages, etc.)
   client.loop();
-  // Once it has done all it needs to do for this cycle, go back to checking if we are still connected.
 
   for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
     isBlockOccuipied = irSensor.isBlockOccupied(blockNo);

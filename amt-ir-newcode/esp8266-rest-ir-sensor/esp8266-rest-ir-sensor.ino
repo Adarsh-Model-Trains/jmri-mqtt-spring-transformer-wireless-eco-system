@@ -18,6 +18,7 @@ bool isBlockOccuipied;
 
 void setup() {
   Serial.begin(BROAD_RATE);
+  irSensor.init();
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while (WiFi.status() != WL_CONNECTED) {
