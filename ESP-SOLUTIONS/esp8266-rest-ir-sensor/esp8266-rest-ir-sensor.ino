@@ -3,7 +3,7 @@
 #include <WiFiClient.h>
 #include <ESP8266WiFiMulti.h>
 #include"Config.h"
-#include "IrBlockSensors.h"
+#include "IrSensor.h"
 
 HTTPClient http;
 WiFiClient client;
@@ -13,11 +13,12 @@ int blockNo = 0;
 int httpResponseCode;
 int sensStatus[NO_OF_BLOCKS];
 int sendThreashold[NO_OF_BLOCKS];
-IrBlockSensors blockSensors;
+IrSensor irSensor;
 bool isBlockOccuipied;
 
 void setup() {
   Serial.begin(BROAD_RATE);
+  irSensor.init();
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while (WiFi.status() != WL_CONNECTED) {
@@ -31,9 +32,9 @@ void setup() {
   Serial.print(" ");
   Serial.println(WiFi.localIP());
 
-  blockSensors.initBlockSensors(NO_OF_BLOCKS);
+  http.begin(client, SERVER_URL);
+
   for (blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
-    blockSensors.setBlockSensorPins(blockNo + 1, sensorPin[blockNo][0], sensorPin[blockNo][1]);
     sensStatus[blockNo] = 0;
     sendThreashold[blockNo] = 0;
   }
@@ -44,7 +45,7 @@ void loop() {
   if ((WiFiMulti.run() == WL_CONNECTED)) {
 
     for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
-      isBlockOccuipied = blockSensors.isSensorBlockOccupied(blockNo);
+      isBlockOccuipied = irSensor.isBlockOccupied(blockNo);
       if (isBlockOccuipied) {
         if (sendThreashold[blockNo - 1] != 1) {
           if (sendThreashold[blockNo - 1] < SEND_THRESHOLD) {
@@ -75,7 +76,7 @@ void loop() {
 }
 
 int httpPostRequest(String payload) {
-  http.begin(client, SERVER_URL);
+
   http.addHeader(CONTENT_TYPE, CONTENT_TYPE_VAL);
   httpResponseCode = http.POST(payload);
   if (httpResponseCode > 0) {
@@ -85,6 +86,5 @@ int httpPostRequest(String payload) {
   } else {
     Serial.println(" ERROR Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
   }
-  http.end();
   return httpResponseCode;
 }

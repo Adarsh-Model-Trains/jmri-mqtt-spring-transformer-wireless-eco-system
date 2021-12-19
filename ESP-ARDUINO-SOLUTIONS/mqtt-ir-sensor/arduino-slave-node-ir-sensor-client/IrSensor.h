@@ -5,42 +5,31 @@
 */
 #ifndef IrSensor_h
 #define IrSensor_h
-#include "Config.h"
 
+#include "Config.h"
 
 class IrSensor {
 
   private:
-
-    int _startBlockSensorPin;
-    int _endBlockSensorPin;
+    int i = 0;
     int _startBlockSensorVal;
     int _endBlockSensorVal;
+    int * _blockStatesCurrent;
+    int * _blockStatesPrevious;
 
-    BLOCK_STATES _stateCurrent = UNOCCUPIED;
-    BLOCK_STATES _statePrevious = UNOCCUPIED;
 
-    void init();
-    void calculateBlockOccupancy();
-
-    BLOCK_STATES unOccupiedBlock(BLOCK_STATES signalState, int startSensor, int endSensor);
-    BLOCK_STATES occupiedFromEndOfBlock(BLOCK_STATES signalState, int startSensor, int endSensor);
-    BLOCK_STATES occupiedFromStartOfBlock(BLOCK_STATES signalState, int startSensor, int endSensor);
-    BLOCK_STATES occupiedBlock(BLOCK_STATES signalState, int startSensor, int endSensor) ;
+    void calculateBlockOccupancy(int blockNo);
+    int unOccupiedBlock(int signalState, int startSensor, int endSensor);
+    int occupiedFromEndOfBlock(int signalState, int startSensor, int endSensor);
+    int occupiedFromStartOfBlock(int signalState, int startSensor, int endSensor);
+    int occupiedBlock(int signalState, int startSensor, int endSensor) ;
 
   public:
-
+    void init();
     IrSensor() {
-      void init();
     }
 
-    IrSensor(int startBlockSensorPin, int endBlockSensorPin): _startBlockSensorPin(startBlockSensorPin), _endBlockSensorPin(endBlockSensorPin) {
-      void init();
-    }
-    
-    void setStartAndEndBlockSensorPin(int startBlockSensorPin, int endBlockSensorPin);
-    
-    bool isBlockOccupied();
+    bool isBlockOccupied(int blockNo);
 
     ~IrSensor() {
     }
