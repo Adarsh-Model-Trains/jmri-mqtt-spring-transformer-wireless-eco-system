@@ -54,7 +54,7 @@ void Pca9685BoardManager::initPca9685Boards() {
           _pwmBoards[index].setPWMFreq(PWM_LIGHT_FREQUENCY);
           _pwmBoardTypes[index] = M;
 
-          Serial.println(" BOARD INDEX " + String(index) + " BOARD ADDRESS " + String(_boardAddress[index], HEX));
+          Serial.println(" BOARD INDEX " + String(index) + " BOARD ADDRESS " + String(_boardAddress[index], HEX) + " SERVO TURNOUT ");
         } else if (index >= NO_OF_SERVO_TURNOUT_BOARDS &&  index < NO_OF_SNAP_TURNOUT_BOARDS + NO_OF_SERVO_TURNOUT_BOARDS) {
           _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
           _pwmBoards[index].begin();
@@ -63,7 +63,7 @@ void Pca9685BoardManager::initPca9685Boards() {
           for (i = 0 ; i < TOTAL_BOARD_PIN; i++) {
             _pwmBoards[index].setPWM(i, 0, 4096);
           }
-          Serial.println(" BOARD INDEX " + String(index) + " BOARD ADDRESS " + String(_boardAddress[index], HEX));
+          Serial.println(" BOARD INDEX " + String(index) + " BOARD ADDRESS " + String(_boardAddress[index], HEX) + " SNAP TURNOUT ");
         } else  {
           _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
           _pwmBoards[index].begin();
@@ -72,7 +72,7 @@ void Pca9685BoardManager::initPca9685Boards() {
           for (i = 0 ; i < TOTAL_BOARD_PIN; i++) {
             _pwmBoards[index].setPWM(i, 0, 4096);
           }
-          Serial.println(" BOARD INDEX " + String(index) + " BOARD ADDRESS " + String(_boardAddress[index], HEX));
+          Serial.println(" BOARD INDEX " + String(index) + " BOARD ADDRESS " + String(_boardAddress[index], HEX) + " LIGHT & SIGNALS ");
         }
         delay(50);
         index++;
