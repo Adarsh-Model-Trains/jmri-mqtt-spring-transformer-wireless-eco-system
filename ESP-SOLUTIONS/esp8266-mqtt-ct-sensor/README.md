@@ -12,6 +12,9 @@
 
 
 ![img](../../image/dig11.png)
+![img](../../image/esp8266-nodemcu-pin-io.png)
+![img](../../image/esppin-io.png)
+
 
 > esp will conect to mqtt via wifi network 
 > wifi credentials will be configured in Config.h file 
