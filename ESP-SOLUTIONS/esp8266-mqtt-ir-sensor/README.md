@@ -3,6 +3,8 @@
 ---
 
 ![img](../../image/dig12.png)
+![img](../../image/esp8266-nodemcu-pin-io.png)
+![img](../../image/esppin-io.png)
 
 
 ## Lib installtion 

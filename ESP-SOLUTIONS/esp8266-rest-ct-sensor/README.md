@@ -3,6 +3,9 @@
 ---
 
 ![img](../../image/dig19.png)
+![img](../../image/esp8266-nodemcu-pin-io.png)
+![img](../../image/esppin-io.png)
+
 
 ## Lib installtion
 ### search for "ESP8266HTTPClient" lib and install it before compiling 
