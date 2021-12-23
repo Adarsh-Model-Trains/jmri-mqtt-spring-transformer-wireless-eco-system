@@ -98,11 +98,17 @@ void doExecute(String msg , char type) {
       } else {
         pcaBoardManager.switchClose( boardId, pinId);
       }
-    } else if ( type == L || type == S) {
+    }  else if ( type == S) {
       if (val == ON) {
-        pcaBoardManager.switchOn(boardId, pinId);
+        pcaBoardManager.switchOnSignal(boardId, pinId);
       } else {
-        pcaBoardManager.switchOff( boardId, pinId);
+        pcaBoardManager.switchOffSignal( boardId, pinId);
+      }
+    } else if ( type == L ) {
+      if (val == ON) {
+        pcaBoardManager.switchOnLight(boardId, pinId);
+      } else {
+        pcaBoardManager.switchOffLight( boardId, pinId);
       }
     }
   } else {
