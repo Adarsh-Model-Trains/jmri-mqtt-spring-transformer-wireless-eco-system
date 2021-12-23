@@ -45,7 +45,7 @@ void subscribeMqttMessage(char* topic, byte* payload, unsigned int length) {
 /*
    converting message from mqtt bytes to string
 */
-String getMessage(byte* message, unsigned int length) {
+String getMessage(byte* message, int length) {
   messageText = "";
   for ( i = 0; i < length; i++) {
     messageText += (char)message[i];
@@ -142,7 +142,7 @@ void processCall(String msg) {
 
     doExecute(msg, L);
 
-  } 
+  }
   type = '-';
 }
 
@@ -164,11 +164,17 @@ void doExecute(String msg , char type) {
       } else {
         pcaBoardManager.switchClose( boardId, pinId);
       }
-    } else if ( type == L || type == S) {
+    }  else if ( type == S) {
       if (val == ON) {
-        pcaBoardManager.switchOn(boardId, pinId);
+        pcaBoardManager.switchOnSignal(boardId, pinId);
       } else {
-        pcaBoardManager.switchOff( boardId, pinId);
+        pcaBoardManager.switchOffSignal( boardId, pinId);
+      }
+    } else if ( type == L ) {
+      if (val == ON) {
+        pcaBoardManager.switchOnLight(boardId, pinId);
+      } else {
+        pcaBoardManager.switchOffLight( boardId, pinId);
       }
     }
   } else {

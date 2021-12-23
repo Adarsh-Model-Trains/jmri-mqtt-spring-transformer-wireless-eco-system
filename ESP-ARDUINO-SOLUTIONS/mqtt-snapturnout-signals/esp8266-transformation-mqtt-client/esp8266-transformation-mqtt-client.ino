@@ -32,7 +32,7 @@ void subscribeMqttMessage(char* topic, byte* payload, unsigned int length) {
 /*
    converting message from mqtt bytes to string
 */
-String getMessage(byte* message, unsigned int length) {
+String getMessage(byte* message, int length) {
   messageText = "";
   for ( i = 0; i < length; i++) {
     messageText += (char)message[i];
