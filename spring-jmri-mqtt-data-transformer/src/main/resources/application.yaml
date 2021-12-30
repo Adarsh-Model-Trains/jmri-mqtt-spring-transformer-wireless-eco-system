@@ -23,6 +23,7 @@ mqtt-properties:
   turnoutTopic: /trains/track/turnout/                             # jrmi turnout topic name
   signalTopic: /trains/track/signalhead/                           # jrmi signalhead topic name
   errorTopic: /amt/errors                                          # jrmi error message topic name
+  errorPublish: false                                              # publishing error to the /amt/errors topic is controlled
   cleanSession: true
   connectionTimeout: 300
   keepAliveInterval: 60
