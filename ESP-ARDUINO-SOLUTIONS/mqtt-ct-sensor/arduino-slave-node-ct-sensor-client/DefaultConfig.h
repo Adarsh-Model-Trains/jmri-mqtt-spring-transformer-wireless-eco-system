@@ -4,17 +4,15 @@
    Support adarshmodeltrains@gmail.com
 */
 
-#ifndef Config_h
-#define Config_h
+#ifndef DefaultConfig_h
+#define DefaultConfig_h
 #include "Arduino.h"
-#include "DefaultConfig.h"
 /************************************************************************************************/
-
-// MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING
-// APPLICATION NODE DEFINATION THEN ONLY THIS WILL WORK
-#define NO_OF_TURNOUT_BOARDS 2
-#define NO_OF_LIGHT_BOARDS 2
-#define NO_OF_TOTAL_BOARDS 4
-const bool signalLedTypeAnode = false;
+#define SEND_THRESHOLD 3
+#define ACTIVE ":AC\n"
+#define INACTIVE ":IN\n"
+#define BROAD_RATE 115200
+#define DELAY_TIME 5000
+#define INVALID_SENSOR_NUMBER " INVLAID SENEOR NUMBER "
 /************************************************************************************************/
 #endif

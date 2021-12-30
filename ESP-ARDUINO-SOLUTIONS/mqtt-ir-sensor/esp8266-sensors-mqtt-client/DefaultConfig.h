@@ -4,17 +4,17 @@
    Support adarshmodeltrains@gmail.com
 */
 
-#ifndef Config_h
-#define Config_h
+#ifndef DefaultConfig_h
+#define DefaultConfig_h
 #include "Arduino.h"
-#include "DefaultConfig.h"
 /************************************************************************************************/
-
-// MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING
-// APPLICATION NODE DEFINATION THEN ONLY THIS WILL WORK
-#define NO_OF_TURNOUT_BOARDS 2
-#define NO_OF_LIGHT_BOARDS 2
-#define NO_OF_TOTAL_BOARDS 4
-const bool signalLedTypeAnode = false;
+#define ACTIVE "ACTIVE"
+#define INACTIVE "INACTIVE"
+#define ACT "AC"
+#define DELAY_TIME 5000
+#define WIFI_RECONNECT_DELAY_TIME 500
+#define BROAD_RATE 115200
+#define JMRI_MQTT_TOPIC  "/trains/track/#"
+#define JMRI_MQTT_SENSOR_TOPIC "/trains/track/sensor/"
 /************************************************************************************************/
 #endif

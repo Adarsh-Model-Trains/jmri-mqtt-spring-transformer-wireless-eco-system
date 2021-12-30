@@ -9,7 +9,7 @@
 #define Config_h
 #include "Arduino.h"
 #include "DefaultConfig.h"
-
+#include "DefaultConfig.h"
 /************************************************************************************************/
 // ESP8266 do not support 5G wifi connection
 #define WIFI_SSID  "adarsh-model-trains"

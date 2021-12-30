@@ -4,17 +4,15 @@
    Support adarshmodeltrains@gmail.com
 */
 
-#ifndef Config_h
-#define Config_h
+#ifndef DefaultConfig_h
+#define DefaultConfig_h
 #include "Arduino.h"
-#include "DefaultConfig.h"
+/************************************************************************************************/
+#define BROAD_RATE 115200
+#define DELAY_TIME 200
+#define WIFI_RECONNECT_DELAY_TIME 500
+#define HEADER_NAME "Accept"
+#define HEADER_VALUE "text/plain"
 /************************************************************************************************/
 
-// MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING
-// APPLICATION NODE DEFINATION THEN ONLY THIS WILL WORK
-#define NO_OF_TURNOUT_BOARDS 2
-#define NO_OF_LIGHT_BOARDS 2
-#define NO_OF_TOTAL_BOARDS 4
-const bool signalLedTypeAnode = false;
-/************************************************************************************************/
 #endif
