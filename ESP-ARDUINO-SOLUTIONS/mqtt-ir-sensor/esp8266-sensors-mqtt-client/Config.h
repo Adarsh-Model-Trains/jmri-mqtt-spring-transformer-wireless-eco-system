@@ -7,17 +7,9 @@
 #ifndef Config_h
 #define Config_h
 #include "Arduino.h"
+#include "DefaultConfig.h"
+/************************************************************************************************/
 
-/************************************************************************************************/
-#define ACTIVE "ACTIVE"
-#define INACTIVE "INACTIVE"
-#define ACT "AC"
-#define DELAY_TIME 5000
-#define WIFI_RECONNECT_DELAY_TIME 500
-#define BROAD_RATE 115200
-#define JMRI_MQTT_TOPIC  "/trains/track/#"
-#define JMRI_MQTT_SENSOR_TOPIC "/trains/track/sensor/"
-/************************************************************************************************/
 // WiFi
 // Make sure to update this for your own WiFi network!
 #define WIFI_SSID "adarsh-model-trains" // ESP8266 do not support 5G wifi connection
@@ -31,5 +23,5 @@
 
 // change the node "number/name"  based on the node
 #define CLIENT_ID  "JMRI_NODE_ESP8266_PUBLISHING_1"
-
+/************************************************************************************************/
 #endif

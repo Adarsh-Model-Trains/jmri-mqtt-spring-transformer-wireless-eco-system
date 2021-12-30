@@ -8,12 +8,9 @@
 #ifndef Config_h
 #define Config_h
 #include "Arduino.h"
+#include "DefaultConfig.h"
+/************************************************************************************************/
 
-/************************************************************************************************/
-#define BROAD_RATE 115200
-#define DELAY_TIME 1000
-#define WIFI_RECONNECT_DELAY_TIME 500
-/************************************************************************************************/
 // WiFi
 // Make sure to update this for your own WiFi network!
 #define WIFI_SSID "adarsh-model-trains" // ESP8266 do not support 5G wifi connection
@@ -30,5 +27,5 @@
 
 // change the node "number/name"  based on the node
 #define CLIENT_ID "JMRI_SUBSCRIBER_NODE_ESP8266_1"
-
+/************************************************************************************************/
 #endif

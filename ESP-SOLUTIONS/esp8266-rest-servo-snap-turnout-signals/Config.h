@@ -1,43 +1,14 @@
+/*
+   Adarsh Model Trains
+   Developed by Adarsh kumar
+   Support adarshmodeltrains@gmail.com
+*/
+
 #ifndef Config_h
 #define Config_h
 #include "Arduino.h"
-
+#include "DefaultConfig.h"
 /************************************************************************************************/
-#define T 'T'
-#define L 'L'
-#define S 'S'
-#define O 'O'
-#define M 'M'
-#define N 'N'
-#define E 'E'
-#define THROWN "TH"
-#define CLOSED "CL"
-#define ON "ON"
-#define OFF "OF"
-#define MSG_SIZE  14
-#define BROAD_RATE 115200
-#define DELAY_TIME 200
-#define WIFI_RECONNECT_DELAY_TIME 500 
-#define TOTAL_BOARD_PIN 16
-#define RANGE_TYPE 2
-#define PWM_LIGHT_FREQUENCY 1000
-#define PWM_SNAP_TURNOUT_FREQUENCY 1000
-#define PWM_SERVO_TURNOUT_FREQUENCY 50 
-#define F0 0
-#define F4096 4096
-#define HEADER_NAME "Accept"
-#define HEADER_VALUE "text/plain"
-/************************************************************************************************/
-#define REST_API_DISABLED "REST API IS NOT ENABLED FOR THIS NODE"
-#define NO_DATA_AVALIABLE "NO DATA AVALIABLE FOR THIS NODE"
-#define BOARDS_CONFIG "BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED"
-#define TURNOUT_THROW "TURNOUT THROW\n"
-#define TURNOUT_CLOSE "TURNOUT CLOSE\n"
-#define LED_ON " LED ON\n"
-#define LED_OFF " LED OFF\n"
-/************************************************************************************************/
-
-const bool signalLedTypeAnode = false;
 
 // ESP8266 do not support 5G wifi connection
 #define WIFI_SSID  "adarsh_radha_2G"
@@ -48,6 +19,7 @@ const bool signalLedTypeAnode = false;
 #define NODE_ID  "1"
 
 const bool slowMove = true;
+const bool signalLedTypeAnode = false;
 
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING
 // APPLICATION NODE DEFINATION THEN ONLY THIS WILL WORK
@@ -117,5 +89,5 @@ const int turnoutRange[][TOTAL_BOARD_PIN][RANGE_TYPE] = {
     {1000, 2000}
   }
 };
-
+/************************************************************************************************/
 #endif

@@ -9,6 +9,7 @@
 // Allows us to connect to, and publish to the MQTT broker
 #include "PubSubClient.h"
 #include"Config.h"
+#include "DefaultConfig.h"
 #include "Pca9685BoardManager.h"
 
 String light;

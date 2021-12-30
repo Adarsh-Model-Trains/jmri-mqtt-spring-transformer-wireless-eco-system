@@ -29,7 +29,6 @@ void IrSensor::init() {
 }
 
 
-
 void IrSensor::calculateBlockOccupancy(int blockNo) {
 
   _startBlockSensorVal = digitalRead(sensorPin[blockNo][0]);
