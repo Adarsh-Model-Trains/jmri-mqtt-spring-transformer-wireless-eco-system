@@ -44,7 +44,7 @@ node:
         enableNode: true                          # enable the node to process for jmri data
         enablePublishing: true                    # enable the node to publish process data to the mqtt topic
         enableRestApi: true                       # to enable the rest service for the node
-        apiEndpointCacheSize: 10                  # cache for rest api to hold the data for service call
+        apiEndpointCacheSize: 100                  # cache for rest api to hold the data for service call
         lightStartAddress: 10000
         lightCount: 2                             # 1 pin for each light on the pca9685 board
         signal2LStartAddress: 20000
@@ -63,7 +63,7 @@ node:
         nodeId: 2
         enableNode: true
         enablePublishing: true
-        enableRestApi: false
+        enableRestApi: true
         lightStartAddress: 10100
         lightCount: 5
         signal2LStartAddress: 20100
@@ -82,7 +82,7 @@ node:
         nodeId: 3
         enableNode: true
         enablePublishing: true
-        enableRestApi: false
+        enableRestApi: true
         lightStartAddress: 10200
         lightCount: 7
         signal2LStartAddress: 20200
@@ -101,7 +101,7 @@ node:
         nodeId: 4
         enableNode: true
         enablePublishing: true
-        enableRestApi: false
+        enableRestApi: true
         lightStartAddress: 10300
         lightCount: 23
         signal2LStartAddress: 20300

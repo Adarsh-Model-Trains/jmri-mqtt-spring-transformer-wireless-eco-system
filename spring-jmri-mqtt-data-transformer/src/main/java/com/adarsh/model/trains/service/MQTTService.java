@@ -30,6 +30,7 @@ public class MQTTService {
     final public static Map<String, Long> cache2LedTime = new HashMap<>();
     final public static Map<String, Long> cache3LedTime = new HashMap<>();
     final public static Map<String, Boolean> activeNodeCache = new HashMap<>();
+    final public static Map<String, Integer> nodeApiCommCounter = new HashMap<>();
     final public static MqttMessage mqttMessage = new MqttMessage();
     final public static String EMPTY = "";
     final public static Integer led2 = 2;
@@ -71,6 +72,7 @@ public class MQTTService {
                 if (node.getEnableRestApi()) {
                     activeNodeCache.put(node.getNodeId(), true);
                     store.put(node.getNodeId(), new DataCircularQueue(node.getApiEndpointCacheSize()));
+                    nodeApiCommCounter.put(node.getNodeId(), -1);
                 } else {
                     activeNodeCache.put(node.getNodeId(), false);
                 }
@@ -370,8 +372,12 @@ public class MQTTService {
         mqttClient.publish(topic, mqttMessage);
     }
 
-    public static String getData(String nodeId) throws Exception {
-        return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeue() : DEFAULT_EMPTY_RESULT;
+    public static String getData(String nodeId, boolean counterVal) throws Exception {
+        if (counterVal) {
+            return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeue() : DEFAULT_EMPTY_RESULT;
+        } else {
+            return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeueCurrent() : DEFAULT_EMPTY_RESULT;
+        }
     }
 
     public void flushCache(NodeConfigurations.Nodes node, Map<String, List<String>> cache) throws Exception {
