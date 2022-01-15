@@ -7,35 +7,45 @@
 
 #include"Config.h"
 
-int index = 0;
+int indexCount = 0;
+
 
 void setup() {
   Serial.begin(BROAD_RATE);
   Serial.flush();
-
-  for (index = 0 ; index < NO_OF_TURNOUT; index++) {
-    pinMode(swtichs[index][0], INPUT);
-    pinMode(swtichs[index][1], INPUT);
+  for (indexCount = 0 ; indexCount < NO_OF_TURNOUT; indexCount++) {
+    pinMode(swtichs[indexCount][0], INPUT);
+    pinMode(swtichs[indexCount][1], INPUT);
   }
 }
 
 void loop() {
-  for (index = 0 ; index < NO_OF_TURNOUT; index++) {
-    if (digitalRead(swtichs[index][0]) == HIGH) {
-      if (swtichs[index][3] == 0) {
-        sendData(String(swtichs[index][2] + THROWN));
-        swtichs[index][3] = 1;
-        swtichs[index][4] = 0;
+  for (indexCount = 0 ; indexCount < NO_OF_TURNOUT; indexCount++) {
+    if (digitalRead(swtichs[indexCount][0]) == HIGH) {
+      if (swtichs[indexCount][3] == 0) {
+        sendData(String(swtichs[indexCount][2] + THROWN));
+        if (sendThreashold[indexCount] < SEND_THRESHOLD) {
+          sendThreashold[indexCount] = sendThreashold[indexCount] + 1;
+        } else {
+          sendThreashold[indexCount] = 0;
+          swtichs[indexCount][3] = 1;
+          swtichs[indexCount][4] = 0;
+        }
       }
-    } else if (digitalRead(swtichs[index][1]) == HIGH) {
-      if (swtichs[index][4] == 0) {
-        sendData(String(swtichs[index][2] + CLOSED));
-        swtichs[index][4] = 1;
-        swtichs[index][3] = 0;
+    } else if (digitalRead(swtichs[indexCount][1]) == HIGH) {
+      if (swtichs[indexCount][4] == 0) {
+        sendData(String(swtichs[indexCount][2] + CLOSED));
+        if (sendThreashold[indexCount] < SEND_THRESHOLD) {
+          sendThreashold[indexCount] = sendThreashold[indexCount] + 1;
+        } else {
+          sendThreashold[indexCount] = 0;
+          swtichs[indexCount][4] = 1;
+          swtichs[indexCount][3] = 0;
+        }
       }
-    } else if (digitalRead(swtichs[index][0]) == LOW && digitalRead(swtichs[index][1]) == LOW) {
-      swtichs[index][3] = 0;
-      swtichs[index][4] = 0;
+    } else if (digitalRead(swtichs[indexCount][0]) == LOW && digitalRead(swtichs[indexCount][1]) == LOW) {
+      swtichs[indexCount][3] = 0;
+      swtichs[indexCount][4] = 0;
     }
   }
   delay(DELAY_TIME);

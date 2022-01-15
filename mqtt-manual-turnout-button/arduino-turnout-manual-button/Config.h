@@ -14,8 +14,9 @@
 #define THROWN ":TH\n"
 #define CLOSED ":CL\n"
 /************************************************************************************************/
-
+#define SEND_THRESHOLD 3
 #define NO_OF_TURNOUT 2
+int sendThreashold[NO_OF_TURNOUT];
 /*
   NO_OF_TURNOUT  2
   cont int swtichs[][NO_OF_TURNOUT][3] = {
@@ -24,7 +25,7 @@
 
   };
 */
-const int swtichs[NO_OF_TURNOUT][5] = {
+int swtichs[NO_OF_TURNOUT][5] = {
   {3, 4, 40001, 0, 0},
   {5, 6, 50001, 0, 0},
 };
