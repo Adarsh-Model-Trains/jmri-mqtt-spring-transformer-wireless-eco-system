@@ -16,7 +16,6 @@ int pinId ;
 char type = '-';
 String serverResponse;
 String payload = "";
-int requestCounter = -1;
 int httpResponseCode = -1;
 
 HTTPClient http;
@@ -41,18 +40,10 @@ void setup() {
   Serial.println(WiFi.localIP());
 
   pcaBoardManager.initPca9685Boards();
-  restGetHttpCall();
 }
 
 void loop() {
   if ((WiFiMulti.run() == WL_CONNECTED)) {
-
-    if (COUNTER_THRESHHOLD == requestCounter) {
-      restGetHttpCall();
-      requestCounter = 0;
-    } else {
-      requestCounter++;
-    }
 
     serverResponse = httpGETRequest();
     // todo with the server response
@@ -69,7 +60,6 @@ void loop() {
 String httpGETRequest() {
   http.begin(client, SERVER_URL);
   http.addHeader(HEADER_NAME, HEADER_VALUE);
-  http.addHeader(HEADER_COUNT_NAME, String(requestCounter));
   httpResponseCode = http.GET();
   payload = "";
   if (httpResponseCode > 0) {
@@ -82,18 +72,6 @@ String httpGETRequest() {
   }
   http.end();
   return payload;
-}
-
-void restGetHttpCall() {
-  http.begin(client, SERVER_URL + "/reset");
-  http.addHeader(HEADER_NAME, HEADER_VALUE);
-  httpResponseCode = http.GET();
-  if (httpResponseCode > 0) {
-    requestCounter = 0;
-  } else if (httpResponseCode == -1) {
-    Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
-  }
-  http.end();
 }
 
 void processCall(String msg) {

@@ -33,28 +33,10 @@ public class JMRIMQTTDataController {
                               HttpServletRequest request,
                               HttpServletResponse response) throws Exception {
         response.setHeader("Content-Length", "16");
-        Integer counter = request.getIntHeader("counter");
         if (MQTTService.activeNodeCache.containsKey(nodeId)) {
-            Integer curCountVal = MQTTService.nodeApiCommCounter.get(nodeId);
-            //log.debug("counter {} curCountVal {}", counter, curCountVal);
-            if ((counter - 1) == curCountVal) {
-                MQTTService.nodeApiCommCounter.put(nodeId, counter);
-                return MQTTService.getData(nodeId, true);
-            } else if (counter == curCountVal) {
-                return MQTTService.getData(nodeId, false);
-            }
+            return MQTTService.getData(nodeId, true);
         }
         return DEFAULT_BLOCK_RESULT;
-    }
-
-    @GetMapping("/node/{nodeId}/reset")
-    public String getNodeDataCursorReset(@PathVariable("nodeId") String nodeId, HttpServletResponse response) throws Exception {
-        response.setHeader("Content-Length", "16");
-        if (MQTTService.nodeApiCommCounter.containsKey(nodeId)) {
-            return MQTTService.nodeApiCommCounter.put(nodeId, -1) != null ? "-1" : "0";
-        } else {
-            return DEFAULT_BLOCK_RESULT;
-        }
     }
 
     @PostMapping("/node/{nodeId}")
