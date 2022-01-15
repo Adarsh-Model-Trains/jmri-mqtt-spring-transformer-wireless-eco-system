@@ -37,6 +37,8 @@ PubSubClient client(MQTT_SERVER, 1883, wifiClient);
 
 Pca9685BoardManager pcaBoardManager;
 
+
+
 void subscribeMqttMessage(char* topic, byte* payload, unsigned int length) {
 
   mqttTopicValue = getMessage(payload, length);
@@ -102,7 +104,7 @@ void setup() {
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
-
+  client.setCallback(subscribeMqttMessage);
   // Connect to MQTT Broker
   if (mqttConnect()) {
     Serial.println("CONNNECTED TO MQTT  ");
