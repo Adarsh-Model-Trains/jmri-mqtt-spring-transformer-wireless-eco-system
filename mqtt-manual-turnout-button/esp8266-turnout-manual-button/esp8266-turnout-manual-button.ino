@@ -10,11 +10,24 @@
 // Allows us to connect to, and publish to the MQTT broker
 #include "PubSubClient.h"
 #include"Config.h"
+#include "Pca9685BoardManager.h"
 
+int pinId;
+int i = 0;
 String id;
 String val;
-String message;
+String jId;
+String bId;
+String pId;
+int boardId;
+int jmriId;
 String topic;
+String message;
+char type = '-';
+String inputVal;
+String messageText;
+String mqttTopicValue;
+
 
 // Initialise the WiFi and MQTT Client objects
 WiFiClient wifiClient;
@@ -22,6 +35,27 @@ WiFiClient wifiClient;
 // 1883 is the listener port for the Broker
 PubSubClient client(MQTT_SERVER, 1883, wifiClient);
 
+Pca9685BoardManager pcaBoardManager;
+
+void subscribeMqttMessage(char* topic, byte* payload, unsigned int length) {
+
+  mqttTopicValue = getMessage(payload, length);
+
+  processCall(mqttTopicValue.c_str());
+
+  mqttTopicValue = "";
+}
+
+/*
+   converting message from mqtt bytes to string
+*/
+String getMessage(byte* message, int length) {
+  messageText = "";
+  for ( i = 0; i < length; i++) {
+    messageText += (char)message[i];
+  }
+  return messageText + "\n";
+}
 
 /*
    pushing the sensor data to the mqtt for jmri
@@ -37,7 +71,7 @@ void publishSensorData(String sensorNo, String state) {
 bool mqttConnect() {
   // Connect to MQTT Server and subscribe to the topic
   if (client.connect(CLIENT_ID, MQTT_USER, MQTT_PWD)) {
-    client.subscribe(JMRI_MQTT_TOPIC);
+    client.subscribe(MQTT_TOPIC);
     return true;
   } else {
     return false;
@@ -75,6 +109,7 @@ void setup() {
   } else {
     Serial.println("NOT CONNNECTED TO MQTT  ");
   }
+  pcaBoardManager.initPca9685Boards();
 }
 
 void loop() {
@@ -102,4 +137,59 @@ void loop() {
     }
   }
   delay(DELAY_TIME);
+}
+
+void processCall(String msg) {
+
+  Serial.println(" Message " + msg);
+  type = msg.charAt(0);
+  msg = msg.substring(2);
+
+  if (type == S) {
+
+    doExecute(msg, S);
+    msg = msg.substring(15);
+
+    if (msg.length() >= MSG_SIZE) {
+
+      doExecute(msg, S);
+      msg = msg.substring(15);
+
+      if (msg.length() >= MSG_SIZE) {
+
+        doExecute(msg, S);
+
+      }
+    }
+  }
+
+  type = '-';
+}
+
+void doExecute(String msg , char type) {
+  inputVal = msg.substring(0, MSG_SIZE);
+  jId = inputVal.substring(0, 5);
+  bId = inputVal.substring(6, 8);
+  pId = inputVal.substring(9, 11);
+  val = inputVal.substring(12, MSG_SIZE);
+
+  boardId = atoi(bId.c_str());
+  pinId = atoi(pId.c_str());
+
+  doPrint(inputVal, jId, bId, pId, val);
+  if (boardId <= NO_OF_TOTAL_BOARDS) {
+    if ( type == S) {
+      if (val == ON) {
+        pcaBoardManager.switchOnSignal(boardId, pinId);
+      } else {
+        pcaBoardManager.switchOffSignal( boardId, pinId);
+      }
+    }
+  } else {
+    Serial.println(BOARDS_CONFIG);
+  }
+}
+
+void doPrint(String input, String jmriId, String boardId, String pinId, String state) {
+  Serial.println("Input " + input + " Number " + jmriId + " Board Number " + boardId + " Pin Number " + pinId + " Value " + state);
 }
