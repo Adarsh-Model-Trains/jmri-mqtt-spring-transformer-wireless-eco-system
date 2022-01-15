@@ -11,7 +11,7 @@
 #include"Config.h"
 #include "Pca9685BoardManager.h"
 
-String light;
+String inputVal;
 String jId ;
 String bId ;
 String pId ;
@@ -148,16 +148,16 @@ void processCall(String msg) {
 }
 
 void doExecute(String msg , char type) {
-  light = msg.substring(0, MSG_SIZE);
-  jId = light.substring(0, 5);
-  bId = light.substring(6, 8);
-  pId = light.substring(9, 11);
-  val = light.substring(12, MSG_SIZE);
+  inputVal = msg.substring(0, MSG_SIZE);
+  jId = inputVal.substring(0, 5);
+  bId = inputVal.substring(6, 8);
+  pId = inputVal.substring(9, 11);
+  val = inputVal.substring(12, MSG_SIZE);
 
   boardId = atoi(bId.c_str());
   pinId = atoi(pId.c_str());
 
-  doPrint(light, jId, bId, pId, val);
+  doPrint(inputVal, jId, bId, pId, val);
   if (boardId <= NO_OF_TOTAL_BOARDS) {
     if (type == T ) {
       if (val == THROWN) {
