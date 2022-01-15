@@ -104,7 +104,9 @@ void setup() {
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
+  
   client.setCallback(subscribeMqttMessage);
+  
   // Connect to MQTT Broker
   if (mqttConnect()) {
     Serial.println("CONNNECTED TO MQTT  ");
