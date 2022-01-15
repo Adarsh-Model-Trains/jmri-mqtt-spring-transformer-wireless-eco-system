@@ -7,35 +7,46 @@
 
 #include"Config.h"
 
-int index = 0;
+int indexCount = 0;
 
 void setup() {
   Serial.begin(BROAD_RATE);
   Serial.flush();
-
-  for (index = 0 ; index < NO_OF_TURNOUT; index++) {
-    pinMode(swtichs[index][0], INPUT);
-    pinMode(swtichs[index][1], INPUT);
+  for (indexCount = 0 ; indexCount < NO_OF_TURNOUT; indexCount++) {
+    pinMode(swtichs[indexCount][THROW_PIN], INPUT);
+    pinMode(swtichs[indexCount][CLOSE_PIN], INPUT);
   }
 }
 
 void loop() {
-  for (index = 0 ; index < NO_OF_TURNOUT; index++) {
-    if (digitalRead(swtichs[index][0]) == HIGH) {
-      if (swtichs[index][3] == 0) {
-        sendData(String(swtichs[index][2] + THROWN));
-        swtichs[index][3] = 1;
-        swtichs[index][4] = 0;
+  for (indexCount = 0 ; indexCount < NO_OF_TURNOUT; indexCount++) {
+    if (digitalRead(swtichs[indexCount][THROW_PIN]) == HIGH) {
+      if (swtichs[indexCount][THROW_STATE] == 0) {
+        sendData(String(swtichs[indexCount][JMRIADDRESS] + THROWN));
+        if (swtichs[indexCount][THROW_SEND_STATUS] < SEND_THRESHOLD) {
+          swtichs[indexCount][THROW_SEND_STATUS] = swtichs[indexCount][THROW_SEND_STATUS] + 1;
+        } else {
+          swtichs[indexCount][THROW_SEND_STATUS] = 0;
+          swtichs[indexCount][THROW_STATE] = 1;
+          swtichs[indexCount][CLOSE_STATE] = 0;
+        }
       }
-    } else if (digitalRead(swtichs[index][1]) == HIGH) {
-      if (swtichs[index][4] == 0) {
-        sendData(String(swtichs[index][2] + CLOSED));
-        swtichs[index][4] = 1;
-        swtichs[index][3] = 0;
+    } else if (digitalRead(swtichs[indexCount][CLOSE_PIN]) == HIGH) {
+      if (swtichs[indexCount][CLOSE_STATE] == 0) {
+        sendData(String(swtichs[indexCount][JMRIADDRESS] + CLOSED));
+        if (swtichs[indexCount][CLOSE_SEND_STATUS] < SEND_THRESHOLD) {
+          swtichs[indexCount][CLOSE_SEND_STATUS] = swtichs[indexCount][CLOSE_SEND_STATUS] + 1;
+        } else {
+          swtichs[indexCount][CLOSE_SEND_STATUS] = 0;
+          swtichs[indexCount][CLOSE_STATE] = 1;
+          swtichs[indexCount][THROW_STATE] = 0;
+        }
       }
-    } else if (digitalRead(swtichs[index][0]) == LOW && digitalRead(swtichs[index][1]) == LOW) {
-      swtichs[index][3] = 0;
-      swtichs[index][4] = 0;
+    } else if (digitalRead(swtichs[indexCount][0]) == LOW && digitalRead(swtichs[indexCount][1]) == LOW) {
+      swtichs[indexCount][THROW_STATE] = 0;
+      swtichs[indexCount][CLOSE_STATE] = 0;
+      swtichs[indexCount][THROW_SEND_STATUS] = 0;
+      swtichs[indexCount][CLOSE_SEND_STATUS] = 0;
     }
   }
   delay(DELAY_TIME);

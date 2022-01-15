@@ -4,7 +4,6 @@
 #include <ESP8266WiFiMulti.h>
 #include"Config.h"
 
-
 String payload = "";
 int httpResponseCode;
 String serverResponse;
@@ -53,7 +52,7 @@ String httpGETRequest() {
   } else if (httpResponseCode == -1) {
     Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
   } else {
-   // Serial.println("ERROR CODE: " + String(httpResponseCode));
+    // Serial.println("ERROR CODE: " + String(httpResponseCode));
   }
   http.end();
   return payload;

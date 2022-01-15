@@ -45,6 +45,16 @@ public class DataCircularQueue {
         return null;
     }
 
+    public String dequeueCurrent() throws Exception {
+        if(!isEmpty()) {
+            int newRemovalPoint = (startPoint + 1) % size;
+            if (queueData[newRemovalPoint] != null) {
+                return this.queueData[this.startPoint];
+            }
+        }
+        return null;
+    }
+
     public boolean isEmpty() throws Exception {
             int newRemovalPoint = (startPoint + 1) % size;
             if (queueData[newRemovalPoint] != null) {

@@ -5,8 +5,11 @@ import com.adarsh.model.trains.service.MQTTService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
 import static com.adarsh.model.trains.service.MQTTService.DEFAULT_BLOCK_RESULT;
 
 /*
@@ -26,13 +29,14 @@ public class JMRIMQTTDataController {
     MQTTService mqttService;
 
     @GetMapping("/node/{nodeId}")
-    public String getNodeData(@PathVariable("nodeId") String nodeId, HttpServletResponse response) throws Exception {
+    public String getNodeData(@PathVariable("nodeId") String nodeId,
+                              HttpServletRequest request,
+                              HttpServletResponse response) throws Exception {
         response.setHeader("Content-Length", "16");
         if (MQTTService.activeNodeCache.containsKey(nodeId)) {
-            return MQTTService.getData(nodeId);
-        } else {
-            return DEFAULT_BLOCK_RESULT;
+            return MQTTService.getData(nodeId, true);
         }
+        return DEFAULT_BLOCK_RESULT;
     }
 
     @PostMapping("/node/{nodeId}")

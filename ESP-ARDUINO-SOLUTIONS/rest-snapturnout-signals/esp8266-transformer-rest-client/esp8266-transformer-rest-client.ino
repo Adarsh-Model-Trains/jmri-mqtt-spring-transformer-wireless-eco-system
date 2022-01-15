@@ -4,7 +4,6 @@
 #include <ESP8266WiFiMulti.h>
 #include"Config.h"
 
-
 String payload = "";
 String serverResponse;
 int httpResponseCode;
@@ -31,6 +30,7 @@ void setup() {
 
 void loop() {
   if ((WiFiMulti.run() == WL_CONNECTED)) {
+
     serverResponse = httpGETRequest();
     if (serverResponse != "") {
       pushDataToSlave(serverResponse);

@@ -370,8 +370,12 @@ public class MQTTService {
         mqttClient.publish(topic, mqttMessage);
     }
 
-    public static String getData(String nodeId) throws Exception {
-        return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeue() : DEFAULT_EMPTY_RESULT;
+    public static String getData(String nodeId, boolean nextValue) throws Exception {
+        if (nextValue) {
+            return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeue() : DEFAULT_EMPTY_RESULT;
+        } else {
+            return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeueCurrent() : DEFAULT_EMPTY_RESULT;
+        }
     }
 
     public void flushCache(NodeConfigurations.Nodes node, Map<String, List<String>> cache) throws Exception {
