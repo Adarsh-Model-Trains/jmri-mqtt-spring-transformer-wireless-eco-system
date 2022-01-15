@@ -14,9 +14,11 @@
 #define WIFI_SSID  "adarsh_radha_2G"
 #define WIFI_PASSWROD  "***********"
 
-// IP OF THE SERVER MACHINE WHERE SPRING TRANSFORMER IS RUNNING
-#define SERVER_URL  "http://192.168.0.188:8090/amt/node/1"
-#define NODE_ID  "1"
+// IP AND PORT THE SERVER MACHINE WHERE SPRING TRANSFORMER IS RUNNING
+const String SERVER_IP_PORT = "192.168.0.188:8090";
+const String NODE_ID = "1";
+const String SERVICE_URL = "/amt/node/";
+const String SERVER_URL = "http://" + SERVER_IP_PORT + SERVICE_URL + NODE_ID;
 
 const bool slowMove = true;
 const bool signalLedTypeAnode = false;
