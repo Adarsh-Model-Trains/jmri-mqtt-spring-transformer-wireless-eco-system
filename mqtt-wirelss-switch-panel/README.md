@@ -1,4 +1,4 @@
-# MQTT MANUAL TURNOUT BUTTON 
+# mqtt-wirelss-switch-panel
 
 ----
 
