@@ -12,22 +12,17 @@
 #include"Config.h"
 #include "Pca9685BoardManager.h"
 
-int pinId;
+
 int i = 0;
 String id;
 String val;
-String jId;
-String bId;
-String pId;
-int boardId;
-int jmriId;
 String topic;
 String message;
-char type = '-';
-String inputVal;
 String messageText;
-String mqttTopicValue;
+String turnoutNumber;
+String turnoutState;
 
+Pca9685BoardManager pcaBoardManager;
 
 // Initialise the WiFi and MQTT Client objects
 WiFiClient wifiClient;
@@ -35,17 +30,15 @@ WiFiClient wifiClient;
 // 1883 is the listener port for the Broker
 PubSubClient client(MQTT_SERVER, 1883, wifiClient);
 
-Pca9685BoardManager pcaBoardManager;
-
-
 
 void subscribeMqttMessage(char* topic, byte* payload, unsigned int length) {
 
-  mqttTopicValue = getMessage(payload, length);
-
-  processCall(mqttTopicValue.c_str());
-
-  mqttTopicValue = "";
+  turnoutNumber = String(topic).substring(22);
+  turnoutState = getMessage(payload, length);
+  turnoutState.trim();
+  processCall(turnoutNumber.toInt(), turnoutState);
+  turnoutNumber = "";
+  turnoutState = "";
 }
 
 /*
@@ -62,8 +55,8 @@ String getMessage(byte* message, int length) {
 /*
    pushing the sensor data to the mqtt for jmri
 */
-void publishSensorData(String sensorNo, String state) {
-  topic = JMRI_MQTT_TOPIC + sensorNo;
+void publishSensorData(String turnoutNo, String state) {
+  topic = JMRI_MQTT_PUBLISHING_TOPIC + turnoutNo + " ";
   Serial.print(topic + " " + state);
   Serial.println();
   client.publish(topic.c_str(), state.c_str());
@@ -73,7 +66,7 @@ void publishSensorData(String sensorNo, String state) {
 bool mqttConnect() {
   // Connect to MQTT Server and subscribe to the topic
   if (client.connect(CLIENT_ID, MQTT_USER, MQTT_PWD)) {
-    client.subscribe(MQTT_TOPIC);
+    client.subscribe(JMRI_MQTT_SUBSCRIBING_TOPIC);
     return true;
   } else {
     return false;
@@ -104,9 +97,9 @@ void setup() {
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
-  
+
   client.setCallback(subscribeMqttMessage);
-  
+
   // Connect to MQTT Broker
   if (mqttConnect()) {
     Serial.println("CONNNECTED TO MQTT  ");
@@ -128,8 +121,8 @@ void loop() {
   while (Serial.available()) {
     message = Serial.readString();
     if (message != "") {
-      id = message.substring(0, 5); // 40000                  // 40000:CL
-      val = message.substring(6, 8); // TH | CL         // 40000:TH
+      id = message.substring(0, 5);                     // 40000                  // 40000:CL
+      val = message.substring(6, 8);                    // TH | CL                // 40000:TH
       if (val == TH) {
         publishSensorData(id, THROWN);
       } else {
@@ -143,57 +136,50 @@ void loop() {
   delay(DELAY_TIME);
 }
 
-void processCall(String msg) {
+void processCall(int turnoutNo, String state) {
 
-  Serial.println(" Message " + msg);
-  type = msg.charAt(0);
-  msg = msg.substring(2);
+  Serial.println("TurnoutNo " + String(turnoutNo) + " TurnoutState " + state);
 
-  if (type == S) {
-
-    doExecute(msg, S);
-    msg = msg.substring(15);
-
-    if (msg.length() >= MSG_SIZE) {
-
-      doExecute(msg, S);
-      msg = msg.substring(15);
-
-      if (msg.length() >= MSG_SIZE) {
-
-        doExecute(msg, S);
-
-      }
+  if (turnoutNo >= SNAP_TURNOUT_START_ADDRESS) {
+    turnoutNo = turnoutNo - SNAP_TURNOUT_START_ADDRESS;
+    turnoutNo = turnoutNo + TOTOAL_SERVO_TURNOUT;
+    turnoutNo = turnoutNo * 2;
+    if (state == THROWN) {
+      turnoutNo = turnoutNo - 1;
     }
-  }
-
-  type = '-';
-}
-
-void doExecute(String msg , char type) {
-  inputVal = msg.substring(0, MSG_SIZE);
-  jId = inputVal.substring(0, 5);
-  bId = inputVal.substring(6, 8);
-  pId = inputVal.substring(9, 11);
-  val = inputVal.substring(12, MSG_SIZE);
-
-  boardId = atoi(bId.c_str());
-  pinId = atoi(pId.c_str());
-
-  doPrint(inputVal, jId, bId, pId, val);
-  if (boardId <= NO_OF_TOTAL_BOARDS) {
-    if ( type == S) {
-      if (val == ON) {
-        pcaBoardManager.switchOnSignal(boardId, pinId);
-      } else {
-        pcaBoardManager.switchOffSignal( boardId, pinId);
-      }
+    findBoardPinAndExecute(turnoutNo, state) ;
+  } else if (turnoutNo >= SERVO_TURNOUT_START_ADDRESS) {
+    turnoutNo = turnoutNo - SERVO_TURNOUT_START_ADDRESS;
+    turnoutNo = turnoutNo * 2;
+    if (state == THROWN) {
+      turnoutNo = turnoutNo - 1;
     }
+    findBoardPinAndExecute(turnoutNo, state) ;
   } else {
-    Serial.println(BOARDS_CONFIG);
+    Serial.println("Invalid Turnout Number" + String(turnoutNo));
   }
 }
 
-void doPrint(String input, String jmriId, String boardId, String pinId, String state) {
-  Serial.println("Input " + input + " Number " + jmriId + " Board Number " + boardId + " Pin Number " + pinId + " Value " + state);
+
+void findBoardPinAndExecute(int pinNo, String state) {
+  pinNo = pinNo - 1;
+  int board = (pinNo / TOTAL_BOARD_PIN);
+  if (board <= NO_OF_TOTAL_BOARDS && pinNo <= (NO_OF_TOTAL_BOARDS * TOTAL_BOARD_PIN)) {
+    int totalPins = (board * TOTAL_BOARD_PIN);
+    int pin = (pinNo - totalPins);
+    pin = (pin == -1) ? 0 : pin;
+    //doPrint(board, pin, state);
+    if (state == THROWN) {
+      pcaBoardManager.switchOnSignal(board, pin);
+      pcaBoardManager.switchOffSignal( board, pin + 1);
+    } else {
+      pcaBoardManager.switchOnSignal( board, pin);
+      pcaBoardManager.switchOffSignal(board, pin - 1);
+    }
+  }
+}
+
+
+void doPrint( int boardId, int pinId, String state) {
+  Serial.println(" Board Number " + String(boardId) + " Pin Number " + String(pinId) + " Value " + state);
 }
