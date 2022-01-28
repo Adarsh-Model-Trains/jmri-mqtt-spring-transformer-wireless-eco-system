@@ -29,6 +29,14 @@
 #define NO_OF_TOTAL_BOARDS 6
 ```
 
+### spring transformation rest service url configured in Config.h file 
+* "http://localhost:8090/amt/node/<NODE_ID>";
+```
+const String SERVER_IP_PORT = "192.168.0.188:8090";
+const String NODE_ID = "1";
+const String SERVICE_URL = "/amt/node/";
+```
+
 ## To Open Two arduino sperate ide on mac 
 * $ open -n -a Arduino
 * -n = open new instance even when one is already running

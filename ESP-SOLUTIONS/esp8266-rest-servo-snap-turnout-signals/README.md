@@ -32,6 +32,14 @@
 #define NO_OF_TOTAL_BOARDS 5
 ```
 
+> spring transformation rest service url configured in Config.h file 
+* "http://localhost:8090/amt/node/<NODE_ID>";
+```
+const String SERVER_IP_PORT = "192.168.0.188:8090";
+const String NODE_ID = "1";
+const String SERVICE_URL = "/amt/node/";
+```
+
 
 ### Configuration of the open and close range for the servo moter 
 > use the callibration application "servo-turnout-calibration" for the finding the open and close range 
