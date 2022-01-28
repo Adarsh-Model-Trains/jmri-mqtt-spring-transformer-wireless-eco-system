@@ -25,7 +25,9 @@
 > spring transformation rest service url configured in Config.h file 
 * "http://localhost:8090/amt/node/<NODE_ID>";
 ```
-const char* SERVER_URL = "http://192.168.0.188:8090/amt/node/1";
+const String SERVER_IP_PORT = "192.168.0.188:8090";
+const String NODE_ID = "1";
+const String SERVICE_URL = "/amt/node/";
 ```
 
 ### TO POST THE SENSOR INFO TO  MQTT  VIA END POINTS 

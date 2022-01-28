@@ -17,6 +17,31 @@
 ### [esp8266-mqtt-servo-snap-turnout-signals](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/v1.production/ESP-SOLUTIONS/zip/esp8266-mqtt-servo-snap-turnout-signals.zip)
 
 
+### esp will conect to mqtt via wifi network 
+> wifi credentials will be configured in Config.h file 
+```
+#define WIFI_SSID "adarsh-model-trains" // ESP8266 do not support 5G wifi connection
+#define WIFI_PASSWROD "adarsh@model@trains"
+```
+> mqtt configuration and credentail will be configured in Config.h file 
+```
+#define  MQTT_SERVER  "192.168.0.188"
+#define  MQTT_USER "adarsh"
+#define  MQTT_PWD "password"
+```
+> mqtt topics will be configured in Config.h 
+```
+// change the node "number/name"  based on the node default is 1 in this 
+#define JMRI_MQTT_TOPIC "/amt/node/1/#"
+```
+
+> esp client id is configure in Config.h 
+```
+// change the node "number/name"  based on the node
+#define CLIENT_ID "JMRI_SUBSCRIBER_NODE_ESP8266_1"
+```
+
+
 ### Configuration of the number of boards based on the turnout light and 2 and 3 led signals 
 > msut match in node configuraiton in transformer 
 ```
