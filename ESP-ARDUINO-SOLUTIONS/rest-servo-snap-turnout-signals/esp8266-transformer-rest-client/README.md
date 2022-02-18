@@ -19,29 +19,19 @@
 > esp will conect to spring transformation application via wifi network 
 > wifi credentials will be configured in Config.h file 
 ```
-const char* ssid = "adarsh_radha_2G"; // ESP8266 do not support 5G wifi connection
-const char* wifi_password = "*******";
+#define WIFI_SSID "adarsh-model-trains"
+#define WIFI_PASSWROD "adarsh@model@trains"
 
 ```
 
 > spring transformation rest service url configured in Config.h file 
 * "http://localhost:8090/amt/node/<NODE_ID>";
 ```
-const char* SERVER_URL = "http://192.168.0.188:8090/amt/node/1";
+const String SERVER_IP_PORT = "192.168.0.188:8090";
+const String NODE_ID = "1";
+const String SERVICE_URL = "/amt/node/";
 ```
 
-### other config 
-```
-#define NODE_ID "1"
-#define BROAD_RATE 115200
-#define DELAY_TIME 5000
-#define WIFI_RECONNECT_DELAY_TIME 500
-```
-
-## Lib installtion 
-
-### search for "PubSubClient" lib and install it before compiling 
-### or install this lib for location [PubSubClient lib ](https://github.com/adarshkumarsingh83/jmri-cmri/raw/main/DOCUMENTS/JMRI-MOSQUITTO-MQTT/lib/pubsubclient.zip)
 
 ### jmri configuration 
 * all sensors will start from 10000 to limit 

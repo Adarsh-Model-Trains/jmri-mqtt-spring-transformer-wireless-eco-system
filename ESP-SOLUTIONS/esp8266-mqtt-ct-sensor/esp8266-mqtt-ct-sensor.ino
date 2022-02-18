@@ -8,14 +8,18 @@
 // Enables the ESP8266 to connect to the local network (via WiFi)
 #include <ESP8266WiFi.h>
 // Allows us to connect to, and publish to the MQTT broker
-#include <PubSubClient.h>
+#include "PubSubClient.h"
 #include"Config.h"
 #include "CtSensor.h"
 
-int address = 1;
+
 int blockNo = 0;
+String topic;
 int sensStatus[NO_OF_BLOCKS];
+int sendThreashold[NO_OF_BLOCKS];
+bool isBlockOccuipied;
 CtSensor ctSensor;
+
 
 // Initialise the WiFi and MQTT Client objects
 WiFiClient wifiClient;
@@ -28,7 +32,7 @@ PubSubClient client(MQTT_SERVER, 1883, wifiClient);
    pushing the sensor data to the mqtt for jmri
 */
 void publishSensorData(String sensorNo, String state) {
-  String topic = JMRI_MQTT_SENSOR_TOPIC + sensorNo;
+  topic = JMRI_MQTT_SENSOR_TOPIC + sensorNo;
   Serial.print(topic + " " + state);
   Serial.println();
   client.publish(topic.c_str(), state.c_str());
@@ -37,7 +41,7 @@ void publishSensorData(String sensorNo, String state) {
 
 bool mqttConnect() {
   // Connect to MQTT Server and subscribe to the topic
-  if (client.connect(CLIENT_ID, MQTT_USER, MQTT_PWD)) {
+  if (client.connect(CLIENT_ID, MQTT_USERNAME, MQTT_PASSORD)) {
     client.subscribe(JMRI_MQTT_TOPIC);
     return true;
   } else {
@@ -51,36 +55,38 @@ void setup() {
   // Begin Serial on 115200
   Serial.begin(BROAD_RATE);
 
-  Serial.print("Connecting to ");
-  Serial.println(SS_ID);
+  Serial.print(" CONNECTING TO WIFI .. ");
+  Serial.println(WIFI_SSID);
 
   // Connect to the WiFi
-  WiFi.begin(SS_ID, WIFI_PWD);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWROD);
 
   // Wait until the connection has been confirmed before continuing
   while (WiFi.status() != WL_CONNECTED) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-    //Serial.print(".");
+    Serial.print(".");
   }
 
 
   // Debugging - Output the IP Address of the ESP8266
-  Serial.print("WiFi connected: ");
+  Serial.println();
+  Serial.print(" CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
 
   // Connect to MQTT Broker
   if (mqttConnect()) {
-    Serial.println("Connected Successfully to MQTT Broker!");
+    Serial.println(" CONNNECTED TO MQTT ");
   } else {
-    Serial.println("Connection Failed!");
+    Serial.println(" ERROR NOT CONNNECTED TO MQTT ");
   }
 
   ctSensor.initCtSensor(NO_OF_BLOCKS);
-  for (int i = 0; i < NO_OF_BLOCKS; i++) {
-    ctSensor.setSensorPin(i + 1, sensorPin[i]);
-    sensStatus[i] = 0;
+  for ( blockNo = 0; blockNo < NO_OF_BLOCKS; blockNo++) {
+    ctSensor.setSensorPin(blockNo + 1, sensorPin[blockNo]);
+    sensStatus[blockNo] = 0;
+    sendThreashold[blockNo] = 0;
   }
 }
 
@@ -94,16 +100,26 @@ void loop() {
   // Once it has done all it needs to do for this cycle, go back to checking if we are still connected.
 
   for (blockNo = 1 ; blockNo <= NO_OF_BLOCKS; blockNo++) {
-    bool isBlockOccuipied = ctSensor.isSensorActive(blockNo);
+    isBlockOccuipied = ctSensor.isSensorActive(blockNo);
     if (isBlockOccuipied) {
       if (sensStatus[blockNo - 1] != 1) {
-        sensStatus[blockNo - 1] = 1;
-        publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , ACTIVE);
+        if (sendThreashold[blockNo - 1] < SEND_THRESHOLD) {
+          sendThreashold[blockNo - 1] = sendThreashold[blockNo - 1] + 1;
+          publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , ACTIVE);
+        } else {
+          sensStatus[blockNo - 1] = 1;
+          sendThreashold[blockNo - 1] = 0;
+        }
       }
     } else {
       if (sensStatus[blockNo - 1] != 0) {
-        sensStatus[blockNo - 1] = 0;
-        publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , INACTIVE);
+        if (sendThreashold[blockNo - 1] < SEND_THRESHOLD) {
+          sendThreashold[blockNo - 1] = sendThreashold[blockNo - 1] + 1;
+          publishSensorData(String(JMRI_SENSOR_START_ADDRESS + blockNo) , INACTIVE);
+        } else {
+          sendThreashold[blockNo - 1] = 0;
+          sensStatus[blockNo - 1] = 0;
+        }
       }
     }
   }

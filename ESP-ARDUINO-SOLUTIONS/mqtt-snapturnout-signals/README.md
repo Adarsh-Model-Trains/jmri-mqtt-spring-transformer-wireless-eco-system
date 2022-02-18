@@ -2,6 +2,9 @@
 
 --- 
 
+## Code Download 
+### [mqtt-snapturnout-signals](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/v1.production/ESP-ARDUINO-SOLUTIONS/zip/mqtt-snapturnout-signals.zip)
+
 ## To Open Two arduino sperate ide on mac 
 * $ open -n -a Arduino
 * -n = open new instance even when one is already running
@@ -27,3 +30,5 @@ take the rx pin of the nodemcu/esp8266 and connect to the tx pin of the arduino
 ![img](../../image/con.JPG)
 
 ![img](../../image/esp-mega-conn.JPG)
+
+![img](../../image/snapturnout-configurations.png)

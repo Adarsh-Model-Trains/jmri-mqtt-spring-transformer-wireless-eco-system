@@ -1,8 +1,9 @@
 # JMRI MQTT DATA TRANSFORMER NODE SELECTOR APPLICATION
 
-### [click to download jar](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/spring-jmri-mqtt-data-transformer/doc/spring-jmri-mqtt-data-transformer.jar)
+### [click to download jar](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/lib/spring-jmri-mqtt-data-transformer.jar)
 
-### [click to download application config file](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/spring-jmri-mqtt-data-transformer/doc/application.config.file.zip)
+### [click to download application config file](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/production/lib/application.config.file.zip)
+
 
 ## Min Requirement 
 * java runtime 8 
@@ -16,7 +17,7 @@
 ### To pass the customized configuration file
 
 > for production profile with external configuration file passed from cmd line \
-> NOTE COPY THE application.yaml and application.properties file from doc directory of this application \
+> NOTE COPY THE application.yaml and application.properties file must be present \
 > in the same directory where jar file is present then execute the below cmd
 
 * java -Xmx1024m -jar -Dspring.profiles.active=prod spring-jmri-mqtt-data-transformer.jar --spring.config.name=application

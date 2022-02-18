@@ -2,7 +2,7 @@ package com.adarsh.model.trains.service;
 
 import com.adarsh.model.trains.beans.MqttProperties;
 import com.adarsh.model.trains.beans.NodeConfigurations;
-import com.adarsh.model.trains.util.CircularQueue;
+import com.adarsh.model.trains.util.DataCircularQueue;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -24,12 +24,13 @@ import java.util.stream.Collectors;
 @Service
 public class MQTTService {
 
-    final public static Map<String, CircularQueue<String>> store = new HashMap<>();
+    final public static Map<String, DataCircularQueue> store = new HashMap<>();
     final public static Map<String, List<String>> cache2Led = new HashMap<>();
     final public static Map<String, List<String>> cache3Led = new HashMap<>();
     final public static Map<String, Long> cache2LedTime = new HashMap<>();
     final public static Map<String, Long> cache3LedTime = new HashMap<>();
     final public static Map<String, Boolean> activeNodeCache = new HashMap<>();
+    final public static MqttMessage mqttMessage = new MqttMessage();
     final public static String EMPTY = "";
     final public static Integer led2 = 2;
     final public static Integer led3 = 3;
@@ -49,6 +50,7 @@ public class MQTTService {
     final public static String SIGNAL = "SIGNAL";
     final public static String TURNOUT = "TURNOUT";
     final public static String DEFAULT_BLOCK_RESULT = "O:0000:00:00:00";
+    final public static String DEFAULT_EMPTY_RESULT = "";
 
 
     @Autowired
@@ -63,13 +65,12 @@ public class MQTTService {
     @PostConstruct
     public void init() {
         nodeConfigurations.getNodes().stream().forEach(node -> {
-            log.info("");
             log.info("Node Id = {}  Node Enabled = {} Publishing Enabled = {}  Rest ApiEnabled = {} Api Cache Size ={}",
                     node.getNodeId(), node.getEnableNode(), node.getEnablePublishing(), node.getEnableRestApi(), node.getApiEndpointCacheSize());
             if (node.getEnableNode()) {
                 if (node.getEnableRestApi()) {
                     activeNodeCache.put(node.getNodeId(), true);
-                    store.put(node.getNodeId(), new CircularQueue<String>(node.getApiEndpointCacheSize()));
+                    store.put(node.getNodeId(), new DataCircularQueue(node.getApiEndpointCacheSize()));
                 } else {
                     activeNodeCache.put(node.getNodeId(), false);
                 }
@@ -143,7 +144,7 @@ public class MQTTService {
         }
     }
 
-    private void processSignal(Integer jmriId, String jmriState) throws Exception {
+    public void processSignal(Integer jmriId, String jmriState) throws Exception {
         log.debug("processSignal jmriId = {} with jmriState = {} ", jmriId, jmriState);
         try {
             //  to find out the node and then push the data to that node topic
@@ -172,7 +173,6 @@ public class MQTTService {
                         if (node.getEnableRestApi()) {
                             store.get(node.getNodeId()).enqueue(SIGNAL_PREFIX + signalData);
                         }
-
                         cache3Led.get(node.getNodeId()).clear();
                     }
                 } else if (jmriId >= node.getSignal2LStartAddress()) {
@@ -212,7 +212,7 @@ public class MQTTService {
         }
     }
 
-    private void processTurnout(Integer jmriId, String jmriState) throws Exception {
+    public void processTurnout(Integer jmriId, String jmriState) throws Exception {
         log.debug("processTurnout jmriId = {} with jmriState = {} ", jmriId, jmriState);
         //  to find out the node and then push the data to that node topic
         try {
@@ -239,7 +239,7 @@ public class MQTTService {
         }
     }
 
-    private void processLight(Integer jmriId, String jmriState) throws Exception {
+    public void processLight(Integer jmriId, String jmriState) throws Exception {
         log.debug("processLight jmriId = {} with jmriState = {} ", jmriId, jmriState);
         try {
             //  to find out the node and then push the data to that topic
@@ -313,7 +313,7 @@ public class MQTTService {
         }).findFirst().get();
     }
 
-    public  String findBoardPin(NodeConfigurations.Nodes node, Integer pinNo, String state) {
+    public String findBoardPin(NodeConfigurations.Nodes node, Integer pinNo, String state) {
         String data = "";
         int pin = pinNo - 1;
         int board = (pin / 16);
@@ -360,21 +360,21 @@ public class MQTTService {
         return null;
     }
 
+
     public void publish(final String topic, final String payload, int qos, boolean retained)
             throws MqttException {
         log.debug("Publishing to Mqtt after transformation  Topic = {}  payload = {}", topic, payload);
-        MqttMessage mqttMessage = new MqttMessage();
         mqttMessage.setPayload(payload.getBytes());
         mqttMessage.setQos(qos);
         mqttMessage.setRetained(retained);
         mqttClient.publish(topic, mqttMessage);
     }
 
-    public String getData(String nodeId) throws Exception {
-        if (activeNodeCache.get(nodeId)) {
-            return store.get(nodeId).dequeue();
+    public static String getData(String nodeId, boolean nextValue) throws Exception {
+        if (nextValue) {
+            return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeue() : DEFAULT_EMPTY_RESULT;
         } else {
-            return DEFAULT_BLOCK_RESULT;
+            return (!store.get(nodeId).isEmpty()) ? store.get(nodeId).dequeueCurrent() : DEFAULT_EMPTY_RESULT;
         }
     }
 

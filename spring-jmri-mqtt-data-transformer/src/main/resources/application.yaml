@@ -23,6 +23,7 @@ mqtt-properties:
   turnoutTopic: /trains/track/turnout/                             # jrmi turnout topic name
   signalTopic: /trains/track/signalhead/                           # jrmi signalhead topic name
   errorTopic: /amt/errors                                          # jrmi error message topic name
+  errorPublish: false                                              # publishing error to the /amt/errors topic is controlled
   cleanSession: true
   connectionTimeout: 300
   keepAliveInterval: 60
@@ -43,26 +44,26 @@ node:
         enableNode: true                          # enable the node to process for jmri data
         enablePublishing: true                    # enable the node to publish process data to the mqtt topic
         enableRestApi: true                       # to enable the rest service for the node
-        apiEndpointCacheSize: 10                  # cache for rest api to hold the data for service call
+        apiEndpointCacheSize: 100                  # cache for rest api to hold the data for service call
         lightStartAddress: 10000
         lightCount: 2                             # 1 pin for each light on the pca9685 board
         signal2LStartAddress: 20000
         signal2LCount: 8                         # 2 pins for each signal light on the pca9685 board
         signal3LStartAddress: 30000
-        signal3LCount: 5                          # 3 pins for each signal on the pca9685 board  (5 * 3) => 15
+        signal3LCount: 10                          # 3 pins for each signal on the pca9685 board  (5 * 3) => 15
         turnoutServoStartAddress: 40000
-        turnoutServoCount: 8                      # 1 pin for each servo turnout
+        turnoutServoCount: 16                      # 1 pin for each servo turnout
         turnoutSnapStartAddress: 50000
         turnoutSnapCount: 8                       # 2 pins for each turnout on the pca9685 board (16 * 2) /16 => 16
         turnoutBoardCount: 2                      # (turnoutCount * 2)/16 :=>  (16 * 2) / 16 => 2
-        lightBoardCount: 2                        # (lightCount + signal2LCount + signal3LCount) /16 :=>  (5+32+30)/16 =>  5
+        lightBoardCount: 3                        # (lightCount + signal2LCount + signal3LCount) /16 :=>  (5+32+30)/16 =>  5
         nodeSubscriptionTopic: /amt/node/1/data/  # topic for every node for reading data from spring transformation application
 
       -
         nodeId: 2
         enableNode: true
         enablePublishing: true
-        enableRestApi: false
+        enableRestApi: true
         lightStartAddress: 10100
         lightCount: 5
         signal2LStartAddress: 20100
@@ -81,7 +82,7 @@ node:
         nodeId: 3
         enableNode: true
         enablePublishing: true
-        enableRestApi: false
+        enableRestApi: true
         lightStartAddress: 10200
         lightCount: 7
         signal2LStartAddress: 20200
@@ -100,7 +101,7 @@ node:
         nodeId: 4
         enableNode: true
         enablePublishing: true
-        enableRestApi: false
+        enableRestApi: true
         lightStartAddress: 10300
         lightCount: 23
         signal2LStartAddress: 20300

@@ -10,6 +10,7 @@ Adafruit_PWMServoDriver servoDriver = Adafruit_PWMServoDriver(_boardAddress[boar
 
 void setup() {
   Serial.begin(BROAD_RATE);
+  Serial.println(" BOARD INDEX " + String(boardInChain) + " BOARD ADDRESS " + String(_boardAddress[boardInChain], HEX)+" PIN ON BOARD "+String(servoNumber));
   servoArmPosition = 1500; // Initial position
   servoDriver.begin();
   servoDriver.setOscillatorFrequency(25000000);

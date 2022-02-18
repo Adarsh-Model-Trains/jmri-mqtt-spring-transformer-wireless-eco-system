@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 import org.springframework.integration.annotation.IntegrationComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.util.ResourceUtils;
 
 import java.io.IOException;
@@ -21,8 +22,9 @@ import java.nio.file.Paths;
  */
 
 @Slf4j
-@IntegrationComponentScan
+@EnableAsync
 @SpringBootApplication
+@IntegrationComponentScan
 public class MqttJmriTransformerApplication {
 
     public static void main(String[] args) {

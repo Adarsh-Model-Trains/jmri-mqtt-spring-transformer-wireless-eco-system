@@ -69,3 +69,7 @@ take the rx pin of the nodemcu/esp8266 and connect to the tx pin of the arduino
 
 
 ![img](../../../image/con.JPG)
+
+![img](../../../image/pca9685-servo.png)
+
+![img](../../../image/pca9685-chain-servero.png)

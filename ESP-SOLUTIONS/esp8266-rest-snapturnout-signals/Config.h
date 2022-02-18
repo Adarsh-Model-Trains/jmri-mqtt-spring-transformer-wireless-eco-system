@@ -1,25 +1,15 @@
+
+/*
+   Adarsh Model Trains
+   Developed by Adarsh kumar
+   Support adarshmodeltrains@gmail.com
+*/
+
 #ifndef Config_h
 #define Config_h
 #include "Arduino.h"
-
+#include "DefaultConfig.h"
 /************************************************************************************************/
-#define T 'T'
-#define L 'L'
-#define S 'S'
-#define O 'O'
-
-#define THROWN "TH"
-#define CLOSED "CL"
-#define ON "ON"
-#define OFF "OF"
-#define MSG_SIZE  14
-#define BROAD_RATE 115200
-#define DELAY_TIME 200
-#define WIFI_RECONNECT_DELAY_TIME 500
-#define PWM_FREQUENCY 1000
-#define TOTAL_BOARD_PIN 16
-/************************************************************************************************/
-
 
 // MUST BE EQUAL TO THE CONFIGURATION DEFINED IN SPRING
 // APPLICATION NODE DEFINATION THEN ONLY THIS WILL WORK
@@ -28,11 +18,15 @@
 #define NO_OF_TOTAL_BOARDS 11
 
 // ESP8266 do not support 5G wifi connection
-#define WIFI_SSID  "adarsh_radha_2G"
-#define WIFI_PASSWROD  "*******"
+#define WIFI_SSID  "adarsh-model-trains"
+#define WIFI_PASSWROD  "adarsh@model@trains"
 
-// IP OF THE SERVER MACHINE WHERE SPRING TRANSFORMER IS RUNNING
-#define SERVER_URL  "http://192.168.0.188:8090/amt/node/1"
-#define NODE_ID  "1"
+// IP AND PORT THE SERVER MACHINE WHERE SPRING TRANSFORMER IS RUNNING
+const String SERVER_IP_PORT = "192.168.0.188:8090";
+const String NODE_ID = "1";
+const String SERVICE_URL = "/amt/node/";
+const String SERVER_URL = "http://" + SERVER_IP_PORT + SERVICE_URL + NODE_ID;
 
+const bool signalLedTypeAnode = false;
+/************************************************************************************************/
 #endif

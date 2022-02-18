@@ -8,10 +8,13 @@
 // Enables the ESP8266 to connect to the local network (via WiFi)
 #include <ESP8266WiFi.h>
 // Allows us to connect to, and publish to the MQTT broker
-#include <PubSubClient.h>
+#include "PubSubClient.h"
 #include"Config.h"
 
+String id;
+String val;
 String message;
+String topic;
 
 // Initialise the WiFi and MQTT Client objects
 WiFiClient wifiClient;
@@ -24,7 +27,7 @@ PubSubClient client(MQTT_SERVER, 1883, wifiClient);
    pushing the sensor data to the mqtt for jmri
 */
 void publishSensorData(String sensorNo, String state) {
-  String topic = JMRI_MQTT_SENSOR_TOPIC + sensorNo;
+  topic = JMRI_MQTT_SENSOR_TOPIC + sensorNo;
   Serial.print(topic + " " + state);
   Serial.println();
   client.publish(topic.c_str(), state.c_str());
@@ -47,29 +50,30 @@ void setup() {
   // Begin Serial on 115200
   Serial.begin(BROAD_RATE);
 
-  Serial.print("Connecting to ");
-  Serial.println(SS_ID);
+  Serial.print("CONNECTING TO WIFI ");
+  Serial.println(WIFI_SSID);
 
   // Connect to the WiFi
-  WiFi.begin(SS_ID, WIFI_PWD);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWROD);
 
   // Wait until the connection has been confirmed before continuing
   while (WiFi.status() != WL_CONNECTED) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-    //Serial.print(".");
+    Serial.print(".");
   }
 
   // Debugging - Output the IP Address of the ESP8266
-  Serial.print("WiFi connected: ");
+  Serial.println();
+  Serial.print("CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
 
   // Connect to MQTT Broker
   if (mqttConnect()) {
-    Serial.println("Connected Successfully to MQTT Broker!");
+    Serial.println("CONNNECTED TO MQTT  ");
   } else {
-    Serial.println("Connection Failed!");
+    Serial.println("ERROR NOT CONNNECTED TO MQTT  ");
   }
 }
 
@@ -83,15 +87,17 @@ void loop() {
   // Once it has done all it needs to do for this cycle, go back to checking if we are still connected.
 
   while (Serial.available()) {
-    String message = Serial.readString();
+    message = Serial.readString();
     if (message != "") {
-      String id = message.substring(0, 5); // 10000
-      String val = message.substring(6, 8); // AC | IN
+      id = message.substring(0, 5); // 10000
+      val = message.substring(6, 8); // AC | IN
       if (val == ACT) {
         publishSensorData(id, ACTIVE);
       } else {
         publishSensorData(id, INACTIVE);
       }
+      id = "";
+      val = "";
       message = "";
     }
   }

@@ -1,19 +1,23 @@
+/*
+   Adarsh Model Trains
+   Developed by Adarsh kumar
+   Support adarshmodeltrains@gmail.com
+*/
+
 #ifndef Config_h
 #define Config_h
 #include "Arduino.h"
-
-/************************************************************************************************/
-#define BROAD_RATE 115200
-#define DELAY_TIME 5000
-#define WIFI_RECONNECT_DELAY_TIME 500
+#include "DefaultConfig.h"
 /************************************************************************************************/
 
 // ESP8266 do not support 5G wifi connection
-#define WIFI_SSID "adarsh_radha_2G"
-#define WIFI_PASSWROD "*********"
+#define WIFI_SSID "adarsh-model-trains"
+#define WIFI_PASSWROD "adarsh@model@trains"
 
-// IP OF THE SERVER MACHINE WHERE SPRING TRANSFORMER IS RUNNING 
-#define SERVER_URL "http://192.168.0.188:8090/amt/node/1"
-#define NODE_ID "1"
-
+// IP AND PORT THE SERVER MACHINE WHERE SPRING TRANSFORMER IS RUNNING
+const String SERVER_IP_PORT = "192.168.0.188:8090";
+const String NODE_ID = "1";
+const String SERVICE_URL = "/amt/node/";
+const String SERVER_URL = "http://" + SERVER_IP_PORT + SERVICE_URL + NODE_ID;
+/************************************************************************************************/
 #endif

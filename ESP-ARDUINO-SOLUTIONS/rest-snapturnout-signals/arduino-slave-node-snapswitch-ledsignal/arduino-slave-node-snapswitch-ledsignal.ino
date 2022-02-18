@@ -7,7 +7,7 @@
 #include "Config.h"
 #include "Pca9685BoardManager.h"
 
-String light;
+String inputVal;
 String jId ;
 String bId ;
 String pId ;
@@ -15,7 +15,8 @@ String val;
 int jmriId ;
 int boardId ;
 int pinId ;
-
+char type;
+String message ;
 Pca9685BoardManager pcaBoardManager;
 
 void setup() {
@@ -27,9 +28,10 @@ void setup() {
 void loop() {
   // Monitor serial communication
   while (Serial.available()) {
-    String message = Serial.readString();
+    message = Serial.readString();
     if (message != "") {
       processCall(message);
+      message = "";
     }
   }
   delay(DELAY_TIME);
@@ -39,11 +41,10 @@ void loop() {
 void processCall(String msg) {
 
   Serial.println("Message " + msg);
-  char type = msg.charAt(0);
-  msg = msg.substring(2);
+  type = msg.charAt(0);
 
   if (type == S) {
-
+    msg = msg.substring(2);
     doExecute(msg, S);
     msg = msg.substring(15);
 
@@ -59,29 +60,35 @@ void processCall(String msg) {
       }
     }
   } else if (type == T) {
-
+    msg = msg.substring(2);
     doExecute(msg, T);
 
   } else if (type == L) {
-
+    msg = msg.substring(2);
     doExecute(msg, L);
 
-  } else if (type == O) {
-    Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
+  } else if (type == E) {
+
+    Serial.println(NO_DATA_AVALIABLE);
+
+  }  else if (type == O) {
+
+    Serial.println(REST_API_DISABLED);
   }
+  type = '-';
 }
 
 void doExecute(String msg , char type) {
-  light = msg.substring(0, MSG_SIZE);
-  jId = light.substring(0, 5);
-  bId = light.substring(6, 8);
-  pId = light.substring(9, 11);
-  val = light.substring(12, MSG_SIZE);
+  inputVal = msg.substring(0, MSG_SIZE);
+  jId = inputVal.substring(0, 5);
+  bId = inputVal.substring(6, 8);
+  pId = inputVal.substring(9, 11);
+  val = inputVal.substring(12, MSG_SIZE);
 
   boardId = atoi(bId.c_str());
   pinId = atoi(pId.c_str());
 
-  doPrint(light, jId, bId, pId, val);
+  doPrint(inputVal, jId, bId, pId, val);
   if (boardId <= NO_OF_TOTAL_BOARDS) {
     if (type == T ) {
       if (val == THROWN) {
@@ -89,15 +96,21 @@ void doExecute(String msg , char type) {
       } else {
         pcaBoardManager.switchClose( boardId, pinId);
       }
-    } else if ( type == L || type == S) {
+    } else if ( type == S) {
       if (val == ON) {
-        pcaBoardManager.switchOn(boardId, pinId);
+        pcaBoardManager.switchOnSignal(boardId, pinId);
       } else {
-        pcaBoardManager.switchOff( boardId, pinId);
+        pcaBoardManager.switchOffSignal( boardId, pinId);
+      }
+    } else if ( type == L ) {
+      if (val == ON) {
+        pcaBoardManager.switchOnLight(boardId, pinId);
+      } else {
+        pcaBoardManager.switchOffLight( boardId, pinId);
       }
     }
   } else {
-    Serial.println("BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED ");
+    Serial.println(BOARDS_CONFIG);
   }
 }
 

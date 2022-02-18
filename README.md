@@ -5,6 +5,7 @@
 ## [YOUTUBE HELP LINK ](doc/YOUTUBE-README.md)	
 
 ![img](image/implementation.png)
+![img](image/network.png)
 
 > Jmri will push the data to the mqtt topic \
 > spring transformer application configured with nodes and its details like no of turnout, no of signals, no of light in the node \
@@ -90,6 +91,8 @@
 ### [MQTT SETUP GUILDE LINK ](doc/MQTT-SETUP-README.md)
 
 ### [JMRI MQTT CONNECTION SETUP AND TESTING LIGHT SIGNAL TURNOUT SENSORS ](doc/JMRI-MQTT-SETUP-README.md)
+
+### [ESP SETUP IN THE ARDUINO IDE ](doc/ESP8266_README.md)
 
 ### [CONNECTION DETAILS FOR ESP AND ARDUINO ](doc/ESP-ARDUINO-CONNECTON-README.md)
 

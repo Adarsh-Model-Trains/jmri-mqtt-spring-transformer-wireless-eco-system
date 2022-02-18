@@ -8,9 +8,6 @@
 
 ## Lib installtion 
 
-### search for "PubSubClient" lib and install it before compiling 
-### or install this lib for location [PubSubClient lib ](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/pubsubclient.zip)
-
 ### search for "ESP8266WiFi" lib and install it before compiling 
 ### or install the wifi lib for esp8266 [esp8266wifi lib](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/ESP8266WiFi.zip)
 
@@ -18,27 +15,25 @@
 > esp will conect to mqtt via wifi network 
 > wifi credentials will be configured in Config.h file 
 ```
-const char* ssid = "adarsh_radha_2G"; // ESP8266 do not support 5G wifi connection
-const char* wifi_password = "*******";
+#define WIFI_SSID "adarsh-model-trains" // ESP8266 do not support 5G wifi connection
+#define WIFI_PASSWROD "adarsh@model@trains"
 ```
 > mqtt configuration and credentail will be configured in Config.h file 
 ```
-const char* mqtt_server = "192.168.0.188"; 
-const char* mqtt_username = "adarsh";
-const char* mqtt_password = "password";
+#define  MQTT_SERVER  "192.168.0.188"
+#define  MQTT_USER "adarsh"
+#define  MQTT_PWD "password"
 ```
 > mqtt topics will be configured in Config.h 
 ```
 // change the node "number/name"  based on the node default is 1 in this 
-const char* mqtt_topic = "/amt/node/1/#";
+#define JMRI_MQTT_TOPIC "/amt/node/1/#"
 ```
 
 > esp client id is configure in Config.h 
 ```
-const char* clientID = "JMRI_SUBSCRIBER_NODE_ESP8266_1";
-#define BROAD_RATE 115200
-#define DELAY_TIME 1000
-#define WIFI_RECONNECT_DELAY_TIME 500
+// change the node "number/name"  based on the node
+#define CLIENT_ID "JMRI_SUBSCRIBER_NODE_ESP8266_1"
 ```
 
 ### jmri configuration 

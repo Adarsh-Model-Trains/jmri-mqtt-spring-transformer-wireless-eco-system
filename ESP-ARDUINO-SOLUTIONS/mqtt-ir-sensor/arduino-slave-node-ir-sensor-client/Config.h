@@ -7,19 +7,9 @@
 #ifndef Config_h
 #define Config_h
 #include "Arduino.h"
-
+#include "DefaultConfig.h"
 /************************************************************************************************/
-#define ON LOW
-#define OFF HIGH
-#define ACTIVE ":AC\n"
-#define INACTIVE ":IN\n"
-#define PINS 2
-#define BROAD_RATE 115200
-#define DELAY_TIME 5000
-/************************************************************************************************/
-
 #define JMRI_SENSOR_START_ADDRESS 10000
-#define NO_OF_BLOCKS 3
 
 /*
  * IR SENSORS PIN CONFIGURATION 
@@ -30,10 +20,11 @@
   {BLOCK_N_END_PIN, BLOCK_N_START_PIN }
   };
 */
+#define NO_OF_BLOCKS 3
 const int sensorPin[NO_OF_BLOCKS][PINS] = {
   {13, 12 },
+  {12, 11 },
   {11, 10 },
-  {9, 8}
 };
-
+/************************************************************************************************/
 #endif

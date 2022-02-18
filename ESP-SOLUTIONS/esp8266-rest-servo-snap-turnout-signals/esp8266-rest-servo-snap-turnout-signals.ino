@@ -5,7 +5,7 @@
 #include"Config.h"
 #include "Pca9685BoardManager.h"
 
-String comp;
+String inputVal;
 String jId ;
 String bId ;
 String pId ;
@@ -13,9 +13,13 @@ String val;
 int jmriId ;
 int boardId ;
 int pinId ;
+char type = '-';
 String serverResponse;
-const uint32_t connectTimeoutMs = 5000;
+int httpResponseCode = -1;
+String payload = "";
 
+HTTPClient http;
+WiFiClient client;
 ESP8266WiFiMulti wifiMulti;
 Pca9685BoardManager pcaBoardManager;
 
@@ -24,13 +28,19 @@ void setup() {
   WiFi.persistent(false);
   WiFi.mode(WIFI_STA);
   wifiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
-  while (wifiMulti.run(connectTimeoutMs) != WL_CONNECTED) {
+  while (wifiMulti.run() != WL_CONNECTED) {
     delay(WIFI_RECONNECT_DELAY_TIME);
     Serial.print(".");
   }
+<<<<<<< HEAD
   // Debugging - Output the IP Address of the ESP8266
   Serial.println();
   Serial.print("WiFi connected: ");
+=======
+
+  Serial.println();
+  Serial.print(" CONNECTED TO WIFI ");
+>>>>>>> b0bdd94e83148b2d3bca7f78d25c39ff43ada173
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
@@ -38,50 +48,42 @@ void setup() {
 }
 
 void loop() {
-  if (wifiMulti.run(connectTimeoutMs) == WL_CONNECTED) {
-    serverResponse = httpGETRequest(SERVER_URL);
-    // todo with the server response
+  if (wifiMulti.run() == WL_CONNECTED) {
+    serverResponse = httpGETRequest();
     if (serverResponse != "") {
       processCall(serverResponse);
       delay(DELAY_TIME);
     }
   } else {
-    Serial.println("WiFi Disconnected");
+    Serial.println(" ERROR NOT CONNECTED TO WIFI ");
   }
 }
 
-String httpGETRequest(const char* serverName) {
-
-  WiFiClient client;
-  HTTPClient http;
-
-  // Your IP address with path or Domain name with URL path
-  http.begin(client, serverName);
-
-  // Send HTTP POST request
-  int httpResponseCode = http.GET();
-  String payload = "";
-
+String httpGETRequest() {
+  http.begin(client, SERVER_URL);
+  http.addHeader(HEADER_NAME, HEADER_VALUE);
+  httpResponseCode = http.GET();
+  payload = "";
   if (httpResponseCode > 0) {
-    //Serial.println("HTTP Response code: " + String(httpResponseCode));
+    Serial.println("HTTP RESPONSE CODE: " + String(httpResponseCode));
     payload = http.getString();
+  } else if (httpResponseCode == -1) {
+    Serial.println(" ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
+  } else {
+    Serial.println(" ERROR CODE: " + String(httpResponseCode));
   }
-  else {
-    Serial.println("Error code: " + String(httpResponseCode));
-  }
-  // Free resources
   http.end();
   return payload;
 }
 
+
 void processCall(String msg) {
 
   Serial.println("Message " + msg);
-  char type = msg.charAt(0);
-  msg = msg.substring(2);
+  type = msg.charAt(0);
 
   if (type == S) {
-
+    msg = msg.substring(2);
     doExecute(msg, S);
     msg = msg.substring(15);
 
@@ -97,29 +99,35 @@ void processCall(String msg) {
       }
     }
   } else if (type == T) {
-
+    msg = msg.substring(2);
     doExecute(msg, T);
 
   } else if (type == L) {
-
+    msg = msg.substring(2);
     doExecute(msg, L);
 
-  } else if (type == O) {
-    Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
+  }  else if (type == E) {
+
+    Serial.println(NO_DATA_AVALIABLE);
+
+  }  else if (type == O) {
+
+    Serial.println(REST_API_DISABLED);
   }
+  type = '-';
 }
 
 void doExecute(String msg , char type) {
-  comp = msg.substring(0, MSG_SIZE);
-  jId = comp.substring(0, 5);
-  bId = comp.substring(6, 8);
-  pId = comp.substring(9, 11);
-  val = comp.substring(12, MSG_SIZE);
+  inputVal = msg.substring(0, MSG_SIZE);
+  jId = inputVal.substring(0, 5);
+  bId = inputVal.substring(6, 8);
+  pId = inputVal.substring(9, 11);
+  val = inputVal.substring(12, MSG_SIZE);
 
   boardId = atoi(bId.c_str());
   pinId = atoi(pId.c_str());
 
-  doPrint(comp, jId, bId, pId, val);
+  doPrint(inputVal, jId, bId, pId, val);
   if (boardId <= NO_OF_TOTAL_BOARDS) {
     if (type == T ) {
       if (val == THROWN) {
@@ -127,15 +135,21 @@ void doExecute(String msg , char type) {
       } else {
         pcaBoardManager.switchClose( boardId, pinId);
       }
-    } else if ( type == L || type == S) {
+    } else if ( type == S) {
       if (val == ON) {
-        pcaBoardManager.switchOn(boardId, pinId);
+        pcaBoardManager.switchOnSignal(boardId, pinId);
       } else {
-        pcaBoardManager.switchOff( boardId, pinId);
+        pcaBoardManager.switchOffSignal( boardId, pinId);
+      }
+    } else if ( type == L ) {
+      if (val == ON) {
+        pcaBoardManager.switchOnLight(boardId, pinId);
+      } else {
+        pcaBoardManager.switchOffLight( boardId, pinId);
       }
     }
   } else {
-    Serial.println("BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED ");
+    Serial.println(BOARDS_CONFIG);
   }
 }
 

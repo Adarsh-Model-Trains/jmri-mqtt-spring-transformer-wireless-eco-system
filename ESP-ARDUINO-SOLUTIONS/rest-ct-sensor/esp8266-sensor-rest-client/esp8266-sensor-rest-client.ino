@@ -4,12 +4,14 @@
 #include <ESP8266WiFiMulti.h>
 #include"Config.h"
 
-ESP8266WiFiMulti WiFiMulti;
-
-
 String id ;
 String val;
 String message;
+int httpResponseCode ;
+
+HTTPClient http;
+WiFiClient client;
+ESP8266WiFiMulti WiFiMulti;
 
 void setup() {
   Serial.begin(BROAD_RATE);
@@ -17,12 +19,13 @@ void setup() {
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while ((WiFiMulti.run() != WL_CONNECTED)) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-     //Serial.print(".");
+    Serial.print(".");
   }
-    Serial.print("WiFi connected: ");
-    Serial.print(WiFi.SSID());
-    Serial.print(" ");
-    Serial.println(WiFi.localIP());
+  Serial.println();
+  Serial.print("CONNECTED TO WIFI ");
+  Serial.print(WiFi.SSID());
+  Serial.print(" ");
+  Serial.println(WiFi.localIP());
 }
 
 
@@ -44,22 +47,20 @@ void loop() {
     }
     delay(DELAY_TIME);
   } else {
-    Serial.println("WiFi Disconnected");
+    Serial.println("ERROR NOT CONNECTED TO WIFI");
   }
 }
 
 int httpPostRequest(String payload) {
-  WiFiClient client;
-  HTTPClient http;
-  // Your IP address with path or Domain name with URL path
   http.begin(client, SERVER_URL);
   http.addHeader(CONTENT_TYPE, CONTENT_TYPE_VAL);
-  // Send HTTP POST request
-  int httpResponseCode = http.POST(payload);
+  httpResponseCode = http.POST(payload);
   if (httpResponseCode > 0) {
     Serial.println("Payload " + payload + " Response code: " + String(httpResponseCode) + " Response " + http.getString());
-  } else {
-    Serial.println("Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
+  } else if (httpResponseCode == -1) {
+    Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
+  }  else {
+    Serial.println("ERROR Payload " + payload + " Error code: " + String(httpResponseCode) + " Response " + http.getString());
   }
   http.end();
   return httpResponseCode;

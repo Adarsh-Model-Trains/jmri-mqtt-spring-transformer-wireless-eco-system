@@ -7,11 +7,12 @@
 // Enables the ESP8266 to connect to the local network (via WiFi)
 #include <ESP8266WiFi.h>
 // Allows us to connect to, and publish to the MQTT broker
-#include <PubSubClient.h>
+#include "PubSubClient.h"
 #include"Config.h"
+#include "DefaultConfig.h"
 #include "Pca9685BoardManager.h"
 
-String light;
+String inputVal;
 String jId ;
 String bId ;
 String pId ;
@@ -21,6 +22,8 @@ int boardId ;
 int pinId ;
 String mqttTopicValue;
 String messageText;
+int i = 0;
+char type = '-';
 
 Pca9685BoardManager pcaBoardManager;
 
@@ -42,9 +45,9 @@ void subscribeMqttMessage(char* topic, byte* payload, unsigned int length) {
 /*
    converting message from mqtt bytes to string
 */
-String getMessage(byte* message, unsigned int length) {
+String getMessage(byte* message, int length) {
   messageText = "";
-  for (int i = 0; i < length; i++) {
+  for ( i = 0; i < length; i++) {
     messageText += (char)message[i];
   }
   return messageText + "\n";
@@ -65,7 +68,7 @@ void setup() {
   // Begin Serial on 115200
   Serial.begin(BROAD_RATE);
 
-  Serial.print("Connecting to ");
+  Serial.print(" CONNECTING TO WIFI ");
   Serial.println(WIFI_SSID);
 
   // Connect to the WiFi
@@ -79,7 +82,11 @@ void setup() {
   
   // Debugging - Output the IP Address of the ESP8266
   Serial.println();
+<<<<<<< HEAD
   Serial.print("WiFi connected: ");
+=======
+  Serial.print(" CONNECTED TO WIFI ");
+>>>>>>> b0bdd94e83148b2d3bca7f78d25c39ff43ada173
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
@@ -88,9 +95,9 @@ void setup() {
   // setCallback sets the function to be called when a message is received.
   client.setCallback(subscribeMqttMessage);
   if (mqttConnect()) {
-    Serial.println("Connected Successfully to MQTT Broker!");
+    Serial.println(" CONNNECTED TO MQTT");
   } else {
-    Serial.println("Connection Failed!");
+    Serial.println(" ERROR NOT CONNNECTED TO MQTT");
   }
   pcaBoardManager.initPca9685Boards();
 }
@@ -111,8 +118,8 @@ void loop() {
 
 void processCall(String msg) {
 
-  Serial.println("Message " + msg);
-  char type = msg.charAt(0);
+  Serial.println(" Message " + msg);
+  type = msg.charAt(0);
   msg = msg.substring(2);
 
   if (type == S) {
@@ -139,22 +146,22 @@ void processCall(String msg) {
 
     doExecute(msg, L);
 
-  } else if (type == O) {
-    Serial.println("REST API IS NOT ENABLED FOR THIS NODE ");
   }
+
+  type = '-';
 }
 
 void doExecute(String msg , char type) {
-  light = msg.substring(0, MSG_SIZE);
-  jId = light.substring(0, 5);
-  bId = light.substring(6, 8);
-  pId = light.substring(9, 11);
-  val = light.substring(12, MSG_SIZE);
+  inputVal = msg.substring(0, MSG_SIZE);
+  jId = inputVal.substring(0, 5);
+  bId = inputVal.substring(6, 8);
+  pId = inputVal.substring(9, 11);
+  val = inputVal.substring(12, MSG_SIZE);
 
   boardId = atoi(bId.c_str());
   pinId = atoi(pId.c_str());
 
-  doPrint(light, jId, bId, pId, val);
+  doPrint(inputVal, jId, bId, pId, val);
   if (boardId <= NO_OF_TOTAL_BOARDS) {
     if (type == T ) {
       if (val == THROWN) {
@@ -162,15 +169,21 @@ void doExecute(String msg , char type) {
       } else {
         pcaBoardManager.switchClose( boardId, pinId);
       }
-    } else if ( type == L || type == S) {
+    } else if ( type == S) {
       if (val == ON) {
-        pcaBoardManager.switchOn(boardId, pinId);
+        pcaBoardManager.switchOnSignal(boardId, pinId);
       } else {
-        pcaBoardManager.switchOff( boardId, pinId);
+        pcaBoardManager.switchOffSignal( boardId, pinId);
+      }
+    } else if ( type == L ) {
+      if (val == ON) {
+        pcaBoardManager.switchOnLight(boardId, pinId);
+      } else {
+        pcaBoardManager.switchOffLight( boardId, pinId);
       }
     }
   } else {
-    Serial.println("BOARD NUMBER EXCEEDED THE NO OF BOARD CONFIGURED ");
+    Serial.println(BOARDS_CONFIG);
   }
 }
 

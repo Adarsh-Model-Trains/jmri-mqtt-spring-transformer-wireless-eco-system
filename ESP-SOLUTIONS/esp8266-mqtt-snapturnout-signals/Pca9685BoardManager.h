@@ -30,8 +30,10 @@ class Pca9685BoardManager {
     void initPca9685Boards();
     bool switchThrow(int boardId, int pinId);
     bool switchClose(int boardId, int pinId);
-    bool switchOn(int boardId, int pinId);
-    bool switchOff(int boardId, int pinId);
+    bool switchOnLight(int boardId, int pinId);
+    bool switchOffLight(int boardId, int pinId);
+    bool switchOnSignal(int boardId, int pinId);
+    bool switchOffSignal(int boardId, int pinId);
 
     ~Pca9685BoardManager() {
       for (int i = 0; i < NO_OF_TOTAL_BOARDS; i++) {

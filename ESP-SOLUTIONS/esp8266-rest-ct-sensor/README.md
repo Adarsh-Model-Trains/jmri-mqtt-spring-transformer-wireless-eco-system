@@ -3,9 +3,11 @@
 ---
 
 ![img](../../image/dig19.png)
+![img](../../image/esp8266-nodemcu-pin-io.png)
+![img](../../image/esppin-io.png)
+
 
 ## Lib installtion
-
 ### search for "ESP8266HTTPClient" lib and install it before compiling 
 ### or install this lib for esp8266 [esp8266httpclient lib](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/ESP8266HTTPClient.zip)
 
@@ -13,18 +15,24 @@
 ### search for "ESP8266WiFi" lib and install it before compiling 
 ### or install the wifi lib for esp8266 [esp8266wifi lib](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/main/lib/ESP8266WiFi.zip)
 
+
+## Code Download 
+### [esp8266-rest-ct-sensor](https://github.com/Adarsh-Model-Trains/jmri-mqtt-spring-transformer-wireless-eco-system/raw/v1.production/ESP-SOLUTIONS/zip/eesp8266-rest-ct-sensor.zip)
+
+
 > esp will conect to spring transformation application via wifi network 
 > wifi credentials will be configured in Config.h file 
 ```
-const char* ssid = "adarsh_radha_2G"; // ESP8266 do not support 5G wifi connection
-const char* wifi_password = "*******";
-
+#define WIFI_SSID "adarsh-model-trains"
+#define WIFI_PASSWROD "adarsh@model@trains"
 ```
 
 > spring transformation rest service url configured in Config.h file 
 * "http://localhost:8090/amt/node/<NODE_ID>";
 ```
-const char* SERVER_URL = "http://192.168.0.188:8090/amt/node/1";
+const String SERVER_IP_PORT = "192.168.0.188:8090";
+const String NODE_ID = "1";
+const String SERVICE_URL = "/amt/node/";
 ```
 
 ### CT Sensors configuration for arduino in Config.h 

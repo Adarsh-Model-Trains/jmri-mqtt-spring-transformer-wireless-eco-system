@@ -4,9 +4,13 @@
 #include <ESP8266WiFiMulti.h>
 #include"Config.h"
 
-ESP8266WiFiMulti WiFiMulti;
-
+String payload = "";
+int httpResponseCode;
 String serverResponse;
+
+HTTPClient http;
+WiFiClient client;
+ESP8266WiFiMulti WiFiMulti;
 
 void setup() {
   Serial.begin(BROAD_RATE);
@@ -15,50 +19,40 @@ void setup() {
   WiFiMulti.addAP(WIFI_SSID, WIFI_PASSWROD);
   while ((WiFiMulti.run() != WL_CONNECTED)) {
     delay(WIFI_RECONNECT_DELAY_TIME);
-    //Serial.print(".");
+    Serial.print(".");
   }
-  // Debugging - Output the IP Address of the ESP8266
-  Serial.print("WiFi connected: ");
+  Serial.println();
+  Serial.print("CONNECTED TO WIFI ");
   Serial.print(WiFi.SSID());
   Serial.print(" ");
   Serial.println(WiFi.localIP());
-
 }
 
 void loop() {
   if ((WiFiMulti.run() == WL_CONNECTED)) {
-    serverResponse = httpGETRequest(SERVER_URL);
-    // todo with the server response
+    serverResponse = httpGETRequest();
     if (serverResponse != "") {
       pushDataToSlave(serverResponse);
-      delay(200);
+      delay(DELAY_TIME);
+      serverResponse = "";
     }
-
   } else {
-    Serial.println("WiFi Disconnected");
+    Serial.println("ERROR NOT CONNECTED TO WIFI");
   }
 }
 
-String httpGETRequest(const char* serverName) {
-
-  WiFiClient client;
-  HTTPClient http;
-
-  // Your IP address with path or Domain name with URL path
-  http.begin(client, serverName);
-
-  // Send HTTP POST request
-  int httpResponseCode = http.GET();
-  String payload = "";
-
+String httpGETRequest() {
+  http.begin(client, SERVER_URL);
+  http.addHeader(HEADER_NAME, HEADER_VALUE);
+  httpResponseCode = http.GET();
+  payload = "";
   if (httpResponseCode > 0) {
-    //Serial.println("HTTP Response code: " + String(httpResponseCode));
     payload = http.getString();
+  } else if (httpResponseCode == -1) {
+    Serial.println("ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
+  } else {
+    //Serial.println("ERROR CODE: " + String(httpResponseCode));
   }
-  else {
-    Serial.println("Error code: " + String(httpResponseCode));
-  }
-  // Free resources
   http.end();
   return payload;
 }
