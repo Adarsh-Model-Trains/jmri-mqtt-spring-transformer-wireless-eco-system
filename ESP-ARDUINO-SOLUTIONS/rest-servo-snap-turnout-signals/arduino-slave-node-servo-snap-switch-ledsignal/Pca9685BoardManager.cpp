@@ -51,7 +51,7 @@ void Pca9685BoardManager::initPca9685Boards() {
         if ( index < NO_OF_SERVO_TURNOUT_BOARDS) {
           _pwmBoards[index] = Adafruit_PWMServoDriver(_boardAddress[index]);
           _pwmBoards[index].begin();
-          _pwmBoards[index].setPWMFreq(PWM_LIGHT_FREQUENCY);
+          _pwmBoards[index].setPWMFreq(PWM_SERVO_TURNOUT_FREQUENCY);
           _pwmBoardTypes[index] = M;
 
           Serial.println(" BOARD INDEX " + String(index) + " BOARD ADDRESS " + String(_boardAddress[index], HEX) + " SERVO TURNOUT ");
