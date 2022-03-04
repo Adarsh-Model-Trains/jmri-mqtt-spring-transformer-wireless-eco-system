@@ -61,7 +61,7 @@ String httpGETRequest() {
   httpResponseCode = http.GET();
   payload = "";
   if (httpResponseCode > 0) {
-    Serial.println(" HTTP RESPONSE CODE: " + String(httpResponseCode));
+    //Serial.println(" HTTP RESPONSE CODE: " + String(httpResponseCode));
     payload = http.getString();
   } else if (httpResponseCode == -1) {
     Serial.println(" ERROR SERVER NOT REACHABLE: " + String(httpResponseCode));
